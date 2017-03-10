@@ -1,0 +1,543 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE40C1E731A7900189953 /* AppDelegate.swift */; };
+		FADEE40F1E731A7900189953 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE40E1E731A7900189953 /* ViewController.swift */; };
+		FADEE4121E731A7900189953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4101E731A7900189953 /* Main.storyboard */; };
+		FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4131E731A7900189953 /* adera.xcdatamodeld */; };
+		FADEE4171E731A7900189953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4161E731A7900189953 /* Assets.xcassets */; };
+		FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4181E731A7900189953 /* LaunchScreen.storyboard */; };
+		FADEE4251E731A7900189953 /* aderaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4241E731A7900189953 /* aderaTests.swift */; };
+		FADEE4301E731A7900189953 /* aderaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE42F1E731A7900189953 /* aderaUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FADEE4211E731A7900189953 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FADEE4011E731A7800189953 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FADEE4081E731A7800189953;
+			remoteInfo = adera;
+		};
+		FADEE42C1E731A7900189953 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FADEE4011E731A7800189953 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FADEE4081E731A7800189953;
+			remoteInfo = adera;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FADEE4091E731A7900189953 /* adera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FADEE40C1E731A7900189953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FADEE40E1E731A7900189953 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FADEE4111E731A7900189953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FADEE4141E731A7900189953 /* adera.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = adera.xcdatamodel; sourceTree = "<group>"; };
+		FADEE4161E731A7900189953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FADEE4191E731A7900189953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FADEE41B1E731A7900189953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FADEE4201E731A7900189953 /* aderaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aderaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FADEE4241E731A7900189953 /* aderaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aderaTests.swift; sourceTree = "<group>"; };
+		FADEE4261E731A7900189953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FADEE42B1E731A7900189953 /* aderaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aderaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FADEE42F1E731A7900189953 /* aderaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aderaUITests.swift; sourceTree = "<group>"; };
+		FADEE4311E731A7900189953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FADEE4061E731A7800189953 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADEE41D1E731A7900189953 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADEE4281E731A7900189953 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FADEE4001E731A7800189953 = {
+			isa = PBXGroup;
+			children = (
+				FADEE40B1E731A7900189953 /* adera */,
+				FADEE4231E731A7900189953 /* aderaTests */,
+				FADEE42E1E731A7900189953 /* aderaUITests */,
+				FADEE40A1E731A7900189953 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FADEE40A1E731A7900189953 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FADEE4091E731A7900189953 /* adera.app */,
+				FADEE4201E731A7900189953 /* aderaTests.xctest */,
+				FADEE42B1E731A7900189953 /* aderaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FADEE40B1E731A7900189953 /* adera */ = {
+			isa = PBXGroup;
+			children = (
+				FADEE40C1E731A7900189953 /* AppDelegate.swift */,
+				FADEE40E1E731A7900189953 /* ViewController.swift */,
+				FADEE4101E731A7900189953 /* Main.storyboard */,
+				FADEE4161E731A7900189953 /* Assets.xcassets */,
+				FADEE4181E731A7900189953 /* LaunchScreen.storyboard */,
+				FADEE41B1E731A7900189953 /* Info.plist */,
+				FADEE4131E731A7900189953 /* adera.xcdatamodeld */,
+			);
+			path = adera;
+			sourceTree = "<group>";
+		};
+		FADEE4231E731A7900189953 /* aderaTests */ = {
+			isa = PBXGroup;
+			children = (
+				FADEE4241E731A7900189953 /* aderaTests.swift */,
+				FADEE4261E731A7900189953 /* Info.plist */,
+			);
+			path = aderaTests;
+			sourceTree = "<group>";
+		};
+		FADEE42E1E731A7900189953 /* aderaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FADEE42F1E731A7900189953 /* aderaUITests.swift */,
+				FADEE4311E731A7900189953 /* Info.plist */,
+			);
+			path = aderaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FADEE4081E731A7800189953 /* adera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FADEE4341E731A7900189953 /* Build configuration list for PBXNativeTarget "adera" */;
+			buildPhases = (
+				FADEE4051E731A7800189953 /* Sources */,
+				FADEE4061E731A7800189953 /* Frameworks */,
+				FADEE4071E731A7800189953 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = adera;
+			productName = adera;
+			productReference = FADEE4091E731A7900189953 /* adera.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FADEE41F1E731A7900189953 /* aderaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FADEE4371E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaTests" */;
+			buildPhases = (
+				FADEE41C1E731A7900189953 /* Sources */,
+				FADEE41D1E731A7900189953 /* Frameworks */,
+				FADEE41E1E731A7900189953 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FADEE4221E731A7900189953 /* PBXTargetDependency */,
+			);
+			name = aderaTests;
+			productName = aderaTests;
+			productReference = FADEE4201E731A7900189953 /* aderaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FADEE42A1E731A7900189953 /* aderaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FADEE43A1E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaUITests" */;
+			buildPhases = (
+				FADEE4271E731A7900189953 /* Sources */,
+				FADEE4281E731A7900189953 /* Frameworks */,
+				FADEE4291E731A7900189953 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FADEE42D1E731A7900189953 /* PBXTargetDependency */,
+			);
+			name = aderaUITests;
+			productName = aderaUITests;
+			productReference = FADEE42B1E731A7900189953 /* aderaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FADEE4011E731A7800189953 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Svyatoslav Ilinskiy";
+				TargetAttributes = {
+					FADEE4081E731A7800189953 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					FADEE41F1E731A7900189953 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FADEE4081E731A7800189953;
+					};
+					FADEE42A1E731A7900189953 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FADEE4081E731A7800189953;
+					};
+				};
+			};
+			buildConfigurationList = FADEE4041E731A7800189953 /* Build configuration list for PBXProject "adera" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FADEE4001E731A7800189953;
+			productRefGroup = FADEE40A1E731A7900189953 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FADEE4081E731A7800189953 /* adera */,
+				FADEE41F1E731A7900189953 /* aderaTests */,
+				FADEE42A1E731A7900189953 /* aderaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FADEE4071E731A7800189953 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
+				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
+				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADEE41E1E731A7900189953 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADEE4291E731A7900189953 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FADEE4051E731A7800189953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
+				FADEE40F1E731A7900189953 /* ViewController.swift in Sources */,
+				FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADEE41C1E731A7900189953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FADEE4251E731A7900189953 /* aderaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADEE4271E731A7900189953 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FADEE4301E731A7900189953 /* aderaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FADEE4221E731A7900189953 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FADEE4081E731A7800189953 /* adera */;
+			targetProxy = FADEE4211E731A7900189953 /* PBXContainerItemProxy */;
+		};
+		FADEE42D1E731A7900189953 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FADEE4081E731A7800189953 /* adera */;
+			targetProxy = FADEE42C1E731A7900189953 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FADEE4101E731A7900189953 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FADEE4111E731A7900189953 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FADEE4181E731A7900189953 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FADEE4191E731A7900189953 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FADEE4321E731A7900189953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FADEE4331E731A7900189953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FADEE4351E731A7900189953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = adera/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utexas.cs378.adera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		FADEE4361E731A7900189953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = adera/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utexas.cs378.adera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		FADEE4381E731A7900189953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = aderaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utexas.cs378.aderaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/adera.app/adera";
+			};
+			name = Debug;
+		};
+		FADEE4391E731A7900189953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = aderaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utexas.cs378.aderaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/adera.app/adera";
+			};
+			name = Release;
+		};
+		FADEE43B1E731A7900189953 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = aderaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utexas.cs378.aderaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = adera;
+			};
+			name = Debug;
+		};
+		FADEE43C1E731A7900189953 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = aderaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utexas.cs378.aderaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = adera;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FADEE4041E731A7800189953 /* Build configuration list for PBXProject "adera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FADEE4321E731A7900189953 /* Debug */,
+				FADEE4331E731A7900189953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FADEE4341E731A7900189953 /* Build configuration list for PBXNativeTarget "adera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FADEE4351E731A7900189953 /* Debug */,
+				FADEE4361E731A7900189953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FADEE4371E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FADEE4381E731A7900189953 /* Debug */,
+				FADEE4391E731A7900189953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FADEE43A1E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FADEE43B1E731A7900189953 /* Debug */,
+				FADEE43C1E731A7900189953 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FADEE4131E731A7900189953 /* adera.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FADEE4141E731A7900189953 /* adera.xcdatamodel */,
+			);
+			currentVersion = FADEE4141E731A7900189953 /* adera.xcdatamodel */;
+			path = adera.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = FADEE4011E731A7800189953 /* Project object */;
+}
