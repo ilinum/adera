@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE40C1E731A7900189953 /* AppDelegate.swift */; };
-		FADEE40F1E731A7900189953 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE40E1E731A7900189953 /* ViewController.swift */; };
 		FADEE4121E731A7900189953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4101E731A7900189953 /* Main.storyboard */; };
 		FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4131E731A7900189953 /* adera.xcdatamodeld */; };
 		FADEE4171E731A7900189953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4161E731A7900189953 /* Assets.xcassets */; };
 		FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4181E731A7900189953 /* LaunchScreen.storyboard */; };
 		FADEE4251E731A7900189953 /* aderaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4241E731A7900189953 /* aderaTests.swift */; };
 		FADEE4301E731A7900189953 /* aderaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE42F1E731A7900189953 /* aderaUITests.swift */; };
+		FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1F8041E763C79008DA769 /* LoginViewController.swift */; };
+		FAF1F80A1E763E07008DA769 /* DefaultPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF1F8091E763E07008DA769 /* DefaultPhoto.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,6 @@
 /* Begin PBXFileReference section */
 		FADEE4091E731A7900189953 /* adera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADEE40C1E731A7900189953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FADEE40E1E731A7900189953 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FADEE4111E731A7900189953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FADEE4141E731A7900189953 /* adera.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = adera.xcdatamodel; sourceTree = "<group>"; };
 		FADEE4161E731A7900189953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		FADEE42B1E731A7900189953 /* aderaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aderaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADEE42F1E731A7900189953 /* aderaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aderaUITests.swift; sourceTree = "<group>"; };
 		FADEE4311E731A7900189953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAF1F8041E763C79008DA769 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FAF1F8091E763E07008DA769 /* DefaultPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DefaultPhoto.png; path = ../../../Desktop/DefaultPhoto.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +101,14 @@
 		FADEE40B1E731A7900189953 /* adera */ = {
 			isa = PBXGroup;
 			children = (
+				FAF1F80B1E763E0D008DA769 /* Resource */,
 				FADEE40C1E731A7900189953 /* AppDelegate.swift */,
-				FADEE40E1E731A7900189953 /* ViewController.swift */,
 				FADEE4101E731A7900189953 /* Main.storyboard */,
 				FADEE4161E731A7900189953 /* Assets.xcassets */,
 				FADEE4181E731A7900189953 /* LaunchScreen.storyboard */,
 				FADEE41B1E731A7900189953 /* Info.plist */,
 				FADEE4131E731A7900189953 /* adera.xcdatamodeld */,
+				FAF1F8061E763C83008DA769 /* Login/Register */,
 			);
 			path = adera;
 			sourceTree = "<group>";
@@ -126,6 +129,30 @@
 				FADEE4311E731A7900189953 /* Info.plist */,
 			);
 			path = aderaUITests;
+			sourceTree = "<group>";
+		};
+		FAF1F8061E763C83008DA769 /* Login/Register */ = {
+			isa = PBXGroup;
+			children = (
+				FAF1F8041E763C79008DA769 /* LoginViewController.swift */,
+			);
+			name = Login/Register;
+			sourceTree = "<group>";
+		};
+		FAF1F80B1E763E0D008DA769 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FAF1F80C1E763E18008DA769 /* Images */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		FAF1F80C1E763E18008DA769 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FAF1F8091E763E07008DA769 /* DefaultPhoto.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +264,7 @@
 			files = (
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
 				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
+				FAF1F80A1E763E07008DA769 /* DefaultPhoto.png in Resources */,
 				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,8 +290,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */,
 				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
-				FADEE40F1E731A7900189953 /* ViewController.swift in Sources */,
 				FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +535,7 @@
 				FADEE4361E731A7900189953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FADEE4371E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +544,7 @@
 				FADEE4391E731A7900189953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FADEE43A1E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +553,7 @@
 				FADEE43C1E731A7900189953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
