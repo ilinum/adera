@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EF2209F724F15F033FE73B0 /* Pods_adera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDA133B6D6F1BB60E9E7F26 /* Pods_adera.framework */; };
+		64E0E1EC07279AE8DDA608E5 /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360089EB14C69EAA4D20F0AF /* Pods_aderaUITests.framework */; };
+		CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */; };
 		FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE40C1E731A7900189953 /* AppDelegate.swift */; };
 		FADEE4121E731A7900189953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4101E731A7900189953 /* Main.storyboard */; };
 		FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4131E731A7900189953 /* adera.xcdatamodeld */; };
@@ -14,6 +17,9 @@
 		FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4181E731A7900189953 /* LaunchScreen.storyboard */; };
 		FADEE4251E731A7900189953 /* aderaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4241E731A7900189953 /* aderaTests.swift */; };
 		FADEE4301E731A7900189953 /* aderaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE42F1E731A7900189953 /* aderaUITests.swift */; };
+		FAE29FB71E77846A00080203 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE29FB61E77846A00080203 /* GoogleService-Info.plist */; };
+		FAE29FB81E77849900080203 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE29FB61E77846A00080203 /* GoogleService-Info.plist */; };
+		FAE29FB91E77849A00080203 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE29FB61E77846A00080203 /* GoogleService-Info.plist */; };
 		FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1F8041E763C79008DA769 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A8CC009A04617DC050824A1 /* Pods-adera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.debug.xcconfig"; sourceTree = "<group>"; };
+		360089EB14C69EAA4D20F0AF /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FDA133B6D6F1BB60E9E7F26 /* Pods_adera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_adera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76503484B9C4E45F4AA39A29 /* Pods-aderaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A005F5107DB43513C9A170A1 /* Pods-aderaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AAD895CE1BAE44831E5F9720 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
 		FADEE4091E731A7900189953 /* adera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADEE40C1E731A7900189953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADEE4111E731A7900189953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,6 +63,7 @@
 		FADEE42B1E731A7900189953 /* aderaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aderaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADEE42F1E731A7900189953 /* aderaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aderaUITests.swift; sourceTree = "<group>"; };
 		FADEE4311E731A7900189953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAE29FB61E77846A00080203 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAF1F8041E763C79008DA769 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EF2209F724F15F033FE73B0 /* Pods_adera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +88,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64E0E1EC07279AE8DDA608E5 /* Pods_aderaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12858141F65EB8B1FCEDE67A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FDA133B6D6F1BB60E9E7F26 /* Pods_adera.framework */,
+				CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */,
+				360089EB14C69EAA4D20F0AF /* Pods_aderaUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FADEE4001E731A7800189953 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +112,8 @@
 				FADEE4231E731A7900189953 /* aderaTests */,
 				FADEE42E1E731A7900189953 /* aderaUITests */,
 				FADEE40A1E731A7900189953 /* Products */,
+				FB531DB36FA1F7088B7E53A4 /* Pods */,
+				12858141F65EB8B1FCEDE67A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +136,7 @@
 				FADEE4161E731A7900189953 /* Assets.xcassets */,
 				FADEE4181E731A7900189953 /* LaunchScreen.storyboard */,
 				FADEE41B1E731A7900189953 /* Info.plist */,
+				FAE29FB61E77846A00080203 /* GoogleService-Info.plist */,
 				FADEE4131E731A7900189953 /* adera.xcdatamodeld */,
 				FAF1F8061E763C83008DA769 /* Login/Register */,
 			);
@@ -144,6 +176,19 @@
 			name = Resource;
 			sourceTree = "<group>";
 		};
+		FB531DB36FA1F7088B7E53A4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1A8CC009A04617DC050824A1 /* Pods-adera.debug.xcconfig */,
+				ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */,
+				AAD895CE1BAE44831E5F9720 /* Pods-aderaTests.debug.xcconfig */,
+				DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */,
+				76503484B9C4E45F4AA39A29 /* Pods-aderaUITests.debug.xcconfig */,
+				A005F5107DB43513C9A170A1 /* Pods-aderaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,9 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADEE4341E731A7900189953 /* Build configuration list for PBXNativeTarget "adera" */;
 			buildPhases = (
+				4AC5D6476A96B86B24C85145 /* [CP] Check Pods Manifest.lock */,
 				FADEE4051E731A7800189953 /* Sources */,
 				FADEE4061E731A7800189953 /* Frameworks */,
 				FADEE4071E731A7800189953 /* Resources */,
+				DDF49A803BC959CD2586D497 /* [CP] Embed Pods Frameworks */,
+				7D5C6037B84D7F9E13572376 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADEE4371E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaTests" */;
 			buildPhases = (
+				29073698C7D1B58894D6CC69 /* [CP] Check Pods Manifest.lock */,
 				FADEE41C1E731A7900189953 /* Sources */,
 				FADEE41D1E731A7900189953 /* Frameworks */,
 				FADEE41E1E731A7900189953 /* Resources */,
+				A8A8F3F3FB6F2C018B64A107 /* [CP] Embed Pods Frameworks */,
+				4EB1D00D586C1DB267FB3A38 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,9 +237,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADEE43A1E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaUITests" */;
 			buildPhases = (
+				3B6C9C100A9C65559D635B30 /* [CP] Check Pods Manifest.lock */,
 				FADEE4271E731A7900189953 /* Sources */,
 				FADEE4281E731A7900189953 /* Frameworks */,
 				FADEE4291E731A7900189953 /* Resources */,
+				261066849332FA12D9E86336 /* [CP] Embed Pods Frameworks */,
+				1501D37F60C6504E0B9E2437 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -252,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
+				FAE29FB71E77846A00080203 /* GoogleService-Info.plist in Resources */,
 				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
 				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
 			);
@@ -261,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE29FB81E77849900080203 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,10 +324,149 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE29FB91E77849A00080203 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1501D37F60C6504E0B9E2437 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		261066849332FA12D9E86336 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29073698C7D1B58894D6CC69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3B6C9C100A9C65559D635B30 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4AC5D6476A96B86B24C85145 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4EB1D00D586C1DB267FB3A38 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D5C6037B84D7F9E13572376 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-adera/Pods-adera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8A8F3F3FB6F2C018B64A107 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDF49A803BC959CD2586D497 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-adera/Pods-adera-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FADEE4051E731A7800189953 /* Sources */ = {
@@ -428,6 +623,7 @@
 		};
 		FADEE4351E731A7900189953 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A8CC009A04617DC050824A1 /* Pods-adera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = adera/Info.plist;
@@ -440,6 +636,7 @@
 		};
 		FADEE4361E731A7900189953 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = adera/Info.plist;
@@ -452,6 +649,7 @@
 		};
 		FADEE4381E731A7900189953 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAD895CE1BAE44831E5F9720 /* Pods-aderaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -466,6 +664,7 @@
 		};
 		FADEE4391E731A7900189953 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -480,6 +679,7 @@
 		};
 		FADEE43B1E731A7900189953 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76503484B9C4E45F4AA39A29 /* Pods-aderaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = aderaUITests/Info.plist;
@@ -493,6 +693,7 @@
 		};
 		FADEE43C1E731A7900189953 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A005F5107DB43513C9A170A1 /* Pods-aderaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = aderaUITests/Info.plist;
