@@ -15,7 +15,6 @@
 		FADEE4251E731A7900189953 /* aderaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4241E731A7900189953 /* aderaTests.swift */; };
 		FADEE4301E731A7900189953 /* aderaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE42F1E731A7900189953 /* aderaUITests.swift */; };
 		FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1F8041E763C79008DA769 /* LoginViewController.swift */; };
-		FAF1F80A1E763E07008DA769 /* DefaultPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF1F8091E763E07008DA769 /* DefaultPhoto.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 		FADEE42F1E731A7900189953 /* aderaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aderaUITests.swift; sourceTree = "<group>"; };
 		FADEE4311E731A7900189953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAF1F8041E763C79008DA769 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		FAF1F8091E763E07008DA769 /* DefaultPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DefaultPhoto.png; path = ../../../Desktop/DefaultPhoto.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,17 +140,8 @@
 		FAF1F80B1E763E0D008DA769 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				FAF1F80C1E763E18008DA769 /* Images */,
 			);
 			name = Resource;
-			sourceTree = "<group>";
-		};
-		FAF1F80C1E763E18008DA769 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				FAF1F8091E763E07008DA769 /* DefaultPhoto.png */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,7 +253,6 @@
 			files = (
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
 				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
-				FAF1F80A1E763E07008DA769 /* DefaultPhoto.png in Resources */,
 				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
