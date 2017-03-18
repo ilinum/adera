@@ -10,6 +10,8 @@
 		2EF2209F724F15F033FE73B0 /* Pods_adera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDA133B6D6F1BB60E9E7F26 /* Pods_adera.framework */; };
 		64E0E1EC07279AE8DDA608E5 /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360089EB14C69EAA4D20F0AF /* Pods_aderaUITests.framework */; };
 		CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */; };
+		FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */; };
+		FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */; };
 		FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE40C1E731A7900189953 /* AppDelegate.swift */; };
 		FADEE4121E731A7900189953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4101E731A7900189953 /* Main.storyboard */; };
 		FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4131E731A7900189953 /* adera.xcdatamodeld */; };
@@ -50,6 +52,8 @@
 		CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
+		FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicTableViewController.swift; sourceTree = "<group>"; };
+		FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicCell.swift; sourceTree = "<group>"; };
 		FADEE4091E731A7900189953 /* adera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADEE40C1E731A7900189953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADEE4111E731A7900189953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +109,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FAD46BE71E7DE5100035F403 /* Channel/Topic */ = {
+			isa = PBXGroup;
+			children = (
+				FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */,
+				FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */,
+			);
+			name = Channel/Topic;
+			sourceTree = "<group>";
+		};
 		FADEE4001E731A7800189953 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +151,7 @@
 				FADEE41B1E731A7900189953 /* Info.plist */,
 				FAE29FB61E77846A00080203 /* GoogleService-Info.plist */,
 				FADEE4131E731A7900189953 /* adera.xcdatamodeld */,
+				FAD46BE71E7DE5100035F403 /* Channel/Topic */,
 				FAF1F8061E763C83008DA769 /* Login/Register */,
 			);
 			path = adera;
@@ -473,9 +487,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */,
 				FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */,
 				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
 				FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */,
+				FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -123,6 +123,69 @@
             </objects>
             <point key="canvasLocation" x="1908" y="125.4872563718141"/>
         </scene>
+        <!--ChannelTopicTableViewController-->
+        <scene sceneID="Wai-OH-Ztk">
+            <objects>
+                <tableViewController title="ChannelTopicTableViewController" id="z1x-E4-hsM" customClass="ChannelTopicTableViewController" customModule="adera" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="122" sectionHeaderHeight="28" sectionFooterHeight="28" id="cji-Xo-Vv9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="topicOrTableCell" rowHeight="122" id="K7P-aE-Y72" customClass="ChannelTopicCell" customModule="adera" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="122"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K7P-aE-Y72" id="aKj-eE-eGU">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="121"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel or Topic Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FQ-g0-naY">
+                                            <rect key="frame" x="8" y="8" width="326" height="21"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKn-E7-KAn">
+                                            <rect key="frame" x="8" y="37" width="326" height="76"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="The Channel for all things at Jester Dorm that is super cool">
+                                                    <attributes>
+                                                        <color key="NSColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="yKn-E7-KAn" firstAttribute="top" secondItem="8FQ-g0-naY" secondAttribute="bottom" constant="8" id="2N8-FG-W6C"/>
+                                        <constraint firstItem="yKn-E7-KAn" firstAttribute="top" secondItem="8FQ-g0-naY" secondAttribute="bottom" constant="8" id="EX4-Ws-LST"/>
+                                        <constraint firstItem="yKn-E7-KAn" firstAttribute="bottom" secondItem="aKj-eE-eGU" secondAttribute="bottomMargin" id="FIU-Nq-LhH"/>
+                                        <constraint firstItem="8FQ-g0-naY" firstAttribute="leading" secondItem="aKj-eE-eGU" secondAttribute="leadingMargin" id="LBY-hg-vwv"/>
+                                        <constraint firstItem="yKn-E7-KAn" firstAttribute="leading" secondItem="aKj-eE-eGU" secondAttribute="leadingMargin" id="N7U-BU-QjN"/>
+                                        <constraint firstItem="8FQ-g0-naY" firstAttribute="top" secondItem="aKj-eE-eGU" secondAttribute="topMargin" id="VIY-Fz-MnI"/>
+                                        <constraint firstItem="yKn-E7-KAn" firstAttribute="trailing" secondItem="aKj-eE-eGU" secondAttribute="trailingMargin" id="WTg-Lo-xGZ"/>
+                                        <constraint firstItem="8FQ-g0-naY" firstAttribute="trailing" secondItem="aKj-eE-eGU" secondAttribute="trailingMargin" id="pdJ-Vj-URI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="yKn-E7-KAn" id="bWa-oM-WnX"/>
+                                    <outlet property="nameLabel" destination="8FQ-g0-naY" id="Pq7-6c-jl8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="z1x-E4-hsM" id="8Bd-Xm-rII"/>
+                            <outlet property="delegate" destination="z1x-E4-hsM" id="XnM-vR-7X8"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4kX-Nv-6Fq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2976.8000000000002" y="124.58770614692655"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="fJZ-J7-uwn">
             <objects>
