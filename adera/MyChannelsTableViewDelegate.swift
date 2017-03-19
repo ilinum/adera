@@ -68,6 +68,14 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingsTapped))
     }
 
+    func rowSelected(row: Int) {
+        let storyboard = tableViewController.storyboard
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChannelTopicTableViewController")
+        let chanVC = vc! as! ChannelTopicTableViewController
+        chanVC.delegate = TopicTableViewDelegate(tableViewController: chanVC, channel: channels[row], user: user)
+        tableViewController.navigationController?.pushViewController(chanVC, animated: true)
+    }
+
     @objc func createChannelTapped() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
@@ -94,5 +102,4 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     @objc func settingsTapped() {
 
     }
-
 }

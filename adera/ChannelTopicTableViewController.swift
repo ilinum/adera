@@ -40,6 +40,10 @@ class ChannelTopicTableViewController: UITableViewController {
         // if delegate is not-null call it. Otherwise return 0.
         return delegate?.count() ?? 0
     }
+
+    override  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.rowSelected(row: indexPath.item)
+    }
 }
 
 protocol ChannelTopicTableViewControllerDelegate {
@@ -49,4 +53,5 @@ protocol ChannelTopicTableViewControllerDelegate {
     func getTitle() -> String
     func getRightBarButtonItem() -> UIBarButtonItem?
     func getLeftBarButtonItem() -> UIBarButtonItem?
+    func rowSelected(row: Int)
 }

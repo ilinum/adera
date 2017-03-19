@@ -10,7 +10,7 @@ class Channel {
     let name: String
     let description: String
     let creatorUID: String
-    let topics: [Topic]
+    var topics: [Topic]
 
     init(name: String, description: String, creatorUID: String) {
         self.name = name
@@ -23,7 +23,10 @@ class Channel {
         self.name = snapshot.childSnapshot(forPath: "name").value as! String
         self.description = snapshot.childSnapshot(forPath: "description").value as! String
         self.creatorUID = snapshot.childSnapshot(forPath: "creatorUID").value as! String
-        topics = [] // todo
+        topics = []
+        for topicSnapshot in snapshot.childSnapshot(forPath: "topics").children {
+            topics.append(Topic(snapshot: topicSnapshot as! FIRDataSnapshot))
+        }
     }
 
     func toDictionary() -> Dictionary<String, Any> {

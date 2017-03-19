@@ -78,4 +78,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
     func getRightBarButtonItem() -> UIBarButtonItem? {
         return nil
     }
+
+    func rowSelected(row: Int) {
+    }
 }

@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class Message {
     let authorUID: String
@@ -12,6 +13,11 @@ class Message {
     init(authorUID: String, content: String) {
         self.authorUID = authorUID
         self.content = content
+    }
+
+    init(snapshot: FIRDataSnapshot) {
+        self.authorUID = snapshot.childSnapshot(forPath: "authorUID").value as! String
+        self.content = snapshot.childSnapshot(forPath: "content").value as! String
     }
 
     func toDictionary() -> Dictionary<String, Any> {

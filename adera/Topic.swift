@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class Topic {
     let creatorUID: String
@@ -14,6 +15,15 @@ class Topic {
         self.creatorUID = creatorUID
         self.name = name
         messages = []
+    }
+
+    init(snapshot: FIRDataSnapshot) {
+        self.name = snapshot.childSnapshot(forPath: "name").value as! String
+        self.creatorUID = snapshot.childSnapshot(forPath: "creatorUID").value as! String
+        messages = []
+        for messageSnap in snapshot.childSnapshot(forPath: "messages").children {
+            messages.append(Message(snapshot: messageSnap as! FIRDataSnapshot))
+        }
     }
 
     func addMessage(message: Message) {
