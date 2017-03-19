@@ -21,11 +21,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // hide keyboard on return
-        usernameTextField.delegate = self
-        passwordTextField.delegate = self
-        emailTextField.delegate = self
+
+        if FIRAuth.auth()?.currentUser != nil {
+            self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
+        } else {
+            // hide keyboard on return and out touches
+            usernameTextField.delegate = self
+            passwordTextField.delegate = self
+            emailTextField.delegate = self
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
