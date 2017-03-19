@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     static let firebaseRef: FIRDatabaseReference! = FIRDatabase.database().reference()
+    static let publicChannelsRef = AppDelegate.firebaseRef.child("channels").child("public")
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

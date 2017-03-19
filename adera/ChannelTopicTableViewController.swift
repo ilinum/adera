@@ -33,7 +33,7 @@ class ChannelTopicTableViewController: UITableViewController {
 
     override func numberOfSections(`in` tableView: UITableView) -> Int {
         // if delegate is not-null call it. Otherwise return 0.
-        return delegate?.count() ?? 0
+        return delegate?.numberOfSections() ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

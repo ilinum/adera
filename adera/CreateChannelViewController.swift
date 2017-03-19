@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class CreateChannelViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var channelNameTextField: UITextField!
@@ -46,5 +48,10 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
             present(alertController, animated: true, completion: nil)
             return
         }
+        let user = FIRAuth.auth()!.currentUser!
+        let description = channelDescriptionTextView.text!
+        let channel = Channel(name: channelNameText!, description: description, creatorUID: user.uid)
+        AppDelegate.publicChannelsRef.child(channel.name.localizedLowercase).setValue(channel.toDictionary())
+        _ = navigationController?.popViewController(animated: true)
     }
 }

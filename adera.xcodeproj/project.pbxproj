@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2EF2209F724F15F033FE73B0 /* Pods_adera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDA133B6D6F1BB60E9E7F26 /* Pods_adera.framework */; };
 		64E0E1EC07279AE8DDA608E5 /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360089EB14C69EAA4D20F0AF /* Pods_aderaUITests.framework */; };
+		BCED43EC53BA2ECE54FF4FF1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4434AF3AC7EEF0C734D8 /* Message.swift */; };
+		BCED470F186C4DFDA449734B /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4B1ED35744FE66B5B0C5 /* Topic.swift */; };
+		BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED46A62981D27F365CFC3E /* Channel.swift */; };
 		CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */; };
 		FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */; };
 		FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */; };
@@ -50,6 +53,9 @@
 		76503484B9C4E45F4AA39A29 /* Pods-aderaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A005F5107DB43513C9A170A1 /* Pods-aderaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AAD895CE1BAE44831E5F9720 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BCED4434AF3AC7EEF0C734D8 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		BCED46A62981D27F365CFC3E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		BCED4B1ED35744FE66B5B0C5 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,9 +119,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FAB5F6501E7ECBDF00B1CB5C /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				BCED4B1ED35744FE66B5B0C5 /* Topic.swift */,
+				BCED4434AF3AC7EEF0C734D8 /* Message.swift */,
+			);
+			name = Topic;
+			sourceTree = "<group>";
+		};
 		FAD46BE71E7DE5100035F403 /* Channel/Topic */ = {
 			isa = PBXGroup;
 			children = (
+				FAB5F6501E7ECBDF00B1CB5C /* Topic */,
 				FAD46BF31E7E13AA0035F403 /* Channel */,
 				FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */,
 				FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */,
@@ -136,6 +152,7 @@
 			children = (
 				FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */,
 				FAD46BEF1E7E06630035F403 /* ChannelTableViewControllerDelegate.swift */,
+				BCED46A62981D27F365CFC3E /* Channel.swift */,
 			);
 			name = Channel;
 			sourceTree = "<group>";
@@ -516,6 +533,9 @@
 				FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */,
 				FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */,
 				FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */,
+				BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */,
+				BCED470F186C4DFDA449734B /* Topic.swift in Sources */,
+				BCED43EC53BA2ECE54FF4FF1 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
