@@ -19,7 +19,7 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         channelNameTextField.delegate = self
         channelDescriptionTextView.delegate = self
 
-        self.navigationController?.navigationBar.topItem?.title = "Create Channel"
+        self.title = "Create Channel"
         channelDescriptionTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
         channelDescriptionTextView.layer.borderWidth = 1.0
         channelDescriptionTextView.layer.cornerRadius = 5
