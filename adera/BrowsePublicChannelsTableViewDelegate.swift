@@ -39,9 +39,6 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         return channels.count
     }
 
-    func accessoryButtonTapped(row: Int) {
-    }
-
     func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell {
         let channel = channels[index]
         if userChannels.contains(channel.name) {

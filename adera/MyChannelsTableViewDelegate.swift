@@ -63,10 +63,6 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         return UIBarButtonItem(barButtonSystemItem: add, target: self, action: #selector(createChannelTapped))
     }
 
-    func accessoryButtonTapped(row: Int) {
-        // do nothing
-    }
-
     func getRightBarButtonItem() -> UIBarButtonItem? {
         let image = UIImage(named: "Settings-50.png")
         return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingsTapped))
