@@ -12,11 +12,13 @@
 		BCED43EC53BA2ECE54FF4FF1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4434AF3AC7EEF0C734D8 /* Message.swift */; };
 		BCED470F186C4DFDA449734B /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4B1ED35744FE66B5B0C5 /* Topic.swift */; };
 		BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED46A62981D27F365CFC3E /* Channel.swift */; };
+		BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */; };
 		CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */; };
+		FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */; };
 		FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */; };
 		FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */; };
 		FAD46BEE1E7E04600035F403 /* Settings-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD46BED1E7E04600035F403 /* Settings-50@2x.png */; };
-		FAD46BF01E7E06630035F403 /* ChannelTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BEF1E7E06630035F403 /* ChannelTableViewControllerDelegate.swift */; };
+		FAD46BF01E7E06630035F403 /* MyChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BEF1E7E06630035F403 /* MyChannelsTableViewDelegate.swift */; };
 		FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD46BF11E7E10620035F403 /* GoogleService-Info.plist */; };
 		FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */; };
 		FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE40C1E731A7900189953 /* AppDelegate.swift */; };
@@ -54,15 +56,17 @@
 		A005F5107DB43513C9A170A1 /* Pods-aderaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AAD895CE1BAE44831E5F9720 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCED4434AF3AC7EEF0C734D8 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowsePublicChannelsTableViewDelegate.swift; sourceTree = "<group>"; };
 		BCED46A62981D27F365CFC3E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BCED4B1ED35744FE66B5B0C5 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
+		FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plus-50@2x.png"; sourceTree = "<group>"; };
 		FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicTableViewController.swift; sourceTree = "<group>"; };
 		FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicCell.swift; sourceTree = "<group>"; };
 		FAD46BED1E7E04600035F403 /* Settings-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-50@2x.png"; sourceTree = "<group>"; };
-		FAD46BEF1E7E06630035F403 /* ChannelTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		FAD46BEF1E7E06630035F403 /* MyChannelsTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChannelsTableViewDelegate.swift; sourceTree = "<group>"; };
 		FAD46BF11E7E10620035F403 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
 		FADEE4091E731A7900189953 /* adera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adera.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,7 @@
 		FAD46BEC1E7E03670035F403 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */,
 				FAD46BED1E7E04600035F403 /* Settings-50@2x.png */,
 			);
 			name = Images;
@@ -151,8 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */,
-				FAD46BEF1E7E06630035F403 /* ChannelTableViewControllerDelegate.swift */,
+				FAD46BEF1E7E06630035F403 /* MyChannelsTableViewDelegate.swift */,
 				BCED46A62981D27F365CFC3E /* Channel.swift */,
+				BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */,
 			);
 			name = Channel;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */,
 				FAD46BEE1E7E04600035F403 /* Settings-50@2x.png in Resources */,
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
 				FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */,
@@ -528,7 +535,7 @@
 			files = (
 				FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */,
 				FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */,
-				FAD46BF01E7E06630035F403 /* ChannelTableViewControllerDelegate.swift in Sources */,
+				FAD46BF01E7E06630035F403 /* MyChannelsTableViewDelegate.swift in Sources */,
 				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
 				FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */,
 				FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */,
@@ -536,6 +543,7 @@
 				BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */,
 				BCED470F186C4DFDA449734B /* Topic.swift in Sources */,
 				BCED43EC53BA2ECE54FF4FF1 /* Message.swift in Sources */,
+				BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

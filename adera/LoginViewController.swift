@@ -115,7 +115,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if (segue.identifier == "afterLoginSegue") {
             if segue.destination is ChannelTopicTableViewController {
                 let tableViewController = segue.destination as! ChannelTopicTableViewController
-                let channelDelegate = ChannelTableViewControllerDelegate(tableViewController: tableViewController)
+                let channelDelegate = MyChannelsTableViewDelegate(tableViewController: tableViewController)
                 tableViewController.delegate = channelDelegate
             }
         }

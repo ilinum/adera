@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static let firebaseRef: FIRDatabaseReference! = FIRDatabase.database().reference()
     static let publicChannelsRef = AppDelegate.firebaseRef.child("channels").child("public")
+    static let usersRef = AppDelegate.firebaseRef.child("users")
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

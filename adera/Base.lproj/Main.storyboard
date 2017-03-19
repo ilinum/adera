@@ -182,10 +182,7 @@
                             <outlet property="delegate" destination="z1x-E4-hsM" id="XnM-vR-7X8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Channels/Topics" id="hCf-ze-Ytx">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="CbX-pd-FNm"/>
-                        <barButtonItem key="rightBarButtonItem" image="Settings-50.png" id="RHO-2J-V9d"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Channels/Topics" id="hCf-ze-Ytx"/>
                     <connections>
                         <segue destination="mQg-w0-ymb" kind="show" identifier="createChannel" id="Ezw-rW-RdS"/>
                     </connections>
@@ -253,14 +250,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47J-EQ-oGo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3960.8695652173915" y="148.36956521739131"/>
+            <point key="canvasLocation" x="3948" y="128"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fJZ-J7-uwn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="vbQ-tY-nUF" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Wre-Mp-dNa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wre-Mp-dNa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -278,7 +275,4 @@
             <point key="canvasLocation" x="972" y="128.18590704647679"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Settings-50.png" width="25" height="25"/>
-    </resources>
 </document>

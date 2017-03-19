@@ -51,7 +51,7 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         let user = FIRAuth.auth()!.currentUser!
         let description = channelDescriptionTextView.text!
         let channel = Channel(name: channelNameText!, description: description, creatorUID: user.uid)
-        AppDelegate.publicChannelsRef.child(channel.name.localizedLowercase).setValue(channel.toDictionary())
+        AppDelegate.publicChannelsRef.child(channel.name.lowercased()).setValue(channel.toDictionary())
         _ = navigationController?.popViewController(animated: true)
     }
 }

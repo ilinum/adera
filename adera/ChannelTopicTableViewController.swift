@@ -31,6 +31,10 @@ class ChannelTopicTableViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        delegate?.accessoryButtonTapped(row: indexPath.item)
+    }
+
     override func numberOfSections(`in` tableView: UITableView) -> Int {
         // if delegate is not-null call it. Otherwise return 0.
         return delegate?.numberOfSections() ?? 0
@@ -47,6 +51,7 @@ protocol ChannelTopicTableViewControllerDelegate {
     func count() -> Int
     func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell
     func getTitle() -> String
-    func getRightBarButtonItem() -> UIBarButtonItem
-    func getLeftBarButtonItem() -> UIBarButtonItem
+    func getRightBarButtonItem() -> UIBarButtonItem?
+    func getLeftBarButtonItem() -> UIBarButtonItem?
+    func accessoryButtonTapped(row: Int)
 }
