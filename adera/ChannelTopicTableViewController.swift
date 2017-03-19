@@ -15,6 +15,11 @@ class ChannelTopicTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if delegate != nil {
+            navigationItem.title = delegate!.getTitle()
+            self.navigationItem.leftBarButtonItem = delegate!.getLeftBarButtonItem()
+            self.navigationItem.rightBarButtonItem = delegate!.getRightBarButtonItem()
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,4 +46,7 @@ protocol ChannelTopicTableViewControllerDelegate {
     func numberOfSections() -> Int
     func count() -> Int
     func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell
+    func getTitle() -> String
+    func getRightBarButtonItem() -> UIBarButtonItem
+    func getLeftBarButtonItem() -> UIBarButtonItem
 }

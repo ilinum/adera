@@ -72,9 +72,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
                     AppDelegate.firebaseRef.child("users/\(user!.uid)/username").setValue(username)
 
-//                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-//                    self.present(vc!, animated: true, completion: nil)
-
+                    self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
                 } else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription,
                             preferredStyle: .alert)
@@ -89,13 +87,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
                 
                 if error == nil {
-                    
-                    //Print into the console if successfully logged in
                     print("You have successfully logged in")
-                    
-//                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-//                    self.present(vc!, animated: true, completion: nil)
-                    
+                    self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
                 } else {
                     
                     //Tells the user that there is an error and then gets firebase to tell them the error
@@ -112,6 +105,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "afterLoginSegue") {
+            if segue.destination is ChannelTopicTableViewController {
+                let tableViewController = segue.destination as! ChannelTopicTableViewController
+                let channelDelegate = ChannelTableViewControllerDelegate(tableViewController: tableViewController)
+                tableViewController.delegate = channelDelegate
+            }
+        }
     }
 }
 

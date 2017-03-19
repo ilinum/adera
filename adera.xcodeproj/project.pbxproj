@@ -12,6 +12,10 @@
 		CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */; };
 		FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */; };
 		FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */; };
+		FAD46BEE1E7E04600035F403 /* Settings-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD46BED1E7E04600035F403 /* Settings-50@2x.png */; };
+		FAD46BF01E7E06630035F403 /* ChannelTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BEF1E7E06630035F403 /* ChannelTableViewControllerDelegate.swift */; };
+		FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD46BF11E7E10620035F403 /* GoogleService-Info.plist */; };
+		FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */; };
 		FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE40C1E731A7900189953 /* AppDelegate.swift */; };
 		FADEE4121E731A7900189953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4101E731A7900189953 /* Main.storyboard */; };
 		FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4131E731A7900189953 /* adera.xcdatamodeld */; };
@@ -19,9 +23,6 @@
 		FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADEE4181E731A7900189953 /* LaunchScreen.storyboard */; };
 		FADEE4251E731A7900189953 /* aderaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE4241E731A7900189953 /* aderaTests.swift */; };
 		FADEE4301E731A7900189953 /* aderaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEE42F1E731A7900189953 /* aderaUITests.swift */; };
-		FAE29FB71E77846A00080203 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE29FB61E77846A00080203 /* GoogleService-Info.plist */; };
-		FAE29FB81E77849900080203 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE29FB61E77846A00080203 /* GoogleService-Info.plist */; };
-		FAE29FB91E77849A00080203 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAE29FB61E77846A00080203 /* GoogleService-Info.plist */; };
 		FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1F8041E763C79008DA769 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,10 @@
 		ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
 		FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicTableViewController.swift; sourceTree = "<group>"; };
 		FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicCell.swift; sourceTree = "<group>"; };
+		FAD46BED1E7E04600035F403 /* Settings-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-50@2x.png"; sourceTree = "<group>"; };
+		FAD46BEF1E7E06630035F403 /* ChannelTableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		FAD46BF11E7E10620035F403 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
 		FADEE4091E731A7900189953 /* adera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = adera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADEE40C1E731A7900189953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADEE4111E731A7900189953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,7 +72,6 @@
 		FADEE42B1E731A7900189953 /* aderaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aderaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADEE42F1E731A7900189953 /* aderaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aderaUITests.swift; sourceTree = "<group>"; };
 		FADEE4311E731A7900189953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAE29FB61E77846A00080203 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAF1F8041E763C79008DA769 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,10 +116,28 @@
 		FAD46BE71E7DE5100035F403 /* Channel/Topic */ = {
 			isa = PBXGroup;
 			children = (
+				FAD46BF31E7E13AA0035F403 /* Channel */,
 				FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */,
 				FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */,
 			);
 			name = Channel/Topic;
+			sourceTree = "<group>";
+		};
+		FAD46BEC1E7E03670035F403 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FAD46BED1E7E04600035F403 /* Settings-50@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		FAD46BF31E7E13AA0035F403 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */,
+				FAD46BEF1E7E06630035F403 /* ChannelTableViewControllerDelegate.swift */,
+			);
+			name = Channel;
 			sourceTree = "<group>";
 		};
 		FADEE4001E731A7800189953 = {
@@ -147,9 +169,9 @@
 				FADEE40C1E731A7900189953 /* AppDelegate.swift */,
 				FADEE4101E731A7900189953 /* Main.storyboard */,
 				FADEE4161E731A7900189953 /* Assets.xcassets */,
+				FAD46BF11E7E10620035F403 /* GoogleService-Info.plist */,
 				FADEE4181E731A7900189953 /* LaunchScreen.storyboard */,
 				FADEE41B1E731A7900189953 /* Info.plist */,
-				FAE29FB61E77846A00080203 /* GoogleService-Info.plist */,
 				FADEE4131E731A7900189953 /* adera.xcdatamodeld */,
 				FAD46BE71E7DE5100035F403 /* Channel/Topic */,
 				FAF1F8061E763C83008DA769 /* Login/Register */,
@@ -186,6 +208,7 @@
 		FAF1F80B1E763E0D008DA769 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				FAD46BEC1E7E03670035F403 /* Images */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -319,8 +342,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD46BEE1E7E04600035F403 /* Settings-50@2x.png in Resources */,
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
-				FAE29FB71E77846A00080203 /* GoogleService-Info.plist in Resources */,
+				FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */,
 				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
 				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
 			);
@@ -330,7 +354,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE29FB81E77849900080203 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +361,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE29FB91E77849A00080203 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +511,9 @@
 			files = (
 				FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */,
 				FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */,
+				FAD46BF01E7E06630035F403 /* ChannelTableViewControllerDelegate.swift in Sources */,
 				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
+				FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */,
 				FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */,
 				FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */,
 			);
