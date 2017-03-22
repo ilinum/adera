@@ -22,8 +22,8 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Settings"
         userID = FIRAuth.auth()?.currentUser?.uid
+        self.tableView.tableFooterView = UIView()
         updateDetailsViews()
     }
 
@@ -150,7 +150,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as! UITableViewHeaderFooterView
-        headerView.backgroundView?.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        headerView.backgroundView?.backgroundColor = UIColor.white
         headerView.textLabel?.textColor = self.view.tintColor
         headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
     }
