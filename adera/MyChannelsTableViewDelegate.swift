@@ -100,6 +100,9 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     @objc func settingsTapped() {
-
+        let storyboard = tableViewController.storyboard
+        let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController")
+        let settingsVC = vc! as! SettingsViewController
+        tableViewController.navigationController?.pushViewController(settingsVC, animated: true)
     }
 }

@@ -124,6 +124,34 @@
             </objects>
             <point key="canvasLocation" x="1908" y="125.4872563718141"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="ORV-Bp-cg1">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="hoL-bx-LS1" customClass="SettingsViewController" customModule="adera" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="20A-Sn-qiG"/>
+                        <viewControllerLayoutGuide type="bottom" id="u7k-fz-99h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZL4-0f-pLa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zod-uH-fbg">
+                                <rect key="frame" x="167" y="334" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutAction:" destination="hoL-bx-LS1" eventType="touchUpInside" id="mCW-f9-jly"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ms-Ig-bP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2969.5652173913045" y="-586.14130434782612"/>
+        </scene>
         <!--ChannelTopicTableViewController-->
         <scene sceneID="Wai-OH-Ztk">
             <objects>
@@ -137,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K7P-aE-Y72" id="aKj-eE-eGU">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="122"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="121.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel or Topic Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FQ-g0-naY">
@@ -255,7 +283,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fJZ-J7-uwn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="vbQ-tY-nUF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="vbQ-tY-nUF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wre-Mp-dNa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
