@@ -74,7 +74,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if error == nil {
                     print("Sign up successful")
 
-                    AppDelegate.firebaseRef.child("users/\(user!.uid)/username").setValue(username)
+//                    AppDelegate.firebaseRef.child("users/\(user!.uid)/username").setValue(username)
+                    if let user = FIRAuth.auth()?.currentUser {
+                        let changeRequest = user.profileChangeRequest()
+                        changeRequest.displayName = username
+                        changeRequest.commitChanges() { (error) in
+                            if error != nil {
+                                print("Error with display Name change")
+                            }
+                        }
+                        
+                        // Configure Initial Settings Values
+                        AppDelegate.usersRef.child(user.uid).child("settings").child("fontSize").setValue(17)
+                    }
+                    
+
 
                     self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
                 } else {
