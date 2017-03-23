@@ -210,7 +210,7 @@
                                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="17" minValue="12" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="6Ib-XH-h62">
                                                                     <rect key="frame" x="-2" y="0.0" width="156" height="31"/>
                                                                     <connections>
-                                                                        <action selector="fontSizeSliderDoneChanging:" destination="qeK-7R-gSO" eventType="touchUpInside" id="l5P-Yg-jsP"/>
+                                                                        <action selector="fontSliderValueChanged:" destination="qeK-7R-gSO" eventType="valueChanged" id="3TJ-KJ-eHB"/>
                                                                     </connections>
                                                                 </slider>
                                                             </subviews>

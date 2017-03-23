@@ -179,8 +179,9 @@ class SettingsTableViewController: UITableViewController {
         passwordCell.detailTextLabel?.text = "******"
     }
     
-    @IBAction func fontSizeSliderDoneChanging(_ sender: Any) {
+    @IBAction func fontSliderValueChanged(_ sender: Any) {
         let fontSize = Int(self.fontSizeSlider.value)
+        print(fontSize)
         UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
         AppDelegate.usersRef.child(userID!).child("settings").child("fontSize").setValue(fontSize)
         fontSizeLabel.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
