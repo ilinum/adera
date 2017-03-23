@@ -742,12 +742,7 @@
 			baseConfigurationReference = 054EDB403B01D87FD4F1EE19 /* Pods-adera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)/**",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQMessagesViewController/**",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQSystemSoundPlayer/**",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"${PODS_ROOT}/Firebase/Core/Sources",
@@ -773,12 +768,7 @@
 			baseConfigurationReference = 371D6EA2B76EA6B4C93122D5 /* Pods-adera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)/**",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQMessagesViewController/**",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQSystemSoundPlayer/**",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"${PODS_ROOT}/Firebase/Core/Sources",

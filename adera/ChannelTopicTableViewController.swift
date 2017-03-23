@@ -20,7 +20,6 @@ class ChannelTopicTableViewController: UITableViewController {
             self.navigationItem.leftBarButtonItem = delegate!.getLeftBarButtonItem()
             self.navigationItem.rightBarButtonItem = delegate!.getRightBarButtonItem()
         }
-        self.navigationController?.isToolbarHidden = true
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
