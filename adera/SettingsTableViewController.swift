@@ -51,15 +51,23 @@ class SettingsTableViewController: UITableViewController {
                                                             if textField.text?.characters.count ?? 0 > 0 {
                                                                 FIRAuth.auth()?.currentUser?.updateEmail(textField.text!) { (error) in
                                                                     // Displays Error or Success Message from FireBase
-                                                                    let title: String? = error != nil ? "Reauthentication Required" : "Success"
+                                                                    let title: String? = error != nil ? "Error" : "Success"
                                                                     let message: String? = error != nil ? error?.localizedDescription : "Successfully Changed Email"
                                                                     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
                                                                     if error != nil {
                                                                         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                                                                         alertController.addAction(cancelAction)
-                                                                        let loginAction = UIAlertAction(title: "Re-Login", style: .destructive, handler: self.signOutAction)
-                                                                        alertController.addAction(loginAction)
+                                                                        
+                                                                        // Handle Specific Error Codes
+                                                                        if let errorCode = FIRAuthErrorCode(rawValue: error!._code) {
+                                                                            if errorCode == FIRAuthErrorCode.errorCodeRequiresRecentLogin {
+                                                                                alertController.title = "Reauthentication Required"
+                                                                                let loginAction = UIAlertAction(title: "Re-Login", style: .destructive, handler: self.signOutAction)
+                                                                                alertController.addAction(loginAction)
+                                                                            }
+                                                                        }
                                                                     }
+                                                                    // Successful Update
                                                                     else {
                                                                         self.updateDetailsViews()
                                                                         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
