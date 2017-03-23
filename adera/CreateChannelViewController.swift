@@ -24,6 +24,11 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         channelDescriptionTextView.layer.borderWidth = 1.0
         channelDescriptionTextView.layer.cornerRadius = 5
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isToolbarHidden = false
+    }
 
 
 

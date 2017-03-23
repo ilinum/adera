@@ -21,6 +21,11 @@ class ChannelTopicTableViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = delegate!.getRightBarButtonItem()
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isToolbarHidden = true
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicOrTableCell", for: indexPath)

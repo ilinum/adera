@@ -21,9 +21,19 @@ class ChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Chat"
+        
+        let barButton = UIBarButtonItem()
+        barButton.title = "Topics"
+        navigationController!.navigationBar.topItem!.backBarButtonItem = barButton
+        
         self.senderId = FIRAuth.auth()?.currentUser?.uid
         //self.senderDisplayName = FIRAuth.auth()?.currentUser?.displayName
         self.senderDisplayName = "cindy hardcoded...."
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isToolbarHidden = true
     }
 
     override func didReceiveMemoryWarning() {

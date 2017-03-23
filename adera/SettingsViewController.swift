@@ -15,6 +15,12 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Settings"
+//        self.navigationController?.toolbarItems
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isToolbarHidden = true
     }
 
     override func didReceiveMemoryWarning() {
