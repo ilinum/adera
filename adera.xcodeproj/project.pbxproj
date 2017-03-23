@@ -12,7 +12,6 @@
 		220E46D51E83963300BC7A26 /* JSQSystemSoundPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D11E83963200BC7A26 /* JSQSystemSoundPlayer.framework */; };
 		220E46D61E83963300BC7A26 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D21E83963200BC7A26 /* Pods_aderaTests.framework */; };
 		220E46D71E83963300BC7A26 /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D31E83963200BC7A26 /* Pods_aderaUITests.framework */; };
-		22CD60D11E83A6190041EEBF /* Avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22CD60D01E83A6190041EEBF /* Avatar.jpg */; };
 		5543E3EEB0AE1D7F531443FA /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */; };
 		7D5E1C98E3D86FC6B126FA74 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F33DDE913811EEEF877C243 /* Pods_aderaTests.framework */; };
 		ADDCFA72D47A5180BEFC8C7C /* Pods_adera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7455BA5C76C0D04A01039673 /* Pods_adera.framework */; };
@@ -23,6 +22,7 @@
 		BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */; };
 		D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85071D71E836121004EF00A /* AccountDefaultSettings.swift */; };
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
+		D8BBA7601E8427CB00C2FB03 /* Avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8BBA75F1E8427CB00C2FB03 /* Avatar.jpg */; };
 		D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */; };
 		FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */; };
 		FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */; };
@@ -65,7 +65,6 @@
 		220E46D11E83963200BC7A26 /* JSQSystemSoundPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQSystemSoundPlayer.framework; path = "Pods/../build/Debug-iphoneos/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework"; sourceTree = "<group>"; };
 		220E46D21E83963200BC7A26 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_aderaTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_aderaTests.framework"; sourceTree = "<group>"; };
 		220E46D31E83963200BC7A26 /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_aderaUITests.framework; path = "Pods/../build/Debug-iphoneos/Pods_aderaUITests.framework"; sourceTree = "<group>"; };
-		22CD60D01E83A6190041EEBF /* Avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Avatar.jpg; path = ../../../../Avatar.jpg; sourceTree = "<group>"; };
 		243E68CA32183994D9E54994 /* Pods-aderaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		371D6EA2B76EA6B4C93122D5 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
 		5F33DDE913811EEEF877C243 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +78,7 @@
 		D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85071D71E836121004EF00A /* AccountDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDefaultSettings.swift; sourceTree = "<group>"; };
 		D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		D8BBA75F1E8427CB00C2FB03 /* Avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Avatar.jpg; sourceTree = "<group>"; };
 		D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED35F477CA5B0DCFC94C9759 /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
 		EE54A0644E257F1D10C2E132 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 				FADEE4181E731A7900189953 /* LaunchScreen.storyboard */,
 				FADEE41B1E731A7900189953 /* Info.plist */,
 				FADEE4131E731A7900189953 /* adera.xcdatamodeld */,
-				22CD60D01E83A6190041EEBF /* Avatar.jpg */,
+				D8BBA75F1E8427CB00C2FB03 /* Avatar.jpg */,
 				FAD46BE71E7DE5100035F403 /* Channel/Topic */,
 				FAF1F8061E763C83008DA769 /* Login/Register */,
 				D8BB601B1E82E908000B0EF5 /* Settings */,
@@ -407,12 +407,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8BBA7601E8427CB00C2FB03 /* Avatar.jpg in Resources */,
 				FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */,
 				FAD46BEE1E7E04600035F403 /* Settings-50@2x.png in Resources */,
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
 				FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */,
 				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
-				22CD60D11E83A6190041EEBF /* Avatar.jpg in Resources */,
 				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
