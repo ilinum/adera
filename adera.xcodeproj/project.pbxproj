@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2EF2209F724F15F033FE73B0 /* Pods_adera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDA133B6D6F1BB60E9E7F26 /* Pods_adera.framework */; };
-		64E0E1EC07279AE8DDA608E5 /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360089EB14C69EAA4D20F0AF /* Pods_aderaUITests.framework */; };
+		220E46CF1E8383C500BC7A26 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E46CE1E8383C500BC7A26 /* ChatViewController.swift */; };
+		220E46D41E83963300BC7A26 /* JSQMessagesViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D01E83963200BC7A26 /* JSQMessagesViewController.framework */; };
+		220E46D51E83963300BC7A26 /* JSQSystemSoundPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D11E83963200BC7A26 /* JSQSystemSoundPlayer.framework */; };
+		220E46D61E83963300BC7A26 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D21E83963200BC7A26 /* Pods_aderaTests.framework */; };
+		220E46D71E83963300BC7A26 /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D31E83963200BC7A26 /* Pods_aderaUITests.framework */; };
+		22CD60D11E83A6190041EEBF /* Avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 22CD60D01E83A6190041EEBF /* Avatar.jpg */; };
+		5543E3EEB0AE1D7F531443FA /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */; };
+		7D5E1C98E3D86FC6B126FA74 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F33DDE913811EEEF877C243 /* Pods_aderaTests.framework */; };
+		ADDCFA72D47A5180BEFC8C7C /* Pods_adera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7455BA5C76C0D04A01039673 /* Pods_adera.framework */; };
 		BCED43EC53BA2ECE54FF4FF1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4434AF3AC7EEF0C734D8 /* Message.swift */; };
 		BCED470F186C4DFDA449734B /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4B1ED35744FE66B5B0C5 /* Topic.swift */; };
 		BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED46A62981D27F365CFC3E /* Channel.swift */; };
 		BCED48F9C493BA8DAE79F04E /* TopicTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */; };
 		BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */; };
-		CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */; };
 		D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85071D71E836121004EF00A /* AccountDefaultSettings.swift */; };
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
 		D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */; };
@@ -53,23 +59,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A8CC009A04617DC050824A1 /* Pods-adera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.debug.xcconfig"; sourceTree = "<group>"; };
-		360089EB14C69EAA4D20F0AF /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FDA133B6D6F1BB60E9E7F26 /* Pods_adera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_adera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		76503484B9C4E45F4AA39A29 /* Pods-aderaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A005F5107DB43513C9A170A1 /* Pods-aderaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.release.xcconfig"; sourceTree = "<group>"; };
-		AAD895CE1BAE44831E5F9720 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		054EDB403B01D87FD4F1EE19 /* Pods-adera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.debug.xcconfig"; sourceTree = "<group>"; };
+		220E46CE1E8383C500BC7A26 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		220E46D01E83963200BC7A26 /* JSQMessagesViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQMessagesViewController.framework; path = "Pods/../build/Debug-iphoneos/JSQMessagesViewController/JSQMessagesViewController.framework"; sourceTree = "<group>"; };
+		220E46D11E83963200BC7A26 /* JSQSystemSoundPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQSystemSoundPlayer.framework; path = "Pods/../build/Debug-iphoneos/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework"; sourceTree = "<group>"; };
+		220E46D21E83963200BC7A26 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_aderaTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_aderaTests.framework"; sourceTree = "<group>"; };
+		220E46D31E83963200BC7A26 /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_aderaUITests.framework; path = "Pods/../build/Debug-iphoneos/Pods_aderaUITests.framework"; sourceTree = "<group>"; };
+		22CD60D01E83A6190041EEBF /* Avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Avatar.jpg; path = ../../../../Avatar.jpg; sourceTree = "<group>"; };
+		243E68CA32183994D9E54994 /* Pods-aderaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		371D6EA2B76EA6B4C93122D5 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
+		5F33DDE913811EEEF877C243 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7455BA5C76C0D04A01039673 /* Pods_adera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_adera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCED4434AF3AC7EEF0C734D8 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowsePublicChannelsTableViewDelegate.swift; sourceTree = "<group>"; };
 		BCED46A62981D27F365CFC3E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicTableViewDelegate.swift; sourceTree = "<group>"; };
 		BCED4B1ED35744FE66B5B0C5 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
-		CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD7250D8D0ED9C375F479363 /* Pods-aderaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85071D71E836121004EF00A /* AccountDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDefaultSettings.swift; sourceTree = "<group>"; };
 		D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
-		ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
+		ED35F477CA5B0DCFC94C9759 /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
+		EE54A0644E257F1D10C2E132 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plus-50@2x.png"; sourceTree = "<group>"; };
 		FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicTableViewController.swift; sourceTree = "<group>"; };
 		FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicCell.swift; sourceTree = "<group>"; };
@@ -98,7 +110,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EF2209F724F15F033FE73B0 /* Pods_adera.framework in Frameworks */,
+				220E46D41E83963300BC7A26 /* JSQMessagesViewController.framework in Frameworks */,
+				220E46D51E83963300BC7A26 /* JSQSystemSoundPlayer.framework in Frameworks */,
+				220E46D61E83963300BC7A26 /* Pods_aderaTests.framework in Frameworks */,
+				220E46D71E83963300BC7A26 /* Pods_aderaUITests.framework in Frameworks */,
+				ADDCFA72D47A5180BEFC8C7C /* Pods_adera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */,
+				7D5E1C98E3D86FC6B126FA74 /* Pods_aderaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,19 +130,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64E0E1EC07279AE8DDA608E5 /* Pods_aderaUITests.framework in Frameworks */,
+				5543E3EEB0AE1D7F531443FA /* Pods_aderaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		12858141F65EB8B1FCEDE67A /* Frameworks */ = {
+		50CE3074B649ADF335F7A072 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3FDA133B6D6F1BB60E9E7F26 /* Pods_adera.framework */,
-				CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */,
-				360089EB14C69EAA4D20F0AF /* Pods_aderaUITests.framework */,
+				054EDB403B01D87FD4F1EE19 /* Pods-adera.debug.xcconfig */,
+				371D6EA2B76EA6B4C93122D5 /* Pods-adera.release.xcconfig */,
+				EE54A0644E257F1D10C2E132 /* Pods-aderaTests.debug.xcconfig */,
+				ED35F477CA5B0DCFC94C9759 /* Pods-aderaTests.release.xcconfig */,
+				243E68CA32183994D9E54994 /* Pods-aderaUITests.debug.xcconfig */,
+				CD7250D8D0ED9C375F479363 /* Pods-aderaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		83295ADA438135CE285F6B0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				220E46D01E83963200BC7A26 /* JSQMessagesViewController.framework */,
+				220E46D11E83963200BC7A26 /* JSQSystemSoundPlayer.framework */,
+				220E46D21E83963200BC7A26 /* Pods_aderaTests.framework */,
+				220E46D31E83963200BC7A26 /* Pods_aderaUITests.framework */,
+				7455BA5C76C0D04A01039673 /* Pods_adera.framework */,
+				5F33DDE913811EEEF877C243 /* Pods_aderaTests.framework */,
+				D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -147,6 +180,7 @@
 				BCED4B1ED35744FE66B5B0C5 /* Topic.swift */,
 				BCED4434AF3AC7EEF0C734D8 /* Message.swift */,
 				BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */,
+				220E46CE1E8383C500BC7A26 /* ChatViewController.swift */,
 			);
 			name = Topic;
 			sourceTree = "<group>";
@@ -189,8 +223,8 @@
 				FADEE4231E731A7900189953 /* aderaTests */,
 				FADEE42E1E731A7900189953 /* aderaUITests */,
 				FADEE40A1E731A7900189953 /* Products */,
-				FB531DB36FA1F7088B7E53A4 /* Pods */,
-				12858141F65EB8B1FCEDE67A /* Frameworks */,
+				50CE3074B649ADF335F7A072 /* Pods */,
+				83295ADA438135CE285F6B0C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,6 +249,7 @@
 				FADEE4181E731A7900189953 /* LaunchScreen.storyboard */,
 				FADEE41B1E731A7900189953 /* Info.plist */,
 				FADEE4131E731A7900189953 /* adera.xcdatamodeld */,
+				22CD60D01E83A6190041EEBF /* Avatar.jpg */,
 				FAD46BE71E7DE5100035F403 /* Channel/Topic */,
 				FAF1F8061E763C83008DA769 /* Login/Register */,
 				D8BB601B1E82E908000B0EF5 /* Settings */,
@@ -256,19 +291,6 @@
 			name = Resource;
 			sourceTree = "<group>";
 		};
-		FB531DB36FA1F7088B7E53A4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1A8CC009A04617DC050824A1 /* Pods-adera.debug.xcconfig */,
-				ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */,
-				AAD895CE1BAE44831E5F9720 /* Pods-aderaTests.debug.xcconfig */,
-				DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */,
-				76503484B9C4E45F4AA39A29 /* Pods-aderaUITests.debug.xcconfig */,
-				A005F5107DB43513C9A170A1 /* Pods-aderaUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -276,12 +298,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADEE4341E731A7900189953 /* Build configuration list for PBXNativeTarget "adera" */;
 			buildPhases = (
-				4AC5D6476A96B86B24C85145 /* [CP] Check Pods Manifest.lock */,
+				A81DB5AC0A36AC4C80672FF3 /* [CP] Check Pods Manifest.lock */,
 				FADEE4051E731A7800189953 /* Sources */,
 				FADEE4061E731A7800189953 /* Frameworks */,
 				FADEE4071E731A7800189953 /* Resources */,
-				DDF49A803BC959CD2586D497 /* [CP] Embed Pods Frameworks */,
-				7D5C6037B84D7F9E13572376 /* [CP] Copy Pods Resources */,
+				6E243B218F6B6E1093F14300 /* [CP] Embed Pods Frameworks */,
+				E73FE405E33BF3D2D6203DEE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -296,12 +318,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADEE4371E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaTests" */;
 			buildPhases = (
-				29073698C7D1B58894D6CC69 /* [CP] Check Pods Manifest.lock */,
+				10B3CCF0017061A984AC4F2F /* [CP] Check Pods Manifest.lock */,
 				FADEE41C1E731A7900189953 /* Sources */,
 				FADEE41D1E731A7900189953 /* Frameworks */,
 				FADEE41E1E731A7900189953 /* Resources */,
-				A8A8F3F3FB6F2C018B64A107 /* [CP] Embed Pods Frameworks */,
-				4EB1D00D586C1DB267FB3A38 /* [CP] Copy Pods Resources */,
+				2E0EB095B0788F162AEF19F7 /* [CP] Embed Pods Frameworks */,
+				4BC3ED27AF534A63CE5138B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -317,12 +339,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADEE43A1E731A7900189953 /* Build configuration list for PBXNativeTarget "aderaUITests" */;
 			buildPhases = (
-				3B6C9C100A9C65559D635B30 /* [CP] Check Pods Manifest.lock */,
+				259DDC925717903AD5A31841 /* [CP] Check Pods Manifest.lock */,
 				FADEE4271E731A7900189953 /* Sources */,
 				FADEE4281E731A7900189953 /* Frameworks */,
 				FADEE4291E731A7900189953 /* Resources */,
-				261066849332FA12D9E86336 /* [CP] Embed Pods Frameworks */,
-				1501D37F60C6504E0B9E2437 /* [CP] Copy Pods Resources */,
+				7DD6207D13E3D5F9A6F72771 /* [CP] Embed Pods Frameworks */,
+				A33C0A3A68109E8069326FB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -390,6 +412,7 @@
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
 				FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */,
 				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
+				22CD60D11E83A6190041EEBF /* Avatar.jpg in Resources */,
 				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,37 +434,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1501D37F60C6504E0B9E2437 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		261066849332FA12D9E86336 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		29073698C7D1B58894D6CC69 /* [CP] Check Pods Manifest.lock */ = {
+		10B3CCF0017061A984AC4F2F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -456,7 +449,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		3B6C9C100A9C65559D635B30 /* [CP] Check Pods Manifest.lock */ = {
+		259DDC925717903AD5A31841 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -471,52 +464,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4AC5D6476A96B86B24C85145 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		4EB1D00D586C1DB267FB3A38 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7D5C6037B84D7F9E13572376 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-adera/Pods-adera-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A8A8F3F3FB6F2C018B64A107 /* [CP] Embed Pods Frameworks */ = {
+		2E0EB095B0788F162AEF19F7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -531,7 +479,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DDF49A803BC959CD2586D497 /* [CP] Embed Pods Frameworks */ = {
+		4BC3ED27AF534A63CE5138B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E243B218F6B6E1093F14300 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -546,6 +509,66 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-adera/Pods-adera-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7DD6207D13E3D5F9A6F72771 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A33C0A3A68109E8069326FB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A81DB5AC0A36AC4C80672FF3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E73FE405E33BF3D2D6203DEE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-adera/Pods-adera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -555,6 +578,7 @@
 			files = (
 				FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */,
 				FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */,
+				220E46CF1E8383C500BC7A26 /* ChatViewController.swift in Sources */,
 				FAD46BF01E7E06630035F403 /* MyChannelsTableViewDelegate.swift in Sources */,
 				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
 				FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */,
@@ -715,11 +739,29 @@
 		};
 		FADEE4351E731A7900189953 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A8CC009A04617DC050824A1 /* Pods-adera.debug.xcconfig */;
+			baseConfigurationReference = 054EDB403B01D87FD4F1EE19 /* Pods-adera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQMessagesViewController/**",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQSystemSoundPlayer/**",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+				);
 				INFOPLIST_FILE = adera/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.utexas.cs378.adera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -728,11 +770,29 @@
 		};
 		FADEE4361E731A7900189953 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED752EC4D0866F6D4D4E6014 /* Pods-adera.release.xcconfig */;
+			baseConfigurationReference = 371D6EA2B76EA6B4C93122D5 /* Pods-adera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)/**",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQMessagesViewController/**",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/JSQSystemSoundPlayer/**",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/Core/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAuth\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseDatabase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseStorage\"",
+				);
 				INFOPLIST_FILE = adera/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.utexas.cs378.adera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -741,7 +801,7 @@
 		};
 		FADEE4381E731A7900189953 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAD895CE1BAE44831E5F9720 /* Pods-aderaTests.debug.xcconfig */;
+			baseConfigurationReference = EE54A0644E257F1D10C2E132 /* Pods-aderaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -756,7 +816,7 @@
 		};
 		FADEE4391E731A7900189953 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */;
+			baseConfigurationReference = ED35F477CA5B0DCFC94C9759 /* Pods-aderaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -771,7 +831,7 @@
 		};
 		FADEE43B1E731A7900189953 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76503484B9C4E45F4AA39A29 /* Pods-aderaUITests.debug.xcconfig */;
+			baseConfigurationReference = 243E68CA32183994D9E54994 /* Pods-aderaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = aderaUITests/Info.plist;
@@ -785,7 +845,7 @@
 		};
 		FADEE43C1E731A7900189953 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A005F5107DB43513C9A170A1 /* Pods-aderaUITests.release.xcconfig */;
+			baseConfigurationReference = CD7250D8D0ED9C375F479363 /* Pods-aderaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = aderaUITests/Info.plist;

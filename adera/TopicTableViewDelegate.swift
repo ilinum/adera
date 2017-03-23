@@ -8,6 +8,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
+    var delegate: TopicTableViewDelegate? = nil
     private let tableViewController: UITableViewController!
     private var channel: Channel
     let user: FIRUser
@@ -78,9 +79,11 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         tableViewController.present(alertController, animated: true, completion: nil)
     }
 
+    // Segues from Topic to Chat
     func rowSelected(row: Int) {
-
+        let storyboard = tableViewController.storyboard
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController")
+        tableViewController.navigationController?.pushViewController(vc!, animated: true)
     }
-
 }
 
