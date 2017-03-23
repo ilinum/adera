@@ -15,6 +15,7 @@
 		BCED48F9C493BA8DAE79F04E /* TopicTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */; };
 		BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */; };
 		CB34A208016223FE66CAE627 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */; };
+		D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85071D71E836121004EF00A /* AccountDefaultSettings.swift */; };
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
 		D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */; };
 		FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */; };
@@ -64,6 +65,7 @@
 		BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicTableViewDelegate.swift; sourceTree = "<group>"; };
 		BCED4B1ED35744FE66B5B0C5 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		CAE3211614E949B9A63EF442 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D85071D71E836121004EF00A /* AccountDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDefaultSettings.swift; sourceTree = "<group>"; };
 		D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DE61330E33B76258759BFFFB /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */,
 				D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */,
+				D85071D71E836121004EF00A /* AccountDefaultSettings.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				FAD46BF01E7E06630035F403 /* MyChannelsTableViewDelegate.swift in Sources */,
 				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
 				FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */,
+				D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */,
 				FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */,
 				D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */,
 				FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */,

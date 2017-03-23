@@ -11,19 +11,20 @@ import FirebaseAuth
 import Firebase
 
 class SettingsTableViewController: UITableViewController {
-    @IBOutlet weak var fontSizeCell: UITableViewCell!
     @IBOutlet weak var emailCell: UITableViewCell!
     @IBOutlet weak var passwordCell: UITableViewCell!
     @IBOutlet weak var usernameCell: UITableViewCell!
+    @IBOutlet weak var fontSizeSlider: UISlider!
+    @IBOutlet weak var fontSizeLabel: UILabel!
     
     var userID: String?
-    var fontSize: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         userID = FIRAuth.auth()?.currentUser?.uid
         self.tableView.tableFooterView = UIView()
+        
         updateDetailsViews()
     }
 
@@ -36,12 +37,7 @@ class SettingsTableViewController: UITableViewController {
         if indexPath.section == 0 {
             // Text Size
             if  indexPath.row == 0 {
-                print("changing font!")
-                fontSize? += 1
-                AppDelegate.usersRef.child(userID!).child("settings").child("fontSize").setValue(fontSize!)
-                UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize!))
-                updateDetailsViews()
-                self.reloadInputViews()
+                // DO NOTHING HERE. This is a slider so selection means nothing.
             }
         }
         // Edit Profile
@@ -155,7 +151,7 @@ class SettingsTableViewController: UITableViewController {
         headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
     }
 
-    @IBAction func signOutAction(_ sender: Any) {
+    func signOutAction(_ sender: Any) {
         print("sign out")
         try! FIRAuth.auth()!.signOut()
         if let storyboard = self.storyboard {
@@ -168,8 +164,8 @@ class SettingsTableViewController: UITableViewController {
         // Get Application Settings Values from FireBase
         AppDelegate.usersRef.child(userID!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            self.fontSize = value?["fontSize"] as? Int ?? 17
-            self.fontSizeCell.detailTextLabel?.text = "\(self.fontSize!)px"
+            let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings().fontSize
+            self.fontSizeSlider.value = Float(fontSize)
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -181,5 +177,12 @@ class SettingsTableViewController: UITableViewController {
         usernameCell.detailTextLabel?.text = displayName
         
         passwordCell.detailTextLabel?.text = "******"
+    }
+    
+    @IBAction func fontSizeSliderDoneChanging(_ sender: Any) {
+        let fontSize = Int(self.fontSizeSlider.value)
+        UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        AppDelegate.usersRef.child(userID!).child("settings").child("fontSize").setValue(fontSize)
+        fontSizeLabel.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
     }
 }

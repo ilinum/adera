@@ -74,7 +74,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if error == nil {
                     print("Sign up successful")
 
-//                    AppDelegate.firebaseRef.child("users/\(user!.uid)/username").setValue(username)
                     if let user = FIRAuth.auth()?.currentUser {
                         let changeRequest = user.profileChangeRequest()
                         changeRequest.displayName = username
@@ -84,8 +83,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             }
                         }
                         
-                        // Configure Initial Settings Values
-                        AppDelegate.usersRef.child(user.uid).child("settings").child("fontSize").setValue(17)
+                        // Configure Default Settings Values
+                        AppDelegate.usersRef.child(user.uid).child("settings").child("fontSize").setValue(AccountDefaultSettings().fontSize)
                     }
                     
 
