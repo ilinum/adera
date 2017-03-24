@@ -7,21 +7,23 @@ import Foundation
 import FirebaseDatabase
 
 class Message {
-    let authorUID: String
-    let content: String
+    var authorUID: String?
+    var content: String?
 
     init(authorUID: String, content: String) {
         self.authorUID = authorUID
         self.content = content
+        print("\(authorID)")
+        print("\(content)")
     }
 
     init(snapshot: FIRDataSnapshot) {
-        self.authorUID = snapshot.childSnapshot(forPath: "authorUID").value as! String
-        self.content = snapshot.childSnapshot(forPath: "content").value as! String
+        self.authorUID = snapshot.childSnapshot(forPath: "authorUID").value as? String
+        self.content = snapshot.childSnapshot(forPath: "content").value as? String
     }
 
     func toDictionary() -> Dictionary<String, Any> {
-        return ["authorUID": authorUID,
-                "content": content]
+        return ["authorUID": authorUID!,
+                "content": content!]
     }
 }
