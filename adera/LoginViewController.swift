@@ -24,6 +24,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         if FIRAuth.auth()?.currentUser != nil {
             self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
+            
+            // Get Application Settings Values from FireBase to use for UI changes upon login
+            AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser!.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings().fontSize
+                UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+            }) { (error) in
+                print(error.localizedDescription)
+            }
         } else {
             // hide keyboard on return and out touches
             usernameTextField.delegate = self
@@ -113,7 +122,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
                 } else {
                     
-                    //Tells the user that there is an error and then gets firebase to tell them the error
+                    // Tells the user that there is an error and then gets firebase to tell them the error
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                     
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

@@ -27,6 +27,11 @@ class SettingsTableViewController: UITableViewController {
         
         updateDetailsViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isToolbarHidden = true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -189,9 +194,11 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func fontSliderValueChanged(_ sender: Any) {
         let fontSize = Int(self.fontSizeSlider.value)
-        print(fontSize)
         UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
         AppDelegate.usersRef.child(userID!).child("settings").child("fontSize").setValue(fontSize)
         fontSizeLabel.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue:"FontSizeChange"),
+                                        object: nil)
     }
 }

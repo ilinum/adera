@@ -25,6 +25,11 @@ class ChannelTopicTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = true
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue:"FontSizeChange"),
+                                               object: nil,
+                                               queue: nil,
+                                               using: onContentSizeChange)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,6 +53,39 @@ class ChannelTopicTableViewController: UITableViewController {
 
     override  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.rowSelected(row: indexPath.item)
+    }
+    
+    // Adds last line under table view
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40))
+        footerView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+        return footerView
+    }
+    
+    // Adds last line under table view
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.5
+    }
+    
+    // Dynamic Cell Heights
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    // Dynamic Cell Heights
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func viewDidDisappear(_ animated: Bool)  {
+        super.viewDidDisappear(animated)
+        // Remove notification subscription
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // When the UI Font changes, reload the table views
+    func onContentSizeChange(notification: Notification) {
+        tableView.reloadData()
     }
 }
 
