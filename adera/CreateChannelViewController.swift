@@ -42,21 +42,24 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
     }
     
     @IBAction func createChannelButtonTapped(_ sender: Any) {
-        let channelNameText = channelNameTextField.text
+        // "/" is bad in firebase. it creates a hierarchy
+        // ".#$[]" are also bad. not allowed in child()
+        var channelNameText = channelNameTextField.text
+        channelNameText = channelNameText?.replacingOccurrences(of: "/", with: " ").replacingOccurrences(of: ".", with: " ").replacingOccurrences(of: "#", with: " ").replacingOccurrences(of: "$", with: " ").replacingOccurrences(of: "[", with: " ").replacingOccurrences(of: "]", with: " ")
         if channelNameText == nil || channelNameText!.characters.count == 0 {
             let alertController = UIAlertController(title: "Error", message: "Please enter channel name",
-                    preferredStyle: .alert)
-
+                                                    preferredStyle: .alert)
+            
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-
+            
             present(alertController, animated: true, completion: nil)
             return
         }
         let user = FIRAuth.auth()!.currentUser!
         let description = channelDescriptionTextView.text!
         let channel = Channel(name: channelNameText!, description: description, creatorUID: user.uid)
-        AppDelegate.publicChannelsRef.child(channel.name.lowercased()).setValue(channel.toDictionary())
+        AppDelegate.publicChannelsRef.child((channel.name.lowercased())).setValue(channel.toDictionary())
         _ = navigationController?.popViewController(animated: true)
     }
 }
