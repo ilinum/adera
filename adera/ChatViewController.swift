@@ -29,6 +29,9 @@ class ChatViewController: JSQMessagesViewController {
         let barButton = UIBarButtonItem()
         barButton.title = "Topics"
         navigationController!.navigationBar.topItem!.backBarButtonItem = barButton
+        
+        self.inputToolbar.contentView.leftBarButtonItem = nil
+        
         // Set sender info
         self.senderId = FIRAuth.auth()?.currentUser?.uid
         let name = FIRAuth.auth()?.currentUser?.displayName
