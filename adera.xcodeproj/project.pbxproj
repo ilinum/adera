@@ -12,6 +12,7 @@
 		220E46D51E83963300BC7A26 /* JSQSystemSoundPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D11E83963200BC7A26 /* JSQSystemSoundPlayer.framework */; };
 		220E46D61E83963300BC7A26 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D21E83963200BC7A26 /* Pods_aderaTests.framework */; };
 		220E46D71E83963300BC7A26 /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E46D31E83963200BC7A26 /* Pods_aderaUITests.framework */; };
+		22D53C501E84AB29001E63BE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D53C4F1E84AB29001E63BE /* Message.swift */; };
 		5543E3EEB0AE1D7F531443FA /* Pods_aderaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */; };
 		7D5E1C98E3D86FC6B126FA74 /* Pods_aderaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F33DDE913811EEEF877C243 /* Pods_aderaTests.framework */; };
 		ADDCFA72D47A5180BEFC8C7C /* Pods_adera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7455BA5C76C0D04A01039673 /* Pods_adera.framework */; };
@@ -64,6 +65,7 @@
 		220E46D11E83963200BC7A26 /* JSQSystemSoundPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQSystemSoundPlayer.framework; path = "Pods/../build/Debug-iphoneos/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework"; sourceTree = "<group>"; };
 		220E46D21E83963200BC7A26 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_aderaTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_aderaTests.framework"; sourceTree = "<group>"; };
 		220E46D31E83963200BC7A26 /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_aderaUITests.framework; path = "Pods/../build/Debug-iphoneos/Pods_aderaUITests.framework"; sourceTree = "<group>"; };
+		22D53C4F1E84AB29001E63BE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		243E68CA32183994D9E54994 /* Pods-aderaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		371D6EA2B76EA6B4C93122D5 /* Pods-adera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adera.release.xcconfig"; path = "Pods/Target Support Files/Pods-adera/Pods-adera.release.xcconfig"; sourceTree = "<group>"; };
 		5F33DDE913811EEEF877C243 /* Pods_aderaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 		FAB5F6501E7ECBDF00B1CB5C /* Topic */ = {
 			isa = PBXGroup;
 			children = (
+				22D53C4F1E84AB29001E63BE /* Message.swift */,
 				BCED4B1ED35744FE66B5B0C5 /* Topic.swift */,
 				BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */,
 				220E46CE1E8383C500BC7A26 /* ChatViewController.swift */,
@@ -586,6 +589,7 @@
 				BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */,
 				D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */,
 				BCED470F186C4DFDA449734B /* Topic.swift in Sources */,
+				22D53C501E84AB29001E63BE /* Message.swift in Sources */,
 				BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */,
 				BCED48F9C493BA8DAE79F04E /* TopicTableViewDelegate.swift in Sources */,
 			);
