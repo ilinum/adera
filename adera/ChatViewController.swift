@@ -59,6 +59,7 @@ class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count;
     }
+    
     // Configure each message/cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell        
@@ -86,6 +87,54 @@ class ChatViewController: JSQMessagesViewController {
         } else {
             return JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
         }
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        let message = messages[indexPath.item]
+        switch message.senderId {
+            case senderId:
+                return nil
+            default:
+                guard let senderDisplayName = message.senderDisplayName else {
+                    assertionFailure()
+                    return nil
+                }
+                return NSAttributedString(string: senderDisplayName)
+        }
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        return 15
+    }
+        
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+//        if firstMessageOfTheDay(indexOfMessage: indexPath) {
+//            let dateOfMessage = messages[indexPath.item].date
+//            let dateFormatter = DateFormatter()
+//            let calendar = NSCalendar.current
+//            let sevenDaysAgo = Date().addingTimeInterval(-7*24*60*60)
+//            
+//            if calendar.isDateInToday(dateOfMessage!) {
+//                dateFormatter.dateFormat = "Today at 'h:mm a."
+//            }
+//            
+//            dateFormatter.dateFormat = "EEEE, MMMM dd, yyyy' at 'h:mm a."
+//            let dayOfWeekString = dateFormatter.string(from: dateOfMessage!)
+//            let sevendayagostring = dateFormatter.string(from: sevenDaysAgo)
+//            
+//            print(dayOfWeekString)
+//            print(sevendayagostring)
+//            
+//            return NSAttributedString(string: dayOfWeekString)
+//        }
+        return NSAttributedString(string: "")
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
+//        if firstMessageOfTheDay(indexOfMessage: indexPath) {
+//            return 30
+//        }
+        return 10
     }
     
     // Send Button
@@ -118,5 +167,21 @@ class ChatViewController: JSQMessagesViewController {
                 print("Error! Could not decode message data")
             }
         })
+    }
+    
+    func firstMessageOfTheDay(indexOfMessage: IndexPath) -> Bool {
+        let dateOfNewestMessage = messages[indexOfMessage.item].date
+        guard indexOfMessage.item > 0 else {
+            return true
+        }
+        let dateOfLastMessage = messages[indexOfMessage.item - 1].date
+        let calendar = NSCalendar.current
+        let day = calendar.component(.day, from: dateOfNewestMessage!)
+        let previousDay = calendar.component(.day, from: dateOfLastMessage!)
+            if day == previousDay {
+                return false
+            } else {
+            return true
+        }
     }
 }
