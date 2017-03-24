@@ -85,7 +85,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         let storyboard = tableViewController.storyboard
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         vc.channelName = channel.name.lowercased()
-        vc.topicName = channel.topics[row].name.lowercased()
+        vc.topicName = channel.topics[row].name
         tableViewController.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -24,7 +24,7 @@ class ChatViewController: JSQMessagesViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Chat"
+        self.title = topicName!
         
         let barButton = UIBarButtonItem()
         barButton.title = "Topics"
@@ -37,7 +37,7 @@ class ChatViewController: JSQMessagesViewController {
         let name = FIRAuth.auth()?.currentUser?.displayName
         self.senderDisplayName = (name == nil) ? "" : name // make sure username is not nil
         // Get references to current chat topic
-        let topicRef = AppDelegate.publicChannelsRef.child(channelName!).child("topics").child(topicName!)
+        let topicRef = AppDelegate.publicChannelsRef.child(channelName!).child("topics").child(topicName!.lowercased())
         messageRef = topicRef.child("messages")
         observeMessages()
     }
