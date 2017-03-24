@@ -62,6 +62,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                 let channelRef = AppDelegate.publicChannelsRef.child(self.channel.name.lowercased())
                 let topicName = textField.text!
                 let topic = Topic(creatorUID: self.user.uid, name: topicName)
+                // Set TopicRef in Firebase
                 channelRef.child("topics").child(topicName.lowercased()).setValue(topic.toDictionary())
                 self.channel.topics.append(topic)
                 self.tableViewController.tableView.reloadData()
@@ -82,8 +83,10 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     // Segues from Topic to Chat
     func rowSelected(row: Int) {
         let storyboard = tableViewController.storyboard
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController")
-        tableViewController.navigationController?.pushViewController(vc!, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        vc.channelName = channel.name.lowercased()
+        vc.topicName = channel.topics[row].name.lowercased()
+        tableViewController.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

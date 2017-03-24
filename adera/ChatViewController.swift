@@ -17,7 +17,13 @@ class ChatViewController: JSQMessagesViewController {
     private var messages = [JSQMessage]();
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-
+    
+    // Set up variables to synchronize with Firebase
+    private var messageRef:FIRDatabaseReference?
+    private var newMessageRefHandle: FIRDatabaseHandle?
+    var channelName:String? = nil
+    var topicName:String? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Chat"
@@ -25,10 +31,14 @@ class ChatViewController: JSQMessagesViewController {
         let barButton = UIBarButtonItem()
         barButton.title = "Topics"
         navigationController!.navigationBar.topItem!.backBarButtonItem = barButton
-        
+        // Set sender info
         self.senderId = FIRAuth.auth()?.currentUser?.uid
-        //self.senderDisplayName = FIRAuth.auth()?.currentUser?.displayName
-        self.senderDisplayName = "cindy hardcoded...."
+        let name = FIRAuth.auth()?.currentUser?.displayName
+        self.senderDisplayName = (name == nil) ? "" : name // make sure username is not nil
+        // Get references to current chat topic
+        let topicRef = AppDelegate.publicChannelsRef.child(channelName!).child("topics").child(topicName!)
+        messageRef = topicRef.child("messages")
+        observeMessages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,24 +83,51 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = messages[indexPath.item] // 1
-        if message.senderId == senderId { // 2
+        let message = messages[indexPath.item]
+        if message.senderId == senderId {
             return outgoingBubbleImageView
-        } else { // 3
+        } else {
             return incomingBubbleImageView
         }
     }
     
     // Send Button
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        let itemRef = messageRef?.childByAutoId()
+        let messageItem = ["senderId": senderId!, "senderName": senderDisplayName!, "text": text!,]
         
-        messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
-        collectionView.reloadData()
-        // Send sound effect
+        itemRef?.setValue(messageItem)
+//        messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
+//        collectionView.reloadData()
+        
+        // Play send sound effect
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         // this will remove the text from the text field
         finishSendingMessage();
-        
+    }
+    
+    // Listen for new messages being written to the Firebase DB
+    private func observeMessages() {
+        // limits the synchronization to the last 25 messages
+        let messageQuery = messageRef?.queryLimited(toLast:25)
+        newMessageRefHandle = messageQuery?.observe(.childAdded, with: { (snapshot) -> Void in
+            
+            let messageData = snapshot.value as! Dictionary<String, String>
+            
+            if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String!, text.characters.count > 0 {
+                // Add Message to data source
+                self.addMessage(withId: id, name: name, text: text)
+                self.finishReceivingMessage()
+            } else {
+                print("Error! Could not decode message data")
+            }
+        })
+    }
+    // Add Message to data source
+    private func addMessage(withId id: String, name: String, text: String) {
+        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+            messages.append(message)
+        }
     }
     
     // Set Avatar
