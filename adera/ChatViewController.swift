@@ -14,16 +14,14 @@ import Firebase
 import JSQMessagesViewController
 
 class ChatViewController: JSQMessagesViewController {
+    // Array to hold JSQMessages
     private var messages = [JSQMessage]();
-    lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
-    lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-    
     // Set up variables to synchronize with Firebase
     private var messageRef:FIRDatabaseReference?
     private var newMessageRefHandle: FIRDatabaseHandle?
     var channelName:String? = nil
     var topicName:String? = nil
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Chat"
@@ -58,36 +56,32 @@ class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count;
     }
-    
+    // Configure each message/cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell        
         let message = messages[indexPath.item]
-        
+        // Sets the color of all message texts
         if message.senderId == senderId {
-            cell.textView?.textColor = UIColor.white
+            cell.textView?.textColor = UIColor.white // my messages
         } else {
             cell.textView?.textColor = UIColor.black
         }
         return cell
     }
     
+    // Set Avatar
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
+        return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "Avatar.jpg"), diameter: 50);
+    }
+    
     // Message Bubbles
-    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-    }
-    
-    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
-        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-    }
-    
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
+        // Sets the color of all message bubbles
         if message.senderId == senderId {
-            return outgoingBubbleImageView
+            return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
         } else {
-            return incomingBubbleImageView
+            return JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
         }
     }
     
@@ -95,15 +89,12 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let itemRef = messageRef?.childByAutoId()
         let messageItem = ["senderId": senderId!, "senderName": senderDisplayName!, "text": text!,]
-        
         itemRef?.setValue(messageItem)
-//        messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
-//        collectionView.reloadData()
         
-        // Play send sound effect
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
         // this will remove the text from the text field
         finishSendingMessage();
+        // Play send sound effect
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
     }
     
     // Listen for new messages being written to the Firebase DB
@@ -111,27 +102,18 @@ class ChatViewController: JSQMessagesViewController {
         // limits the synchronization to the last 25 messages
         let messageQuery = messageRef?.queryLimited(toLast:25)
         newMessageRefHandle = messageQuery?.observe(.childAdded, with: { (snapshot) -> Void in
-            
+        
             let messageData = snapshot.value as! Dictionary<String, String>
-            
             if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String!, text.characters.count > 0 {
+                
                 // Add Message to data source
-                self.addMessage(withId: id, name: name, text: text)
+                if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+                    self.messages.append(message)
+                }
                 self.finishReceivingMessage()
             } else {
                 print("Error! Could not decode message data")
             }
         })
-    }
-    // Add Message to data source
-    private func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
-        }
-    }
-    
-    // Set Avatar
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "Avatar.jpg"), diameter: 50);
     }
 }
