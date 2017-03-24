@@ -60,7 +60,9 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
             let textField = alertController.textFields![0]
             if textField.text?.characters.count ?? 0 > 0 {
                 let channelRef = AppDelegate.publicChannelsRef.child(self.channel.name.lowercased())
-                let topicName = textField.text!
+                var topicName = textField.text!
+                // replace forbidden symbols with whitespace because firebase
+                topicName = topicName.replacingOccurrences(of: "/", with: " ").replacingOccurrences(of: ".", with: " ").replacingOccurrences(of: "#", with: " ").replacingOccurrences(of: "$", with: " ").replacingOccurrences(of: "[", with: " ").replacingOccurrences(of: "]", with: " ")
                 let topic = Topic(creatorUID: self.user.uid, name: topicName)
                 // Set TopicRef in Firebase
                 channelRef.child("topics").child(topicName.lowercased()).setValue(topic.toDictionary())
