@@ -40,7 +40,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     func getTitle() -> String {
-        return "\(channel.name): Topics"
+        return "\(channel.name)"
     }
 
     func getLeftBarButtonItem() -> UIBarButtonItem? {
