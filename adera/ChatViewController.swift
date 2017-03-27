@@ -75,7 +75,7 @@ class ChatViewController: JSQMessagesViewController {
     
     // Set Avatar
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "Avatar.jpg"), diameter: 50);
+        return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "DefaultAvatar.png"), diameter: 50);
     }
     
     // Message Bubbles
