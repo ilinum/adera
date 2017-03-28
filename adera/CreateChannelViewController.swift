@@ -45,7 +45,10 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         // "/" is bad in firebase. it creates a hierarchy
         // ".#$[]" are also bad. not allowed in child()
         var channelNameText = channelNameTextField.text
-        channelNameText = channelNameText?.replacingOccurrences(of: "/", with: " ").replacingOccurrences(of: ".", with: " ").replacingOccurrences(of: "#", with: " ").replacingOccurrences(of: "$", with: " ").replacingOccurrences(of: "[", with: " ").replacingOccurrences(of: "]", with: " ")
+        let badCharacters = ["/", ".", "#", "$", "[", "]"]
+        for c in badCharacters {
+            channelNameText = channelNameText?.replacingOccurrences(of: c, with: " ")
+        }
         if channelNameText == nil || channelNameText!.characters.count == 0 {
             let alertController = UIAlertController(title: "Error", message: "Please enter channel name",
                                                     preferredStyle: .alert)
@@ -60,6 +63,11 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         let description = channelDescriptionTextView.text!
         let channel = Channel(name: channelNameText!, description: description, creatorUID: user.uid)
         AppDelegate.publicChannelsRef.child((channel.name.lowercased())).setValue(channel.toDictionary())
+
+        // join a channel just created
+        let publicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
+        publicChannels.childByAutoId().setValue(channel.name.lowercased())
+
         _ = navigationController?.popViewController(animated: true)
     }
 }
