@@ -25,6 +25,7 @@ class ChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = topicName!
+        self.collectionView.collectionViewLayout.messageBubbleFont = UILabel.appearance().font
 
         let barButton = UIBarButtonItem()
         barButton.title = "Topics"
@@ -59,7 +60,7 @@ class ChatViewController: JSQMessagesViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count;
+        return messages.count
     }
 
     // Configure each message/cell
@@ -97,33 +98,18 @@ class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!,
                                  attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
         let message = messages[indexPath.item]
-        switch message.senderId {
-        case senderId:
+        guard let senderDisplayName = message.senderDisplayName else {
+            assertionFailure()
             return nil
-        default:
-            guard let senderDisplayName = message.senderDisplayName else {
-                assertionFailure()
-                return nil
-            }
-            return NSAttributedString(string: senderDisplayName)
         }
+        let attrs = [NSFontAttributeName : UILabel.appearance().font]
+        return NSAttributedString(string: senderDisplayName, attributes: attrs)
     }
 
     override func collectionView(_ collectionView: JSQMessagesCollectionView!,
                                  layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!,
                                  heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        return 15
-    }
-
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!,
-                                 attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
-        return NSAttributedString(string: "")
-    }
-
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!,
-                                 layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!,
-                                 heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        return 10
+        return UILabel.appearance().font.pointSize
     }
 
     // Send Button
@@ -147,21 +133,5 @@ class ChatViewController: JSQMessagesViewController {
             self.messages.append(message)
             self.finishReceivingMessage()
         })
-    }
-
-    func firstMessageOfTheDay(indexOfMessage: IndexPath) -> Bool {
-        let dateOfNewestMessage = messages[indexOfMessage.item].date
-        guard indexOfMessage.item > 0 else {
-            return true
-        }
-        let dateOfLastMessage = messages[indexOfMessage.item - 1].date
-        let calendar = NSCalendar.current
-        let day = calendar.component(.day, from: dateOfNewestMessage!)
-        let previousDay = calendar.component(.day, from: dateOfLastMessage!)
-        if day == previousDay {
-            return false
-        } else {
-            return true
-        }
     }
 }
