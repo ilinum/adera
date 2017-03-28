@@ -19,7 +19,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         channels = []
         self.userChannels = userChannels.map {
             (channel) -> String in
-            return channel.name
+            return channel.name.lowercased()
         }
         AppDelegate.publicChannelsRef.observe(.value, with: { snapshot in
             var newChannels: [Channel] = []
@@ -41,14 +41,17 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
 
     func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell {
         let channel = channels[index]
-        if userChannels.contains(channel.name) {
-            cell.accessoryType = .checkmark
-            cell.accessoryView = nil
+        if userChannels.contains(channel.name.lowercased()) {
+            cell.accessoryView = UIImageView(image: UIImage(named: "Delete-48.png"))
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(leaveChannel(tapGestureRecognizer:)))
+            cell.accessoryView!.isUserInteractionEnabled = true
+            cell.accessoryView!.gestureRecognizers = [tapGestureRecognizer]
         } else {
             cell.accessoryView = UIImageView(image: UIImage(named: "Plus-50.png"))
+            cell.accessoryView!.tintColor = UIColor.blue
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(joinChannel(tapGestureRecognizer:)))
             cell.accessoryView!.isUserInteractionEnabled = true
-            cell.accessoryView!.addGestureRecognizer(tapGestureRecognizer)
+            cell.accessoryView!.gestureRecognizers = [tapGestureRecognizer]
         }
         cell.nameLabel.text = channel.name
         cell.descriptionLabel.text = channel.description
@@ -59,11 +62,34 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         let tapLocation = tapGestureRecognizer.location(in: tableViewController.view)
         let row = tableViewController.tableView.indexPathForRow(at: tapLocation)
         if row != nil {
-            let name = channels[row!.item].name
+            let name = channels[row!.item].name.lowercased()
             let myPublicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
-            myPublicChannels.childByAutoId().setValue(name.lowercased())
+            myPublicChannels.childByAutoId().setValue(name)
             userChannels.append(name)
             tableViewController.tableView.reloadData()
+        }
+    }
+    
+    @objc func leaveChannel(tapGestureRecognizer: UITapGestureRecognizer) {
+        let tapLocation = tapGestureRecognizer.location(in: tableViewController.view)
+        let row = tableViewController.tableView.indexPathForRow(at: tapLocation)
+        if row != nil {
+            let name = channels[row!.item].name.lowercased()
+            let myPublicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
+            myPublicChannels.observe(.value, with: { snapshot in
+                var newUserChannels: [String] = []
+                for child in snapshot.children {
+                    let chanNameSnap = child as! FIRDataSnapshot
+                    let chanName = chanNameSnap.value as! String
+                    if chanName == name.lowercased() {
+                        chanNameSnap.ref.removeValue()
+                    } else {
+                        newUserChannels.append(chanName)
+                    }
+                }
+                self.userChannels = newUserChannels
+                self.tableViewController.tableView.reloadData()
+            })
         }
     }
 
