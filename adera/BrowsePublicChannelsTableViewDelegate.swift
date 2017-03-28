@@ -1,4 +1,4 @@
-//
+    //
 // Created by Svyatoslav Ilinskiy on 3/19/17.
 // Copyright (c) 2017 Svyatoslav Ilinskiy. All rights reserved.
 //
@@ -65,6 +65,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
             let name = channels[row!.item].name.lowercased()
             let myPublicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
             myPublicChannels.childByAutoId().setValue(name)
+            print("set value: \(name)")
             userChannels.append(name)
             tableViewController.tableView.reloadData()
         }
@@ -76,7 +77,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         if row != nil {
             let name = channels[row!.item].name.lowercased()
             let myPublicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
-            myPublicChannels.observe(.value, with: { snapshot in
+            myPublicChannels.observeSingleEvent(of: .value, with: { snapshot in
                 var newUserChannels: [String] = []
                 for child in snapshot.children {
                     let chanNameSnap = child as! FIRDataSnapshot
