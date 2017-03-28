@@ -5,23 +5,34 @@
 
 import Foundation
 import FirebaseDatabase
+import JSQMessagesViewController
 
-class Message {
-    var authorUID: String?
-    var content: String?
+class Message : JSQMessage {
+    var senderID: String?
+    var messageText: String?
+    var senderName: String?
 
-    init(authorUID: String, content: String) {
-        self.authorUID = authorUID
-        self.content = content
+    init(senderId: String, senderName: String, text: String) {
+        self.senderName = senderName
+        self.senderID = senderId
+        self.messageText = text
+        super.init(senderId: senderID, senderDisplayName: senderName, date: Date(), text: text)
     }
 
     init(snapshot: FIRDataSnapshot) {
-        self.authorUID = snapshot.childSnapshot(forPath: "authorUID").value as? String
-        self.content = snapshot.childSnapshot(forPath: "content").value as? String
+        self.senderID = snapshot.childSnapshot(forPath: "senderId").value as! String!
+        self.messageText = snapshot.childSnapshot(forPath: "text").value as! String!
+        self.senderName = snapshot.childSnapshot(forPath: "senderName").value as! String!
+        super.init(senderId: senderID, senderDisplayName: senderName, date: Date(), text:messageText)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     func toDictionary() -> Dictionary<String, Any> {
-        return ["authorUID": authorUID!,
-                "content": content!]
+        return ["senderId": senderID!,
+                "senderName": senderName!,
+                "text": messageText!]
     }
 }

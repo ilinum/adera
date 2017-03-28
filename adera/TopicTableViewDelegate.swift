@@ -30,12 +30,6 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell {
         let topic = channel.topics[index]
         cell.nameLabel.text = topic.name
-        let lastMessage = topic.messages.last
-        if lastMessage != nil {
-            cell.descriptionLabel.text = lastMessage!.content
-        } else {
-            cell.descriptionLabel.text = ""
-        }
         return cell
     }
 
