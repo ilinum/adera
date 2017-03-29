@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class JoinPrivateChannelViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
@@ -25,7 +26,18 @@ class JoinPrivateChannelViewController: UIViewController {
             AppDelegate.privateChannelsRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChild(text!) {
                     let userChannels = AppDelegate.usersRef.child(self.user!.uid).child("channels").child("private")
-                    userChannels.childByAutoId().setValue(text)
+                    userChannels.observeSingleEvent(of: .value, with: { (snapshot) in
+                        for chan in snapshot.children {
+                            let chanSnap = chan as! FIRDataSnapshot
+                            if chanSnap.value as! String! == text {
+                                self.createAlert(message: "You are already a member of this channel!")
+                                _ = self.navigationController?.popViewController(animated: true)
+                                return
+                            }
+                        }
+                        userChannels.childByAutoId().setValue(text)
+                        _ = self.navigationController?.popViewController(animated: true)
+                    })
                 } else {
                     self.createAlert(message: "No private channel with that password")
                 }
