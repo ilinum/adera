@@ -19,7 +19,7 @@ class ChatViewController: JSQMessagesViewController {
     // Set up variables to synchronize with Firebase
     private var messageRef: FIRDatabaseReference?
     private var newMessageRefHandle: FIRDatabaseHandle?
-    var channelName: String? = nil
+    var channelId: String? = nil
     var topicName: String? = nil
 
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class ChatViewController: JSQMessagesViewController {
         let name = currentUser?.displayName
         self.senderDisplayName = (name == nil) ? "" : name // make sure username is not nil
         // Get references to current chat topic
-        let topicRef = AppDelegate.publicChannelsRef.child(channelName!).child("topics").child(topicName!.lowercased())
+        let topicRef = AppDelegate.publicChannelsRef.child(channelId!).child("topics").child(topicName!.lowercased())
         messageRef = topicRef.child("messages")
         observeMessages()
     }
@@ -102,7 +102,7 @@ class ChatViewController: JSQMessagesViewController {
             assertionFailure()
             return nil
         }
-        let attrs = [NSFontAttributeName : UILabel.appearance().font]
+        let attrs: [String: Any] = [NSFontAttributeName : UILabel.appearance().font]
         return NSAttributedString(string: senderDisplayName, attributes: attrs)
     }
 

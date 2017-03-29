@@ -24,6 +24,7 @@
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
 		D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */; };
 		FA00ECB11E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */; };
+		FA51A6111E8BF80500F4EDC3 /* JoinPrivateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51A6101E8BF80500F4EDC3 /* JoinPrivateChannelViewController.swift */; };
 		FA5842D11E89FE84001ADD68 /* Delete-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */; };
 		FA80B6EB1E89D45700529F87 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */; };
 		FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */; };
@@ -84,6 +85,7 @@
 		ED35F477CA5B0DCFC94C9759 /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
 		EE54A0644E257F1D10C2E132 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChannelInfoControllerViewController.swift; sourceTree = "<group>"; };
+		FA51A6101E8BF80500F4EDC3 /* JoinPrivateChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JoinPrivateChannelViewController.swift; path = ../JoinPrivateChannelViewController.swift; sourceTree = "<group>"; };
 		FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-48@2x.png"; sourceTree = "<group>"; };
 		FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAvatar.png; sourceTree = "<group>"; };
 		FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plus-50@2x.png"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		FAD46BF31E7E13AA0035F403 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				FA51A6101E8BF80500F4EDC3 /* JoinPrivateChannelViewController.swift */,
 				FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */,
 				FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */,
 				FAD46BEF1E7E06630035F403 /* MyChannelsTableViewDelegate.swift */,
@@ -595,6 +598,7 @@
 				D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */,
 				FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */,
 				BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */,
+				FA51A6111E8BF80500F4EDC3 /* JoinPrivateChannelViewController.swift in Sources */,
 				D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */,
 				BCED470F186C4DFDA449734B /* Topic.swift in Sources */,
 				22D53C501E84AB29001E63BE /* Message.swift in Sources */,

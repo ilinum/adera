@@ -14,7 +14,7 @@ class PrivateChannelInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = channel?.name
+        self.title = channel?.presentableName
         passwordLabel.text = channel?.password
     }
 }

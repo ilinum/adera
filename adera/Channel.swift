@@ -7,27 +7,26 @@ import Foundation
 import FirebaseDatabase
 
 class Channel {
-    let name: String
+    let presentableName: String
     let description: String
     let creatorUID: String
     var topics: [Topic]
     let password: String?
 
-    init(name: String, description: String, creatorUID: String, password: String? = nil) {
-        self.name = name
+    init(presentableName: String, description: String, creatorUID: String, password: String? = nil) {
+        self.presentableName = presentableName
         self.description = description
         self.creatorUID = creatorUID
         self.password = password
         topics = []
     }
 
-    init(snapshot: FIRDataSnapshot) {
-        self.name = snapshot.childSnapshot(forPath: "name").value as! String
+    init(snapshot: FIRDataSnapshot, type: ChannelType) {
+        self.presentableName = snapshot.childSnapshot(forPath: "name").value as! String
         self.description = snapshot.childSnapshot(forPath: "description").value as! String
         self.creatorUID = snapshot.childSnapshot(forPath: "creatorUID").value as! String
-        let passwordVal = snapshot.childSnapshot(forPath: "password")
-        if passwordVal.exists() {
-            password = passwordVal.value as! String?
+        if type == ChannelType.privateType {
+            password = snapshot.key
         } else {
             password = nil
         }
@@ -37,17 +36,23 @@ class Channel {
         }
     }
 
+    // return it's id in firebase
+    func id() -> String {
+        if password != nil {
+            return password!
+        } else {
+            return presentableName.lowercased()
+        }
+    }
+
     func toDictionary() -> Dictionary<String, Any> {
-        var dict: Dictionary<String, Any> = ["name": name,
+        let dict: Dictionary<String, Any> = ["name": presentableName,
                     "description": description,
                     "creatorUID": creatorUID,
                     "topics": topics.map {
                         topic -> Dictionary<String, Any> in
                         return topic.toDictionary()
                     }]
-        if password != nil {
-            dict["password"] = password
-        }
         return dict
     }
 }

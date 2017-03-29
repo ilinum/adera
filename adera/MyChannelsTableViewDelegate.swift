@@ -39,7 +39,7 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                 for chan in snapshot.children {
                     let snap = chan as! FIRDataSnapshot
                     if channelNames.contains(snap.key) {
-                        newChannels.append(Channel(snapshot: snap))
+                        newChannels.append(Channel(snapshot: snap, type: type))
                     }
                 }
                 if type == ChannelType.publicType {
@@ -66,25 +66,34 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     func count(section: Int) -> Int {
-        if section == 0 {
-            return publicChannels.count
-        } else {
-            return privateChannels.count
-        }
+        return getChannelsForSection(section: section).count
     }
 
     func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
         let channel = getChannelAt(index: index)
-        cell.nameLabel.text = channel.name
+        cell.nameLabel.text = channel.presentableName
         cell.descriptionLabel.text = channel.description
         return cell
     }
 
     private func getChannelAt(index: IndexPath) -> Channel {
+        let channels = getChannelsForSection(section: index.section)
         if index.section == 0 {
-            return publicChannels[index.item]
+            return channels[index.item]
         } else {
-            return privateChannels[index.item]
+            return channels[index.item]
+        }
+    }
+
+    private func getChannelsForSection(section: Int) -> [Channel] {
+        if section == 0 {
+            if publicChannels.count == 0 {
+                return privateChannels
+            } else {
+                return publicChannels
+            }
+        } else {
+            return privateChannels
         }
     }
 
@@ -116,6 +125,7 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
 
         alertController.addAction(UIAlertAction(title: "Create Channel", style: .default, handler: createChannel))
         alertController.addAction(UIAlertAction(title: "Browse Public Channels", style: .default, handler: browsePublicChannels))
+        alertController.addAction(UIAlertAction(title: "Join Private Channel", style: .default, handler: joinPrivateChannel))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         tableViewController.present(alertController, animated: true, completion: nil)
@@ -134,6 +144,14 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         tableViewController.navigationController?.pushViewController(chanVC, animated: true)
     }
 
+    func joinPrivateChannel(alert: UIAlertAction!) {
+        let storyboard = tableViewController.storyboard
+        let vc = storyboard?.instantiateViewController(withIdentifier: "JoinPrivateChannelViewController")
+            as! JoinPrivateChannelViewController
+        vc.user = user
+        tableViewController.navigationController?.pushViewController(vc, animated: true)
+    }
+
     @objc func settingsTapped() {
         let storyboard = tableViewController.storyboard
         let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController")
@@ -142,9 +160,9 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     func nameForSection(section: Int) -> String? {
-        if section == 0 {
+        if section == 0 && publicChannels.count > 0 {
             return "Public"
-        } else if section == 1 {
+        } else if section <= 1 && privateChannels.count > 0 {
             return "Private"
         }
         return nil

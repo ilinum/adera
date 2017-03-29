@@ -34,7 +34,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     func getTitle() -> String {
-        return "\(channel.name)"
+        return channel.presentableName
     }
 
     func getLeftBarButtonItem() -> UIBarButtonItem? {
@@ -53,7 +53,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                 style: .default) { action in
             let textField = alertController.textFields![0]
             if textField.text?.characters.count ?? 0 > 0 {
-                let channelRef = AppDelegate.publicChannelsRef.child(self.channel.name.lowercased())
+                let channelRef = AppDelegate.publicChannelsRef.child(self.channel.id())
                 var topicName = textField.text!
                 // replace forbidden symbols with whitespace because firebase
                 topicName = topicName.replacingOccurrences(of: "/", with: " ").replacingOccurrences(of: ".", with: " ").replacingOccurrences(of: "#", with: " ").replacingOccurrences(of: "$", with: " ").replacingOccurrences(of: "[", with: " ").replacingOccurrences(of: "]", with: " ")
@@ -80,7 +80,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     func rowSelected(row: IndexPath) {
         let storyboard = tableViewController.storyboard
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        vc.channelName = channel.name.lowercased()
+        vc.channelId = channel.id()
         vc.topicName = channel.topics[row.item].name
         tableViewController.navigationController?.pushViewController(vc, animated: true)
     }

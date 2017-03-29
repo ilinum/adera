@@ -76,7 +76,7 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         if channelType == ChannelType.privateType {
             password = randomAlphaNumericString(length: 6)
         }
-        let channel = Channel(name: channelNameText!, description: description, creatorUID: user.uid, password: password)
+        let channel = Channel(presentableName: channelNameText!, description: description, creatorUID: user.uid, password: password)
         let channelLocationRef: FIRDatabaseReference
         let channelTypeStr: String = channelTypeToString(type: channelType)
         if channelType == ChannelType.publicType {
@@ -85,11 +85,11 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
             assert(channelType == ChannelType.privateType);
             channelLocationRef = AppDelegate.privateChannelsRef
         }
-        channelLocationRef.child((channel.name.lowercased())).setValue(channel.toDictionary())
+        channelLocationRef.child((channel.id())).setValue(channel.toDictionary())
 
         // join a channel just created
         let userChannels = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
-        userChannels.childByAutoId().setValue(channel.name.lowercased())
+        userChannels.childByAutoId().setValue(channel.id())
 
         if channelType == ChannelType.privateType {
 
@@ -97,14 +97,9 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
             let vc = storyboard?.instantiateViewController(withIdentifier: "PrivateChannelInfoViewController")
             let privateChannelInfoVC = vc! as! PrivateChannelInfoViewController
             privateChannelInfoVC.channel = channel
-//            self.navigationController?.popToViewController(privateChannelInfoVC, animated: true)
             let index = navigationController!.viewControllers.count - 1
             navigationController?.viewControllers.insert(privateChannelInfoVC, at: index)
             _ = navigationController?.popViewController(animated: true)
-//            self.dismiss(animated: true, completion: {
-//                vc!.present(privateChannelInfoVC, animated: true, completion: nil)
-//                self.navigationController?.pushViewController(privateChannelInfoVC, animated: true)
-//            })
         } else {
             _ = navigationController?.popViewController(animated: true)
         }

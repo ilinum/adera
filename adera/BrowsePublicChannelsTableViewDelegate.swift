@@ -10,21 +10,21 @@ import FirebaseAuth
 class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDelegate {
     private let tableViewController: UITableViewController!
     private var channels: [Channel]
-    private var userChannels: [String]
+    private var userChannelIds: [String]
     private let user: FIRUser
 
     init(tableViewController: UITableViewController, userChannels: [Channel], user: FIRUser) {
         self.tableViewController = tableViewController
         self.user = user
         channels = []
-        self.userChannels = userChannels.map {
+        self.userChannelIds = userChannels.map {
             (channel) -> String in
-            return channel.name.lowercased()
+            return channel.id()
         }
         AppDelegate.publicChannelsRef.observe(.value, with: { snapshot in
             var newChannels: [Channel] = []
             for chan in snapshot.children {
-                newChannels.append(Channel(snapshot: chan as! FIRDataSnapshot))
+                newChannels.append(Channel(snapshot: chan as! FIRDataSnapshot, type: ChannelType.publicType))
             }
             self.channels = newChannels
             self.tableViewController.tableView.reloadData()
@@ -41,7 +41,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
 
     func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
         let channel = channels[index.item]
-        if userChannels.contains(channel.name.lowercased()) {
+        if userChannelIds.contains(channel.id()) {
             cell.accessoryView = UIImageView(image: UIImage(named: "Delete-48.png"))
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(leaveChannel(tapGestureRecognizer:)))
             cell.accessoryView!.isUserInteractionEnabled = true
@@ -53,7 +53,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
             cell.accessoryView!.isUserInteractionEnabled = true
             cell.accessoryView!.gestureRecognizers = [tapGestureRecognizer]
         }
-        cell.nameLabel.text = channel.name
+        cell.nameLabel.text = channel.presentableName
         cell.descriptionLabel.text = channel.description
         return cell
     }
@@ -62,11 +62,10 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         let tapLocation = tapGestureRecognizer.location(in: tableViewController.view)
         let row = tableViewController.tableView.indexPathForRow(at: tapLocation)
         if row != nil {
-            let name = channels[row!.item].name.lowercased()
+            let id = channels[row!.item].id()
             let myPublicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
-            myPublicChannels.childByAutoId().setValue(name)
-            print("set value: \(name)")
-            userChannels.append(name)
+            myPublicChannels.childByAutoId().setValue(id)
+            userChannelIds.append(id)
             tableViewController.tableView.reloadData()
         }
     }
@@ -75,20 +74,20 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         let tapLocation = tapGestureRecognizer.location(in: tableViewController.view)
         let row = tableViewController.tableView.indexPathForRow(at: tapLocation)
         if row != nil {
-            let name = channels[row!.item].name.lowercased()
+            let id = channels[row!.item].id()
             let myPublicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
             myPublicChannels.observeSingleEvent(of: .value, with: { snapshot in
                 var newUserChannels: [String] = []
                 for child in snapshot.children {
                     let chanNameSnap = child as! FIRDataSnapshot
                     let chanName = chanNameSnap.value as! String
-                    if chanName == name.lowercased() {
+                    if chanName == id {
                         chanNameSnap.ref.removeValue()
                     } else {
                         newUserChannels.append(chanName)
                     }
                 }
-                self.userChannels = newUserChannels
+                self.userChannelIds = newUserChannels
                 self.tableViewController.tableView.reloadData()
             })
         }
