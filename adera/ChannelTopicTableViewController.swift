@@ -35,7 +35,7 @@ class ChannelTopicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicOrTableCell", for: indexPath)
         if delegate != nil {
-            return delegate!.getCellAt(cell: cell as! ChannelTopicCell, index: indexPath.item)
+            return delegate!.getCellAt(cell: cell as! ChannelTopicCell, index: indexPath)
         } else {
             return cell
         }
@@ -48,11 +48,11 @@ class ChannelTopicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // if delegate is not-null call it. Otherwise return 0.
-        return delegate?.count() ?? 0
+        return delegate?.count(section: section) ?? 0
     }
 
     override  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.rowSelected(row: indexPath.item)
+        delegate?.rowSelected(row: indexPath)
     }
     
     // Adds last line under table view
@@ -76,13 +76,17 @@ class ChannelTopicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return delegate?.nameForSection(section: section)
+    }
+
     override func viewDidDisappear(_ animated: Bool)  {
         super.viewDidDisappear(animated)
         // Remove notification subscription
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     // When the UI Font changes, reload the table views
     func onContentSizeChange(notification: Notification) {
         tableView.reloadData()
@@ -91,10 +95,11 @@ class ChannelTopicTableViewController: UITableViewController {
 
 protocol ChannelTopicTableViewControllerDelegate {
     func numberOfSections() -> Int
-    func count() -> Int
-    func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell
+    func count(section: Int) -> Int
+    func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell
     func getTitle() -> String
     func getRightBarButtonItem() -> UIBarButtonItem?
     func getLeftBarButtonItem() -> UIBarButtonItem?
-    func rowSelected(row: Int)
+    func rowSelected(row: IndexPath)
+    func nameForSection(section: Int) -> String?
 }

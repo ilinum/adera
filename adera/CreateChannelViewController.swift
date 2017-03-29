@@ -9,10 +9,12 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import FirebaseDatabase
 
 class CreateChannelViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var channelNameTextField: UITextField!
     @IBOutlet weak var channelDescriptionTextView: UITextView!
+    @IBOutlet weak var publicPrivateSegmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +32,6 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         self.navigationController?.isToolbarHidden = false
     }
 
-
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
@@ -39,6 +39,16 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+
+    func getChannelType() -> ChannelType {
+        let idx = publicPrivateSegmentedControl.selectedSegmentIndex
+        if idx == 0 {
+            return ChannelType.publicType
+        } else {
+            assert(idx == 1)
+            return ChannelType.privateType
+        }
     }
     
     @IBAction func createChannelButtonTapped(_ sender: Any) {
@@ -59,15 +69,73 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
             present(alertController, animated: true, completion: nil)
             return
         }
+        let channelType = getChannelType()
         let user = FIRAuth.auth()!.currentUser!
         let description = channelDescriptionTextView.text!
-        let channel = Channel(name: channelNameText!, description: description, creatorUID: user.uid)
-        AppDelegate.publicChannelsRef.child((channel.name.lowercased())).setValue(channel.toDictionary())
+        var password: String? = nil
+        if channelType == ChannelType.privateType {
+            password = randomAlphaNumericString(length: 6)
+        }
+        let channel = Channel(name: channelNameText!, description: description, creatorUID: user.uid, password: password)
+        let channelLocationRef: FIRDatabaseReference
+        let channelTypeStr: String = channelTypeToString(type: channelType)
+        if channelType == ChannelType.publicType {
+            channelLocationRef = AppDelegate.publicChannelsRef
+        } else {
+            assert(channelType == ChannelType.privateType);
+            channelLocationRef = AppDelegate.privateChannelsRef
+        }
+        channelLocationRef.child((channel.name.lowercased())).setValue(channel.toDictionary())
 
         // join a channel just created
-        let publicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
-        publicChannels.childByAutoId().setValue(channel.name.lowercased())
+        let userChannels = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
+        userChannels.childByAutoId().setValue(channel.name.lowercased())
 
-        _ = navigationController?.popViewController(animated: true)
+        if channelType == ChannelType.privateType {
+
+            let storyboard = self.storyboard
+            let vc = storyboard?.instantiateViewController(withIdentifier: "PrivateChannelInfoViewController")
+            let privateChannelInfoVC = vc! as! PrivateChannelInfoViewController
+            privateChannelInfoVC.channel = channel
+//            self.navigationController?.popToViewController(privateChannelInfoVC, animated: true)
+            let index = navigationController!.viewControllers.count - 1
+            navigationController?.viewControllers.insert(privateChannelInfoVC, at: index)
+            _ = navigationController?.popViewController(animated: true)
+//            self.dismiss(animated: true, completion: {
+//                vc!.present(privateChannelInfoVC, animated: true, completion: nil)
+//                self.navigationController?.pushViewController(privateChannelInfoVC, animated: true)
+//            })
+        } else {
+            _ = navigationController?.popViewController(animated: true)
+        }
+    }
+
+    // straight from Stackoverflow: http://stackoverflow.com/a/33860834/5088644
+    func randomAlphaNumericString(length: Int) -> String {
+        let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let allowedCharsCount = UInt32(allowedChars.characters.count)
+        var randomString = ""
+
+        for _ in 0..<length {
+            let randomNum = Int(arc4random_uniform(allowedCharsCount))
+            let randomIndex = allowedChars.index(allowedChars.startIndex, offsetBy: randomNum)
+            let newCharacter = allowedChars[randomIndex]
+            randomString += String(newCharacter)
+        }
+
+        return randomString
+    }
+}
+
+enum ChannelType {
+    case publicType, privateType
+}
+
+func channelTypeToString(type: ChannelType) -> String {
+    switch type {
+        case ChannelType.publicType:
+            return "public"
+        case ChannelType.privateType:
+            return "private"
     }
 }

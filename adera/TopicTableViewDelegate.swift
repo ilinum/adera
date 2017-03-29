@@ -23,12 +23,12 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         return 1
     }
 
-    func count() -> Int {
+    func count(section: Int) -> Int {
         return channel.topics.count
     }
 
-    func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell {
-        let topic = channel.topics[index]
+    func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
+        let topic = channel.topics[index.item]
         cell.nameLabel.text = topic.name
         return cell
     }
@@ -77,12 +77,16 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     // Segues from Topic to Chat
-    func rowSelected(row: Int) {
+    func rowSelected(row: IndexPath) {
         let storyboard = tableViewController.storyboard
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         vc.channelName = channel.name.lowercased()
-        vc.topicName = channel.topics[row].name
+        vc.topicName = channel.topics[row.item].name
         tableViewController.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func nameForSection(section: Int) -> String? {
+        return nil
     }
 }
 

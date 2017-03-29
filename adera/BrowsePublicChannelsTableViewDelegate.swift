@@ -35,12 +35,12 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         return 1
     }
 
-    func count() -> Int {
+    func count(section: Int) -> Int {
         return channels.count
     }
 
-    func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell {
-        let channel = channels[index]
+    func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
+        let channel = channels[index.item]
         if userChannels.contains(channel.name.lowercased()) {
             cell.accessoryView = UIImageView(image: UIImage(named: "Delete-48.png"))
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(leaveChannel(tapGestureRecognizer:)))
@@ -95,7 +95,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
     }
 
     func getTitle() -> String {
-        return "Join Public Channels"
+        return "Public Channels"
     }
 
     func getLeftBarButtonItem() -> UIBarButtonItem? {
@@ -106,6 +106,10 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         return nil
     }
 
-    func rowSelected(row: Int) {
+    func rowSelected(row: IndexPath) {
+    }
+
+    func nameForSection(section: Int) -> String? {
+        return nil
     }
 }

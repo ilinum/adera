@@ -12,20 +12,29 @@ import FirebaseAuth
 
 class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     private let tableViewController: UITableViewController!
-    private var channels: [Channel]
+    private var publicChannels: [Channel]
+    private var privateChannels: [Channel]
     let user: FIRUser = FIRAuth.auth()!.currentUser!
 
     init(tableViewController: UITableViewController) {
         self.tableViewController = tableViewController
-        channels = []
-        let publicChannelRef = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
-        publicChannelRef.observe(.value, with: { snapshot in
+        publicChannels = []
+        privateChannels = []
+        loadChannels(type: ChannelType.publicType)
+        loadChannels(type: ChannelType.privateType)
+    }
+
+    func loadChannels(type: ChannelType) {
+        let channelTypeStr = channelTypeToString(type: type)
+        let userChannelRef = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
+        userChannelRef.observe(.value, with: { snapshot in
             var channelNames: [String] = []
             for chan in snapshot.children {
                 let name = (chan as! FIRDataSnapshot).value as! String
                 channelNames.append(name)
             }
-            AppDelegate.publicChannelsRef.observeSingleEvent(of: .value, with: { snapshot in
+            let firebaseRef = AppDelegate.channelsRefForType(type: type)
+            firebaseRef.observeSingleEvent(of: .value, with: { snapshot in
                 var newChannels: [Channel] = []
                 for chan in snapshot.children {
                     let snap = chan as! FIRDataSnapshot
@@ -33,25 +42,50 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                         newChannels.append(Channel(snapshot: snap))
                     }
                 }
-                self.channels = newChannels
+                if type == ChannelType.publicType {
+                    self.publicChannels = newChannels
+                } else {
+                    assert(type == ChannelType.privateType)
+                    self.privateChannels = newChannels
+                }
                 self.tableViewController.tableView.reloadData()
             })
         })
+
     }
 
     func numberOfSections() -> Int {
-        return 1
+        var count = 0
+        if publicChannels.count > 0 {
+            count += 1
+        }
+        if privateChannels.count > 0 {
+            count += 1
+        }
+        return count
     }
 
-    func count() -> Int {
-        return channels.count
+    func count(section: Int) -> Int {
+        if section == 0 {
+            return publicChannels.count
+        } else {
+            return privateChannels.count
+        }
     }
 
-    func getCellAt(cell: ChannelTopicCell, index: Int) -> UITableViewCell {
-        let channel = channels[index]
+    func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
+        let channel = getChannelAt(index: index)
         cell.nameLabel.text = channel.name
         cell.descriptionLabel.text = channel.description
         return cell
+    }
+
+    private func getChannelAt(index: IndexPath) -> Channel {
+        if index.section == 0 {
+            return publicChannels[index.item]
+        } else {
+            return privateChannels[index.item]
+        }
     }
 
     func getTitle() -> String {
@@ -68,11 +102,12 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingsTapped))
     }
 
-    func rowSelected(row: Int) {
+    func rowSelected(row: IndexPath) {
         let storyboard = tableViewController.storyboard
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChannelTopicTableViewController")
         let chanVC = vc! as! ChannelTopicTableViewController
-        chanVC.delegate = TopicTableViewDelegate(tableViewController: chanVC, channel: channels[row], user: user)
+        let channel = getChannelAt(index: row)
+        chanVC.delegate = TopicTableViewDelegate(tableViewController: chanVC, channel: channel, user: user)
         tableViewController.navigationController?.pushViewController(chanVC, animated: true)
     }
 
@@ -94,7 +129,7 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         let storyboard = tableViewController.storyboard
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChannelTopicTableViewController")
         let chanVC = vc! as! ChannelTopicTableViewController
-        chanVC.delegate = BrowsePublicChannelsTableViewDelegate(tableViewController: chanVC, userChannels: channels,
+        chanVC.delegate = BrowsePublicChannelsTableViewDelegate(tableViewController: chanVC, userChannels: publicChannels,
                 user: user)
         tableViewController.navigationController?.pushViewController(chanVC, animated: true)
     }
@@ -104,5 +139,14 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController")
         let settingsVC = vc!
         tableViewController.navigationController?.pushViewController(settingsVC, animated: true)
+    }
+
+    func nameForSection(section: Int) -> String? {
+        if section == 0 {
+            return "Public"
+        } else if section == 1 {
+            return "Private"
+        }
+        return nil
     }
 }

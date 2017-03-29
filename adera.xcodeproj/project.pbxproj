@@ -23,6 +23,7 @@
 		D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85071D71E836121004EF00A /* AccountDefaultSettings.swift */; };
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
 		D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */; };
+		FA00ECB11E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */; };
 		FA5842D11E89FE84001ADD68 /* Delete-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */; };
 		FA80B6EB1E89D45700529F87 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */; };
 		FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */; };
@@ -82,6 +83,7 @@
 		D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED35F477CA5B0DCFC94C9759 /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
 		EE54A0644E257F1D10C2E132 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChannelInfoControllerViewController.swift; sourceTree = "<group>"; };
 		FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-48@2x.png"; sourceTree = "<group>"; };
 		FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAvatar.png; sourceTree = "<group>"; };
 		FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plus-50@2x.png"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		FAD46BF31E7E13AA0035F403 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */,
 				FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */,
 				FAD46BEF1E7E06630035F403 /* MyChannelsTableViewDelegate.swift */,
 				BCED46A62981D27F365CFC3E /* Channel.swift */,
@@ -583,6 +586,7 @@
 				FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */,
 				FAF1F8051E763C79008DA769 /* LoginViewController.swift in Sources */,
 				220E46CF1E8383C500BC7A26 /* ChatViewController.swift in Sources */,
+				FA00ECB11E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift in Sources */,
 				FAD46BF01E7E06630035F403 /* MyChannelsTableViewDelegate.swift in Sources */,
 				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
 				FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */,
