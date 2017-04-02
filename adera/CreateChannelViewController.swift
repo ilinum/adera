@@ -89,8 +89,7 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
 
         if channelType == ChannelType.privateType {
 
-            let storyboard = self.storyboard
-            let vc = storyboard?.instantiateViewController(withIdentifier: "PrivateChannelInfoViewController")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PrivateChannelInfoViewController")
             let privateChannelInfoVC = vc! as! PrivateChannelInfoViewController
             privateChannelInfoVC.channel = channel
             let index = navigationController!.viewControllers.count - 1

@@ -73,7 +73,42 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         let channel = getChannelAt(index: index)
         cell.nameLabel.text = channel.presentableName
         cell.descriptionLabel.text = channel.description
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(channelLongPressed))
+        cell.addGestureRecognizer(longPressRecognizer)
         return cell
+    }
+
+    @objc func channelLongPressed(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
+            let touchPoint = longPressGestureRecognizer.location(in: self.tableViewController.view)
+            if let indexPath = tableViewController.tableView.indexPathForRow(at: touchPoint) {
+                let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+                let channel = getChannelAt(index: indexPath)
+                if channel.channelType == ChannelType.privateType {
+                    alertController.addAction(UIAlertAction(title: "View Channel Password", style: .default, handler: { _ in
+                        self.viewChannelPassword(channel: channel)
+                    }))
+                }
+                alertController.addAction(UIAlertAction(title: "Leave Channel", style: .destructive, handler: { _ in
+                    self.leaveChannel(channel: channel)
+                }))
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+                tableViewController.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+
+    private func viewChannelPassword(channel: Channel!) {
+        let vc = tableViewController.storyboard?.instantiateViewController(withIdentifier: "PrivateChannelInfoViewController")
+        let privateChannelInfoVC = vc! as! PrivateChannelInfoViewController
+        privateChannelInfoVC.channel = channel
+        tableViewController.navigationController?.pushViewController(vc!, animated: true)
+    }
+
+    private func leaveChannel(channel: Channel!) {
+        Channel.leaveChannel(channel: channel, user: user)
     }
 
     private func getChannelAt(index: IndexPath) -> Channel {

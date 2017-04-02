@@ -74,22 +74,9 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         let tapLocation = tapGestureRecognizer.location(in: tableViewController.view)
         let row = tableViewController.tableView.indexPathForRow(at: tapLocation)
         if row != nil {
-            let id = channels[row!.item].id()
-            let myPublicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
-            myPublicChannels.observeSingleEvent(of: .value, with: { snapshot in
-                var newUserChannels: [String] = []
-                for child in snapshot.children {
-                    let chanNameSnap = child as! FIRDataSnapshot
-                    let chanName = chanNameSnap.value as! String
-                    if chanName == id {
-                        chanNameSnap.ref.removeValue()
-                    } else {
-                        newUserChannels.append(chanName)
-                    }
-                }
-                self.userChannelIds = newUserChannels
-                self.tableViewController.tableView.reloadData()
-            })
+            let channel = channels[row!.item]
+            Channel.leaveChannel(channel: channel, user: user)
+            userChannelIds.remove(at: userChannelIds.index(of: channel.id())!)
         }
     }
 

@@ -5,6 +5,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 
 class Channel {
     let presentableName: String
@@ -61,5 +62,23 @@ class Channel {
                         return topic.toDictionary()
                     }]
         return dict
+    }
+
+    class func leaveChannel(channel: Channel!, user: FIRUser) {
+        let id = channel.id()
+        let channelTypeStr = channelTypeToString(type: channel.channelType)
+        let myChannels = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
+        myChannels.observeSingleEvent(of: .value, with: { snapshot in
+            var newUserChannels: [String] = []
+            for child in snapshot.children {
+                let chanNameSnap = child as! FIRDataSnapshot
+                let chanName = chanNameSnap.value as! String
+                if chanName == id {
+                    chanNameSnap.ref.removeValue()
+                } else {
+                    newUserChannels.append(chanName)
+                }
+            }
+        })
     }
 }

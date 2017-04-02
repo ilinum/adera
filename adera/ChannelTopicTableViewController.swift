@@ -35,6 +35,7 @@ class ChannelTopicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicOrTableCell", for: indexPath)
         if delegate != nil {
+            cell.gestureRecognizers?.forEach(cell.removeGestureRecognizer)
             return delegate!.getCellAt(cell: cell as! ChannelTopicCell, index: indexPath)
         } else {
             return cell
