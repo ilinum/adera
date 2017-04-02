@@ -377,15 +377,18 @@
 				TargetAttributes = {
 					FADEE4081E731A7800189953 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					FADEE41F1E731A7900189953 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = FADEE4081E731A7800189953;
 					};
 					FADEE42A1E731A7900189953 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = FADEE4081E731A7800189953;
 					};

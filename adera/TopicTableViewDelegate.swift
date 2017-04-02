@@ -53,10 +53,8 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                 style: .default) { action in
             let textField = alertController.textFields![0]
             if textField.text?.characters.count ?? 0 > 0 {
-                let channelRef = AppDelegate.publicChannelsRef.child(self.channel.id())
-                var topicName = textField.text!
-                // replace forbidden symbols with whitespace because firebase
-                topicName = topicName.replacingOccurrences(of: "/", with: " ").replacingOccurrences(of: ".", with: " ").replacingOccurrences(of: "#", with: " ").replacingOccurrences(of: "$", with: " ").replacingOccurrences(of: "[", with: " ").replacingOccurrences(of: "]", with: " ")
+                let channelRef = AppDelegate.channelsRefForType(type: self.channel.channelType).child(self.channel.id())
+                let topicName = AppDelegate.sanitizeStringForFirebase(textField.text)!
                 let topic = Topic(creatorUID: self.user.uid, name: topicName)
                 // Set TopicRef in Firebase
                 channelRef.child("topics").child(topicName.lowercased()).setValue(topic.toDictionary())
@@ -65,8 +63,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
             }
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel",
-                style: .default)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
 
         alertController.addTextField()
 

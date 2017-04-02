@@ -12,12 +12,18 @@ class Channel {
     let creatorUID: String
     var topics: [Topic]
     let password: String?
+    let channelType: ChannelType
 
     init(presentableName: String, description: String, creatorUID: String, password: String? = nil) {
         self.presentableName = presentableName
         self.description = description
         self.creatorUID = creatorUID
         self.password = password
+        if password == nil {
+            channelType = ChannelType.publicType
+        } else {
+            channelType = ChannelType.privateType
+        }
         topics = []
     }
 
@@ -25,6 +31,7 @@ class Channel {
         self.presentableName = snapshot.childSnapshot(forPath: "name").value as! String
         self.description = snapshot.childSnapshot(forPath: "description").value as! String
         self.creatorUID = snapshot.childSnapshot(forPath: "creatorUID").value as! String
+        channelType = type
         if type == ChannelType.privateType {
             password = snapshot.key
         } else {

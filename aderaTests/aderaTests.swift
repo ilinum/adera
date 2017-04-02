@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import adera
 
 class aderaTests: XCTestCase {
     

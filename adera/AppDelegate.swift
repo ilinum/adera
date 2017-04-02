@@ -30,6 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    static func sanitizeStringForFirebase(_ str: String?) -> String? {
+        var res = str
+        let badCharacters = ["/", ".", "#", "$", "[", "]"]
+        for c in badCharacters {
+            res = res?.replacingOccurrences(of: c, with: " ")
+        }
+        return res
+    }
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
