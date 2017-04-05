@@ -33,10 +33,15 @@ class ChannelTopicTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "topicOrTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "topicOrTableCell", for: indexPath) as! ChannelTopicCell
+        
+        // Table view cell label appearances
+        cell.nameLabel?.font = UIFont.boldSystemFont(ofSize: UILabel.appearance().font.pointSize)
+        cell.descriptionLabel?.textColor = UIColor.gray
+        
         if delegate != nil {
             cell.gestureRecognizers?.forEach(cell.removeGestureRecognizer)
-            return delegate!.getCellAt(cell: cell as! ChannelTopicCell, index: indexPath)
+            return delegate!.getCellAt(cell: cell, index: indexPath)
         } else {
             return cell
         }
