@@ -21,6 +21,7 @@
 		BCED48F9C493BA8DAE79F04E /* TopicTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */; };
 		BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */; };
 		D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85071D71E836121004EF00A /* AccountDefaultSettings.swift */; };
+		D87CAC011E95E28C00A3912A /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CAC001E95E28C00A3912A /* extensions.swift */; };
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
 		D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */; };
 		FA00ECB11E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */; };
@@ -80,6 +81,7 @@
 		CD7250D8D0ED9C375F479363 /* Pods-aderaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85071D71E836121004EF00A /* AccountDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDefaultSettings.swift; sourceTree = "<group>"; };
+		D87CAC001E95E28C00A3912A /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED35F477CA5B0DCFC94C9759 /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				FAD46BE71E7DE5100035F403 /* Channel/Topic */,
 				FAF1F8061E763C83008DA769 /* Login/Register */,
 				D8BB601B1E82E908000B0EF5 /* Settings */,
+				D87CAC001E95E28C00A3912A /* extensions.swift */,
 			);
 			path = adera;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				FA00ECB11E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift in Sources */,
 				FAD46BF01E7E06630035F403 /* MyChannelsTableViewDelegate.swift in Sources */,
 				FADEE4151E731A7900189953 /* adera.xcdatamodeld in Sources */,
+				D87CAC011E95E28C00A3912A /* extensions.swift in Sources */,
 				FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */,
 				D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */,
 				FADEE40D1E731A7900189953 /* AppDelegate.swift in Sources */,

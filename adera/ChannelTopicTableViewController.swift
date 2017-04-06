@@ -36,7 +36,7 @@ class ChannelTopicTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicOrTableCell", for: indexPath) as! ChannelTopicCell
         
         // Table view cell label appearances
-        cell.nameLabel?.font = UIFont.boldSystemFont(ofSize: UILabel.appearance().font.pointSize)
+        cell.nameLabel?.font = UIFont.boldSystemFont(ofSize: UILabel.appearance().font?.pointSize ?? 17)
         cell.descriptionLabel?.textColor = UIColor.gray
         
         if delegate != nil {
@@ -49,12 +49,55 @@ class ChannelTopicTableViewController: UITableViewController {
 
     override func numberOfSections(`in` tableView: UITableView) -> Int {
         // if delegate is not-null call it. Otherwise return 0.
-        return delegate?.numberOfSections() ?? 0
+        let count = delegate?.numberOfSections() ?? 0
+        // Message to display when Channel list is empty
+        if count == 0 {
+            let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            
+            let emptyTable:String = "Tap the + icon to join or create a Channel!"
+            let fontSize = CGFloat(17)
+            let characterToHighlight: Character = "+"
+            let position = emptyTable.indexDistance(of: characterToHighlight)
+            
+            let mutableString = NSMutableAttributedString(string: emptyTable, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: fontSize), NSForegroundColorAttributeName: UIColor.gray])
+            mutableString.addAttribute(NSForegroundColorAttributeName, value: self.view.tintColor, range: NSRange(location: position!, length: 1))
+            mutableString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: fontSize + 10), range: NSRange(location: position!, length: 1))
+            
+            emptyLabel.attributedText = mutableString
+            emptyLabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = emptyLabel
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        }
+        else {
+            self.tableView.backgroundView = nil
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        }
+        return count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // if delegate is not-null call it. Otherwise return 0.
-        return delegate?.count(section: section) ?? 0
+        let count = delegate?.count(section: section) ?? 0
+        // Message to display when Topics list is empty
+        if count == 0 {
+            let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            
+            let emptyTable:String = "No Topics yet.. 😔\nTap the ✍ icon to create a Topic!"
+            let fontSize = CGFloat(17)
+            
+            let mutableString = NSMutableAttributedString(string: emptyTable, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: fontSize), NSForegroundColorAttributeName: UIColor.gray])
+            
+            emptyLabel.attributedText = mutableString
+            emptyLabel.numberOfLines = 2
+            emptyLabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = emptyLabel
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        }
+        else {
+            self.tableView.backgroundView = nil
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        }
+        return count
     }
 
     override  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
