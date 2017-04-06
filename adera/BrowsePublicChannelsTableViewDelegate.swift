@@ -77,6 +77,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
             let channel = channels[row!.item]
             Channel.leaveChannel(channel: channel, user: user)
             userChannelIds.remove(at: userChannelIds.index(of: channel.id())!)
+            tableViewController.tableView.reloadData()
         }
     }
 
