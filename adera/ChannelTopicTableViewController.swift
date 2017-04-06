@@ -82,6 +82,23 @@ class ChannelTopicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    // Header Section Height
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if delegate?.nameForSection(section: section) != nil {
+            return UILabel.appearance().font.pointSize + 10
+        }
+        return 0
+    }
+    
+    // Header Section Appearances
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.backgroundView?.backgroundColor = UIColor.white
+        headerView.textLabel?.textColor = self.view.tintColor
+        //        headerView.textLabel?.textAlignment = NSTextAlignment.center
+        headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: UILabel.appearance().font.pointSize)
+    }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return delegate?.nameForSection(section: section)
