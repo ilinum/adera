@@ -554,12 +554,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbE-1A-5Sh">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="nth-Ki-UFc"/>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YP0-P0-t4r">
                                 <rect key="frame" x="16" y="44" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -583,14 +577,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EFe-Sf-Ncb" firstAttribute="leading" secondItem="DZy-RH-ue8" secondAttribute="leadingMargin" id="1Dc-2X-BLl"/>
+                            <constraint firstItem="YP0-P0-t4r" firstAttribute="top" secondItem="QkC-bi-udP" secondAttribute="bottom" constant="24" id="2hn-zk-n8Z"/>
                             <constraint firstItem="EFe-Sf-Ncb" firstAttribute="trailing" secondItem="DZy-RH-ue8" secondAttribute="trailingMargin" id="4Ae-rl-Wf1"/>
-                            <constraint firstItem="kbE-1A-5Sh" firstAttribute="leading" secondItem="DZy-RH-ue8" secondAttribute="leading" id="6Q1-d4-ohI"/>
-                            <constraint firstItem="YP0-P0-t4r" firstAttribute="top" secondItem="kbE-1A-5Sh" secondAttribute="bottom" id="DD9-3K-Sl3"/>
                             <constraint firstItem="YP0-P0-t4r" firstAttribute="trailing" secondItem="DZy-RH-ue8" secondAttribute="trailingMargin" id="DuH-Lc-DzB"/>
                             <constraint firstItem="EFe-Sf-Ncb" firstAttribute="top" secondItem="YP0-P0-t4r" secondAttribute="bottom" constant="8" id="L5h-Ct-UQT"/>
                             <constraint firstItem="Lmq-yA-pKD" firstAttribute="top" secondItem="EFe-Sf-Ncb" secondAttribute="bottom" constant="8" id="NG6-FZ-qYK"/>
-                            <constraint firstItem="kbE-1A-5Sh" firstAttribute="top" secondItem="DZy-RH-ue8" secondAttribute="top" id="SIu-k5-114"/>
-                            <constraint firstItem="kbE-1A-5Sh" firstAttribute="centerX" secondItem="YP0-P0-t4r" secondAttribute="centerX" id="ac4-If-cIT"/>
                             <constraint firstItem="Lmq-yA-pKD" firstAttribute="top" secondItem="EFe-Sf-Ncb" secondAttribute="bottom" constant="8" id="b8J-Fc-CcX"/>
                             <constraint firstItem="Lmq-yA-pKD" firstAttribute="trailing" secondItem="DZy-RH-ue8" secondAttribute="trailingMargin" id="bcv-zX-S95"/>
                             <constraint firstItem="Lmq-yA-pKD" firstAttribute="leading" secondItem="DZy-RH-ue8" secondAttribute="leadingMargin" id="duR-s5-hXy"/>
