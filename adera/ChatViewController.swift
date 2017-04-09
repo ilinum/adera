@@ -131,6 +131,10 @@ class ChatViewController: JSQMessagesViewController {
         // Play send sound effect
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
     }
+    
+    private func sortMessageByDate(a: JSQMessage, b: JSQMessage) -> Bool {
+        return a.date < b.date
+    }
 
     // Listen for new messages being written to the Firebase DB
     private func observeMessages() {
@@ -146,6 +150,7 @@ class ChatViewController: JSQMessagesViewController {
                 let message = Message(senderId: senderID!, senderName: senderName, text: text!,
                         date: Date(timeIntervalSince1970: timestamp))
                 self.messages.append(message)
+                self.messages.sort(by: self.sortMessageByDate)
                 self.finishReceivingMessage()
             })
         })
