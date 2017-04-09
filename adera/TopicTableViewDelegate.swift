@@ -77,7 +77,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     func rowSelected(row: IndexPath) {
         let storyboard = tableViewController.storyboard
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        vc.channelId = channel.id()
+        vc.channel = channel
         vc.topicName = channel.topics[row.item].name
         tableViewController.navigationController?.pushViewController(vc, animated: true)
     }

@@ -27,6 +27,7 @@
 		FA00ECB11E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */; };
 		FA5842D11E89FE84001ADD68 /* Delete-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */; };
 		FA80B6EB1E89D45700529F87 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */; };
+		FA8982F61E9AEF9A00F3A746 /* share-location-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8982F51E9AEF9A00F3A746 /* share-location-icon@2x.png */; };
 		FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */; };
 		FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */; };
 		FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */; };
@@ -89,6 +90,7 @@
 		FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChannelInfoControllerViewController.swift; sourceTree = "<group>"; };
 		FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-48@2x.png"; sourceTree = "<group>"; };
 		FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAvatar.png; sourceTree = "<group>"; };
+		FA8982F51E9AEF9A00F3A746 /* share-location-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-location-icon@2x.png"; sourceTree = "<group>"; };
 		FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plus-50@2x.png"; sourceTree = "<group>"; };
 		FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicTableViewController.swift; sourceTree = "<group>"; };
 		FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicCell.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		FAD46BEC1E7E03670035F403 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FA8982F51E9AEF9A00F3A746 /* share-location-icon@2x.png */,
 				FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */,
 				FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */,
 				FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */,
@@ -425,6 +428,7 @@
 				FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */,
 				FA5842D11E89FE84001ADD68 /* Delete-48@2x.png in Resources */,
 				FAD46BEE1E7E04600035F403 /* Settings-50@2x.png in Resources */,
+				FA8982F61E9AEF9A00F3A746 /* share-location-icon@2x.png in Resources */,
 				FA80B6EB1E89D45700529F87 /* DefaultAvatar.png in Resources */,
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
 				FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */,

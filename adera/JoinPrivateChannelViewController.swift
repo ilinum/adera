@@ -21,7 +21,8 @@ class JoinPrivateChannelViewController: UIViewController {
     @IBAction func joinChannelButtonTapped(_ sender: Any) {
         let text = passwordTextField.text
         if text == nil || text!.characters.count == 0 {
-            createAlert(message: "Please enter channel password")
+            let alertController = createErrorAlert(message: "Please enter channel password")
+            self.present(alertController, animated: true, completion: nil)
         } else {
             AppDelegate.privateChannelsRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChild(text!) {
@@ -30,7 +31,8 @@ class JoinPrivateChannelViewController: UIViewController {
                         for chan in snapshot.children {
                             let chanSnap = chan as! FIRDataSnapshot
                             if chanSnap.value as! String! == text {
-                                self.createAlert(message: "You are already a member of this channel!")
+                                let alertController = createErrorAlert(message: "You are already a member of this channel!")
+                                self.present(alertController, animated: true, completion: nil)
                                 _ = self.navigationController?.popViewController(animated: true)
                                 return
                             }
@@ -39,19 +41,20 @@ class JoinPrivateChannelViewController: UIViewController {
                         _ = self.navigationController?.popViewController(animated: true)
                     })
                 } else {
-                    self.createAlert(message: "No private channel with that password")
+                    let alertController = createErrorAlert(message: "No private channel with that password")
+                    self.present(alertController, animated: true, completion: nil)
                 }
             })
         }
     }
+}
 
-    private func createAlert(message: String) {
-        let alertController = UIAlertController(title: "Error", message: message,
-                preferredStyle: .alert)
+func createErrorAlert(message: String) -> UIAlertController {
+    let alertController = UIAlertController(title: "Error", message: message,
+            preferredStyle: .alert)
 
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-
-        present(alertController, animated: true, completion: nil)
-    }
+    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    alertController.addAction(defaultAction)
+    
+    return alertController
 }
