@@ -124,7 +124,7 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!,
                                senderDisplayName: String!, date: Date!) {
         let itemRef = messageRef?.childByAutoId()
-        let messageItem = Message(senderId: senderId, senderName: senderDisplayName, text: text)
+        let messageItem = Message(senderId: senderId, senderName: senderDisplayName, text: text, date: date)
         itemRef?.setValue(messageItem.toDictionary())
         // this will remove the text from the text field
         finishSendingMessage();
@@ -139,10 +139,12 @@ class ChatViewController: JSQMessagesViewController {
         newMessageRefHandle = messageQuery?.observe(.childAdded, with: {(snapshot) in
             let senderID = snapshot.childSnapshot(forPath: "senderId").value as! String!
             let text = snapshot.childSnapshot(forPath: "text").value as! String!
+            let timestamp: Double! = snapshot.childSnapshot(forPath: "timestamp").value as! Double!
             let displayNameSetting = AppDelegate.usersRef.child(senderID!).child("settings").child("displayName")
             displayNameSetting.observeSingleEvent(of: .value, with: { (snapshot) in
                 let senderName = snapshot.value as! String
-                let message = Message(senderId: senderID!, senderName: senderName, text: text!)
+                let message = Message(senderId: senderID!, senderName: senderName, text: text!,
+                        date: Date(timeIntervalSince1970: timestamp))
                 self.messages.append(message)
                 self.finishReceivingMessage()
             })

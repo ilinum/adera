@@ -12,11 +12,11 @@ class Message : JSQMessage {
     var messageText: String?
     var senderName: String?
 
-    init(senderId: String, senderName: String, text: String) {
+    init(senderId: String, senderName: String, text: String, date: Date) {
         self.senderName = senderName
         self.senderID = senderId
         self.messageText = text
-        super.init(senderId: senderID, senderDisplayName: senderName, date: Date(), text: text)
+        super.init(senderId: senderID, senderDisplayName: senderName, date: date, text: text)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,6 +24,6 @@ class Message : JSQMessage {
     }
 
     func toDictionary() -> Dictionary<String, Any> {
-        return ["senderId": senderID!, "text": messageText!]
+        return ["senderId": senderID!, "text": messageText!, "timestamp": date.timeIntervalSince1970]
     }
 }
