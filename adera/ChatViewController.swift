@@ -35,9 +35,17 @@ class ChatViewController: JSQMessagesViewController {
 
         // Set sender info
         let currentUser = FIRAuth.auth()?.currentUser
-        self.senderId = currentUser?.uid
-        let name = currentUser?.displayName
-        self.senderDisplayName = (name == nil) ? "" : name // make sure username is not nil
+        self.senderDisplayName = ""
+        if (currentUser != nil) {
+            self.senderId = currentUser?.uid
+            let displayNameRef = AppDelegate.usersRef.child(currentUser!.uid).child("settings").child("displayName")
+            displayNameRef.observeSingleEvent(of: .value, with: { snapshot in
+                let name: String? = snapshot.value as? String
+                if name != nil {
+                    self.senderDisplayName = name! // make sure username is not nil
+                }
+            })
+        }
         // Get references to current chat topic
         let topicRef = AppDelegate.publicChannelsRef.child(channelId!).child("topics").child(topicName!.lowercased())
         messageRef = topicRef.child("messages")
@@ -129,9 +137,15 @@ class ChatViewController: JSQMessagesViewController {
         // limits the synchronization to the last 25 messages
         let messageQuery = messageRef?.queryLimited(toLast: 25)
         newMessageRefHandle = messageQuery?.observe(.childAdded, with: {(snapshot) in
-            let message = Message(snapshot: snapshot)
-            self.messages.append(message)
-            self.finishReceivingMessage()
+            let senderID = snapshot.childSnapshot(forPath: "senderId").value as! String!
+            let text = snapshot.childSnapshot(forPath: "text").value as! String!
+            let displayNameSetting = AppDelegate.usersRef.child(senderID!).child("settings").child("displayName")
+            displayNameSetting.observeSingleEvent(of: .value, with: { (snapshot) in
+                let senderName = snapshot.value as! String
+                let message = Message(senderId: senderID!, senderName: senderName, text: text!)
+                self.messages.append(message)
+                self.finishReceivingMessage()
+            })
         })
     }
 }

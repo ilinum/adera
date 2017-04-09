@@ -125,23 +125,17 @@ class SettingsTableViewController: UITableViewController {
             // Username
             else if  indexPath.row == 2 {
                 let alertController = UIAlertController(title: "Change Username", message: nil, preferredStyle: .alert)
-                let updateUsernameAction = UIAlertAction(title: "Update Username",
-                                                         style: .destructive) { action in
-                                                            let textField = alertController.textFields![0]
-                                                            if textField.text?.characters.count ?? 0 > 0 {
-                                                                let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-                                                                changeRequest?.displayName = textField.text!
-                                                                changeRequest?.commitChanges() { (error) in
-                                                                    // Displays Error or Success Message from FireBase
-                                                                    let title: String? = error != nil ? "Error" : "Success"
-                                                                    let message: String? = error != nil ? error?.localizedDescription : "Successfully Changed Username"
-                                                                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                                                                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                                                                    alertController.addAction(defaultAction)
-                                                                    self.updateDetailsViews()
-                                                                    self.present(alertController, animated: true, completion: nil)
-                                                                }
-                                                            }
+                let updateUsernameAction = UIAlertAction(title: "Update Username", style: .destructive) { action in
+                    let textField = alertController.textFields![0]
+                    if textField.text?.characters.count ?? 0 > 0 {
+                        AppDelegate.usersRef.child(self.userID!).child("settings").child("displayName").setValue(textField.text!)
+                        let alertController = UIAlertController(title: "Success",
+                                message: "Successfully Changed Username", preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alertController.addAction(defaultAction)
+                        self.updateDetailsViews()
+                        self.present(alertController, animated: true, completion: nil)
+                    }
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .default)
@@ -179,15 +173,15 @@ class SettingsTableViewController: UITableViewController {
             let value = snapshot.value as? NSDictionary
             let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings().fontSize
             self.fontSizeSlider.value = Float(fontSize)
+
+            let displayName = value?["displayName"] as? String
+            self.usernameCell.detailTextLabel?.text = displayName
         }) { (error) in
             print(error.localizedDescription)
         }
         
         let email = FIRAuth.auth()?.currentUser?.email
         emailCell.detailTextLabel?.text = email
-        
-        let displayName = FIRAuth.auth()?.currentUser?.displayName
-        usernameCell.detailTextLabel?.text = displayName
         
         passwordCell.detailTextLabel?.text = "******"
     }

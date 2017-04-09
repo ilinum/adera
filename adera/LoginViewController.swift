@@ -88,20 +88,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if error == nil {
                     print("Sign up successful")
 
-                    if let user = FIRAuth.auth()?.currentUser {
-                        let changeRequest = user.profileChangeRequest()
-                        changeRequest.displayName = username
-                        changeRequest.commitChanges() { (error) in
-                            if error != nil {
-                                print("Error with display Name change")
-                            }
-                        }
-                        
-                        // Configure Default Settings Values
-                        AppDelegate.usersRef.child(user.uid).child("settings").child("fontSize").setValue(AccountDefaultSettings().fontSize)
-                    }
-                    
-
+                    let settingsRef = AppDelegate.usersRef.child(user!.uid).child("settings")
+                    settingsRef.child("displayName").setValue(username)
+                    settingsRef.child("fontSize").setValue(AccountDefaultSettings().fontSize)
 
                     self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
                 } else {

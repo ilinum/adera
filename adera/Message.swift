@@ -18,21 +18,12 @@ class Message : JSQMessage {
         self.messageText = text
         super.init(senderId: senderID, senderDisplayName: senderName, date: Date(), text: text)
     }
-
-    init(snapshot: FIRDataSnapshot) {
-        self.senderID = snapshot.childSnapshot(forPath: "senderId").value as! String!
-        self.messageText = snapshot.childSnapshot(forPath: "text").value as! String!
-        self.senderName = snapshot.childSnapshot(forPath: "senderName").value as! String!
-        super.init(senderId: senderID, senderDisplayName: senderName, date: Date(), text:messageText)
-    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
     func toDictionary() -> Dictionary<String, Any> {
-        return ["senderId": senderID!,
-                "senderName": senderName!,
-                "text": messageText!]
+        return ["senderId": senderID!, "text": messageText!]
     }
 }
