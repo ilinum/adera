@@ -62,7 +62,9 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         let tapLocation = tapGestureRecognizer.location(in: tableViewController.view)
         let row = tableViewController.tableView.indexPathForRow(at: tapLocation)
         if row != nil {
-            let id = channels[row!.item].id()
+            let channel = channels[row!.item]
+            let id = channel.id()
+            channel.setNumUsers(numUsers: channel.numUsers + 1)
             let myPublicChannels = AppDelegate.usersRef.child(user.uid).child("channels").child("public")
             myPublicChannels.childByAutoId().setValue(id)
             userChannelIds.append(id)

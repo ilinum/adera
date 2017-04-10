@@ -14,12 +14,14 @@ class Channel {
     var topics: [Topic]
     let password: String?
     let channelType: ChannelType
+    var numUsers: Int
 
-    init(presentableName: String, description: String, creatorUID: String, password: String? = nil) {
+    init(presentableName: String, description: String, creatorUID: String, password: String? = nil, numUsers: Int = 0) {
         self.presentableName = presentableName
         self.description = description
         self.creatorUID = creatorUID
         self.password = password
+        self.numUsers = numUsers
         if password == nil {
             channelType = ChannelType.publicType
         } else {
@@ -32,6 +34,7 @@ class Channel {
         self.presentableName = snapshot.childSnapshot(forPath: "name").value as! String
         self.description = snapshot.childSnapshot(forPath: "description").value as! String
         self.creatorUID = snapshot.childSnapshot(forPath: "creatorUID").value as! String
+        self.numUsers = snapshot.childSnapshot(forPath: "numUsers").value as! Int
         channelType = type
         if type == ChannelType.privateType {
             password = snapshot.key
@@ -57,6 +60,7 @@ class Channel {
         let dict: Dictionary<String, Any> = ["name": presentableName,
                     "description": description,
                     "creatorUID": creatorUID,
+                    "numUsers": numUsers,
                     "topics": topics.map {
                         topic -> Dictionary<String, Any> in
                         return topic.toDictionary()
@@ -64,7 +68,13 @@ class Channel {
         return dict
     }
 
+    func setNumUsers(numUsers: Int) {
+        self.numUsers = numUsers
+        AppDelegate.channelsRefForType(type: channelType).child(id()).child("numUsers").setValue(numUsers)
+    }
+
     class func leaveChannel(channel: Channel!, user: FIRUser) {
+        channel.setNumUsers(numUsers: channel.numUsers - 1)
         let id = channel.id()
         let channelTypeStr = channelTypeToString(type: channel.channelType)
         let myChannels = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
