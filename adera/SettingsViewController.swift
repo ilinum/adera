@@ -10,11 +10,13 @@ import UIKit
 import FirebaseAuth
 
 class SettingsViewController: UIViewController {
+    @IBOutlet weak var signOutButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Settings"
+        self.signOutButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -15,7 +15,10 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var passwordCell: UITableViewCell!
     @IBOutlet weak var usernameCell: UITableViewCell!
     @IBOutlet weak var fontSizeSlider: UISlider!
+    @IBOutlet weak var colorSchemeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var sortingMethodSegmentedControl: UISegmentedControl!
     @IBOutlet weak var fontSizeLabel: UILabel!
+    @IBOutlet weak var userPhotoImageView: UIImageView!
     
     var userID: String?
     
@@ -24,6 +27,14 @@ class SettingsTableViewController: UITableViewController {
         
         userID = FIRAuth.auth()?.currentUser?.uid
         self.tableView.tableFooterView = UIView()
+        
+        userPhotoImageView.backgroundColor = UIColor.black
+        userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.width / 2
+        userPhotoImageView.layer.masksToBounds = true
+        self.userPhotoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapUserPhoto)))
+        self.userPhotoImageView.isUserInteractionEnabled = true
+        self.colorSchemeSegmentedControl.apportionsSegmentWidthsByContent = true
+        self.sortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         
         updateDetailsViews()
     }
@@ -144,6 +155,10 @@ class SettingsTableViewController: UITableViewController {
                 alertController.addAction(cancelAction)
                 self.present(alertController, animated: true, completion: nil)
             }
+            // Photo
+            else if  indexPath.row == 3 {
+                handleTapUserPhoto()
+            }
         }
     }
     
@@ -171,19 +186,41 @@ class SettingsTableViewController: UITableViewController {
         // Get Application Settings Values from FireBase
         AppDelegate.usersRef.child(userID!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings().fontSize
-            self.fontSizeSlider.value = Float(fontSize)
-
             let displayName = value?["displayName"] as? String
+            let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings().fontSize
+            
+            let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings().colorScheme
+            let colorSchemeIndex = colorScheme == "light" ? 0 : 1
+            let sortingMethod = value?["sortingMethod"] as? String ?? AccountDefaultSettings().sortingMethod
+            let sortingMethodIndex = sortingMethod == "date" ? 0 : 1
+            
             self.usernameCell.detailTextLabel?.text = displayName
+            self.fontSizeSlider.value = Float(fontSize)
+            self.colorSchemeSegmentedControl.selectedSegmentIndex = colorSchemeIndex
+            self.sortingMethodSegmentedControl.selectedSegmentIndex = sortingMethodIndex
+            
+            let email = FIRAuth.auth()?.currentUser?.email
+            self.emailCell.detailTextLabel?.text = email
+            self.passwordCell.detailTextLabel?.text = "******"
+            self.colorSchemeSegmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 16)], for: .normal)
+            self.sortingMethodSegmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 16)], for: .normal)
+            
+            if let userPhotoURL = value?["userPhotoURL"] as? String {
+                self.userPhotoImageView.loadFromCache(imageURL: userPhotoURL)
+            }
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    func refreshLabelsAfterFontChange() {
+        self.emailCell.textLabel?.text = ""
+        self.passwordCell.textLabel?.text = ""
+        self.usernameCell.textLabel?.text = ""
         
-        let email = FIRAuth.auth()?.currentUser?.email
-        emailCell.detailTextLabel?.text = email
-        
-        passwordCell.detailTextLabel?.text = "******"
+        self.emailCell.textLabel?.text = "Email"
+        self.passwordCell.textLabel?.text = "Password"
+        self.usernameCell.textLabel?.text = "Username"
     }
     
     @IBAction func fontSliderValueChanged(_ sender: Any) {
@@ -194,5 +231,17 @@ class SettingsTableViewController: UITableViewController {
         
         NotificationCenter.default.post(name: Notification.Name(rawValue:"FontSizeChange"),
                                         object: nil)
+    }
+    
+    @IBAction func colorSchemeChanged(_ sender: Any) {
+        print("changed!")
+        let colorScheme = self.colorSchemeSegmentedControl.selectedSegmentIndex == 0 ? "light" : "dark"
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("colorScheme").setValue(colorScheme)
+    }
+    
+    @IBAction func sortingMethodChanged(_ sender: Any) {
+        print("changed!")
+        let sortingMethod = self.sortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("sortingMethod").setValue(sortingMethod)
     }
 }

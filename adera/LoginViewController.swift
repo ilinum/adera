@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var userPhotoImageView: UIImageView!
     private var isLogin: Bool = true
 
     override func viewDidLoad() {
@@ -39,6 +40,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             passwordTextField.delegate = self
             emailTextField.delegate = self
         }
+        
+        userPhotoImageView.layer.cornerRadius = 50
+        userPhotoImageView.layer.masksToBounds = true
+        userPhotoImageView.image = UIImage(named: "DefaultAvatar.png")
+        userPhotoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapUserPhoto)))
+        userPhotoImageView.isUserInteractionEnabled = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,10 +69,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             loginButton.title = "Login"
             usernameLabel.isHidden = true
             usernameTextField.isHidden = true
+            userPhotoImageView.isHidden = true
         } else {
             loginButton.title = "Register"
             usernameLabel.isHidden = false
             usernameTextField.isHidden = false
+            userPhotoImageView.isHidden = false
         }
     }
     
@@ -91,6 +101,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let settingsRef = AppDelegate.usersRef.child(user!.uid).child("settings")
                     settingsRef.child("displayName").setValue(username)
                     settingsRef.child("fontSize").setValue(AccountDefaultSettings().fontSize)
+                    settingsRef.child("colorScheme").setValue(AccountDefaultSettings().colorScheme)
+                    settingsRef.child("sortingMethod").setValue(AccountDefaultSettings().sortingMethod)
+                    
+                    let storageRef = FIRStorage.storage().reference().child("user_photos").child(user!.uid).child("avatar.png")
+                    
+                    if let uploadData = UIImagePNGRepresentation(self.userPhotoImageView.image!) {
+                        storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                            if error != nil {
+                                print(error ?? "error")
+                                return
+                            }
+                            if let userPhotoURL = metadata?.downloadURL()?.absoluteString {
+                                settingsRef.child("userPhotoURL").setValue(userPhotoURL)
+                                self.userPhotoImageView.storeInCache(imageURL: userPhotoURL, image: self.userPhotoImageView.image!)
+                            }
+                        })
+                    }
 
                     self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
                 } else {

@@ -9,4 +9,6 @@
 // All default user settings go here
 public struct AccountDefaultSettings {
     var fontSize = 17
+    var colorScheme = "light"
+    var sortingMethod = "date"
 }
