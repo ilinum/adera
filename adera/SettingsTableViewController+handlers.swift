@@ -21,7 +21,6 @@ extension SettingsTableViewController: UIImagePickerControllerDelegate, UINaviga
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         var selectedImageFromPicker: UIImage?
         
         if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
@@ -39,10 +38,7 @@ extension SettingsTableViewController: UIImagePickerControllerDelegate, UINaviga
         
         if let uploadData = UIImagePNGRepresentation(self.userPhotoImageView.image!) {
             storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print(error ?? "error")
-                    return
-                }
+                if error != nil { return }
                 if let userPhotoURL = metadata?.downloadURL()?.absoluteString {
                     AppDelegate.usersRef.child(self.userID!).child("settings").child("userPhotoURL").setValue(userPhotoURL)
                     self.userPhotoImageView.storeInCache(imageURL: userPhotoURL, image: self.userPhotoImageView.image!)

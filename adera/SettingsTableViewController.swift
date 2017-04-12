@@ -234,13 +234,11 @@ class SettingsTableViewController: UITableViewController {
     }
     
     @IBAction func colorSchemeChanged(_ sender: Any) {
-        print("changed!")
         let colorScheme = self.colorSchemeSegmentedControl.selectedSegmentIndex == 0 ? "light" : "dark"
         AppDelegate.usersRef.child(self.userID!).child("settings").child("colorScheme").setValue(colorScheme)
     }
     
     @IBAction func sortingMethodChanged(_ sender: Any) {
-        print("changed!")
         let sortingMethod = self.sortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
         AppDelegate.usersRef.child(self.userID!).child("settings").child("sortingMethod").setValue(sortingMethod)
     }

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let publicChannelsRef = firebaseRef.child("channels").child("public")
     static let privateChannelsRef = firebaseRef.child("channels").child("private")
     static let usersRef = firebaseRef.child("users")
+    static let cache = NSCache<AnyObject, AnyObject>()
 
     static func channelsRefForType(type: ChannelType) -> FIRDatabaseReference {
         switch (type) {

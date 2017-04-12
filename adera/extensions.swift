@@ -16,11 +16,9 @@ extension String {
     }
 }
 
-let cache = NSCache<AnyObject, AnyObject>()
-
 extension UIImageView {
     func loadFromCache(imageURL: String) {
-        if let cachedImage = cache.object(forKey: imageURL as AnyObject) as? UIImage {
+        if let cachedImage = AppDelegate.cache.object(forKey: imageURL as AnyObject) as? UIImage {
             self.image = cachedImage
             return
         }
@@ -28,14 +26,10 @@ extension UIImageView {
         let url = URL(string: imageURL)
         let request = URLRequest(url: url!)
         let dataTask = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil {
-                print(error ?? "error")
-                return
-            }
-            
+            if error != nil { return }
             DispatchQueue.main.async {
                 if let networkImage = UIImage(data: data!) {
-                    cache.setObject(networkImage, forKey: imageURL as AnyObject)
+                    AppDelegate.cache.setObject(networkImage, forKey: imageURL as AnyObject)
                     self.image = networkImage
                 }
             }
@@ -44,6 +38,6 @@ extension UIImageView {
     }
     
     func storeInCache(imageURL: String, image: UIImage) {
-        cache.setObject(image, forKey: imageURL as AnyObject)
+        AppDelegate.cache.setObject(image, forKey: imageURL as AnyObject)
     }
 }

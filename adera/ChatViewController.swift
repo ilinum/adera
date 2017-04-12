@@ -23,6 +23,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     var topicName: String? = nil
     let locationManager = CLLocationManager()
     var sendLocation = false
+    var avatars = [String: JSQMessagesAvatarImage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,7 +145,8 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     // Set Avatar
     override func collectionView(_ collectionView: JSQMessagesCollectionView!,
                                  avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "DefaultAvatar.png"), diameter: 50);
+        let message = messages[indexPath.item]
+        return avatars[message.senderId]
     }
 
     // Message Bubbles
@@ -199,6 +201,38 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     private func sortMessageByDate(a: JSQMessage, b: JSQMessage) -> Bool {
         return a.date < b.date
     }
+    
+    func setupAvatarForMessage(userPhotoURL: String, messageId: String) {
+        if let cachedImage = AppDelegate.cache.object(forKey: userPhotoURL as AnyObject) as? UIImage {
+            let userAvatar = JSQMessagesAvatarImageFactory.avatarImage(with: cachedImage, diameter: 30)
+            self.avatars[messageId] = userAvatar
+            self.collectionView.reloadData()
+            return
+        }
+        
+        let url = URL(string: userPhotoURL)
+        let request = URLRequest(url: url!)
+        let dataTask = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil { return }
+            DispatchQueue.main.async {
+                if let networkImage = UIImage(data: data!) {
+                    AppDelegate.cache.setObject(networkImage, forKey: userPhotoURL as AnyObject)
+                    let userAvatar = JSQMessagesAvatarImageFactory.avatarImage(with: networkImage, diameter: 30)
+                    self.avatars[messageId] = userAvatar
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func checkForUserPhoto(id: String) {
+        AppDelegate.usersRef.child(id).child("settings").child("userPhotoURL").observeSingleEvent(of: .value, with: { (userPhotoURLSnapshot) in
+            if let userPhotoURL = userPhotoURLSnapshot.value as? String {
+                self.setupAvatarForMessage(userPhotoURL: userPhotoURL, messageId: id)
+            }
+        })
+    }
 
     // Listen for new messages being written to the Firebase DB
     private func observeMessages() {
@@ -209,6 +243,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
             let timestamp: Double! = snapshot.childSnapshot(forPath: "timestamp").value as! Double!
             let date = Date(timeIntervalSince1970: timestamp)
             let displayNameSetting = AppDelegate.usersRef.child(senderID!).child("settings").child("displayName")
+            self.checkForUserPhoto(id: senderID!)
             displayNameSetting.observeSingleEvent(of: .value, with: { (displayNameSnapshot) in
                 let senderName = displayNameSnapshot.value as! String
                 let message: Message
