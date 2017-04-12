@@ -28,7 +28,7 @@ class SettingsTableViewController: UITableViewController {
         userID = FIRAuth.auth()?.currentUser?.uid
         self.tableView.tableFooterView = UIView()
         
-        userPhotoImageView.backgroundColor = UIColor.black
+        userPhotoImageView.image = UIImage(named: "DefaultAvatar.png")
         userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.width / 2
         userPhotoImageView.layer.masksToBounds = true
         self.userPhotoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapUserPhoto)))
