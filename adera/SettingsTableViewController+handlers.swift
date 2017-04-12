@@ -16,7 +16,7 @@ extension SettingsTableViewController: UIImagePickerControllerDelegate, UINaviga
         picker.allowsEditing = true
         
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIImagePickerController.self]).setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 16)], for: .normal)
-        
+        UITableViewCell.appearance(whenContainedInInstancesOf: [UIImagePickerController.self]).backgroundColor = UIColor.clear
         present(picker, animated: true, completion: nil)
     }
     

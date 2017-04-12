@@ -13,9 +13,15 @@ import FirebaseDatabase
 class JoinPrivateChannelViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     var user: FIRUser? = nil
-
+    @IBOutlet weak var channelPasswordLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.backgroundColor = UITableView.appearance().backgroundColor
+        channelPasswordLabel.textColor = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.blue
     }
 
     @IBAction func joinChannelButtonTapped(_ sender: Any) {

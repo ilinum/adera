@@ -24,16 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         if FIRAuth.auth()?.currentUser != nil {
-            self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
-            
-            // Get Application Settings Values from FireBase to use for UI changes upon login
-            AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser!.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
-                let value = snapshot.value as? NSDictionary
-                let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings().fontSize
-                UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
-            }) { (error) in
-                print(error.localizedDescription)
-            }
+            self.performLogin()
         } else {
             // hide keyboard on return and out touches
             usernameTextField.delegate = self
@@ -100,9 +91,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
                     let settingsRef = AppDelegate.usersRef.child(user!.uid).child("settings")
                     settingsRef.child("displayName").setValue(username)
-                    settingsRef.child("fontSize").setValue(AccountDefaultSettings().fontSize)
-                    settingsRef.child("colorScheme").setValue(AccountDefaultSettings().colorScheme)
-                    settingsRef.child("sortingMethod").setValue(AccountDefaultSettings().sortingMethod)
+                    settingsRef.child("fontSize").setValue(AccountDefaultSettings.fontSize)
+                    settingsRef.child("colorScheme").setValue(AccountDefaultSettings.colorScheme)
+                    settingsRef.child("sortingMethod").setValue(AccountDefaultSettings.sortingMethod)
                     
                     let storageRef = FIRStorage.storage().reference().child("user_photos").child(user!.uid).child("avatar.png")
                     
@@ -134,8 +125,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
                 
                 if error == nil {
-                    print("You have successfully logged in")
-                    self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
+                    self.performLogin()
                 } else {
                     
                     // Tells the user that there is an error and then gets firebase to tell them the error
@@ -147,6 +137,45 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
+        }
+    }
+    
+    func performLogin() {
+        let progressHUD = ProgressHUD(text: "Logging In")
+        self.view.addSubview(progressHUD)
+        // Get Application Settings Values from FireBase to use for UI changes upon login
+        AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser!.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings.fontSize
+            let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings.colorScheme
+            
+            var textColor:UIColor?
+            var tintColor:UIColor?
+            var backgroundColor:UIColor?
+            
+            if colorScheme == "light" {
+                textColor = AccountDefaultSettings.lightTextColor
+                tintColor = AccountDefaultSettings.lightTintColor
+                backgroundColor = AccountDefaultSettings.lightBackgroundColor
+            } else if colorScheme == "dark" {
+                textColor = AccountDefaultSettings.darkTextColor
+                tintColor = AccountDefaultSettings.darkTintColor
+                backgroundColor = AccountDefaultSettings.darkBackgroundColor
+            }
+            
+            UILabel.appearance().textColor = textColor!
+            UIApplication.shared.delegate?.window??.tintColor = tintColor!
+            self.navigationController?.navigationBar.barTintColor = backgroundColor!
+            UITableView.appearance().backgroundColor = backgroundColor!
+            UITableViewCell.appearance().backgroundColor = backgroundColor!
+            
+            UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+            
+            print("You have successfully logged in")
+            self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
+        }) { (error) in
+            print(error.localizedDescription)
+            self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
         }
     }
 

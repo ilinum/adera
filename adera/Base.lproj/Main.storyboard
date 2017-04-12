@@ -154,7 +154,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Sign Out">
-                                    <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="signOutAction:" destination="q9U-kt-NBu" eventType="touchUpInside" id="rF9-5r-igX"/>
@@ -630,7 +630,9 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Sdd-bm-nWf"/>
                     </toolbarItems>
                     <connections>
+                        <outlet property="channelDescriptionLabel" destination="zLg-PQ-agU" id="ivC-A5-cfL"/>
                         <outlet property="channelDescriptionTextView" destination="7zj-RV-evE" id="WyJ-W6-ib9"/>
+                        <outlet property="channelNameLabel" destination="MVd-UG-foL" id="WTb-QS-NRM"/>
                         <outlet property="channelNameTextField" destination="eBO-i7-rv7" id="yMz-Bx-E3j"/>
                         <outlet property="publicPrivateSegmentedControl" destination="d6a-Da-MnJ" id="Sie-aT-Lse"/>
                     </connections>
@@ -651,15 +653,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password for your private channel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nME-ul-FTv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Channel Password:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nME-ul-FTv">
                                 <rect key="frame" x="16" y="28" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70R-rJ-FBl">
-                                <rect key="frame" x="16" y="57" width="343" height="20"/>
-                                <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="17"/>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="70R-rJ-FBl">
+                                <rect key="frame" x="16" y="57" width="343" height="45.5"/>
+                                <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="39"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -677,6 +679,7 @@
                     </view>
                     <connections>
                         <outlet property="passwordLabel" destination="70R-rJ-FBl" id="IND-RW-T6E"/>
+                        <outlet property="privateChannelLabel" destination="nME-ul-FTv" id="yvd-tW-d6O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IEu-54-IkS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -695,20 +698,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YP0-P0-t4r">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Channel Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YP0-P0-t4r">
                                 <rect key="frame" x="16" y="44" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Channel Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EFe-Sf-Ncb">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EFe-Sf-Ncb">
                                 <rect key="frame" x="16" y="73" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmq-yA-pKD">
-                                <rect key="frame" x="16" y="111" width="343" height="30"/>
+                                <rect key="frame" x="16" y="111" width="343" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Join Channel"/>
                                 <connections>
                                     <action selector="joinChannelButtonTapped:" destination="HM9-5W-boy" eventType="touchUpInside" id="keK-Ep-R7s"/>
@@ -731,6 +735,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="channelPasswordLabel" destination="YP0-P0-t4r" id="gkg-Bc-IHu"/>
                         <outlet property="passwordTextField" destination="EFe-Sf-Ncb" id="jd6-HP-knO"/>
                     </connections>
                 </viewController>

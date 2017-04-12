@@ -22,6 +22,7 @@
 		BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */; };
 		D801E78F1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E78E1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift */; };
 		D801E7911E9DE9910015FBC2 /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E7901E9DE9910015FBC2 /* LoginViewController+handlers.swift */; };
+		D801E7931E9ED3BD0015FBC2 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E7921E9ED3BD0015FBC2 /* ProgressHUD.swift */; };
 		D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85071D71E836121004EF00A /* AccountDefaultSettings.swift */; };
 		D87CAC011E95E28C00A3912A /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CAC001E95E28C00A3912A /* extensions.swift */; };
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
@@ -85,6 +86,7 @@
 		D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D801E78E1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsTableViewController+handlers.swift"; sourceTree = "<group>"; };
 		D801E7901E9DE9910015FBC2 /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
+		D801E7921E9ED3BD0015FBC2 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		D85071D71E836121004EF00A /* AccountDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDefaultSettings.swift; sourceTree = "<group>"; };
 		D87CAC001E95E28C00A3912A /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				FAF1F8061E763C83008DA769 /* Login/Register */,
 				D8BB601B1E82E908000B0EF5 /* Settings */,
 				D87CAC001E95E28C00A3912A /* extensions.swift */,
+				D801E7921E9ED3BD0015FBC2 /* ProgressHUD.swift */,
 			);
 			path = adera;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */,
 				FAEAF8031E8C7BD10030EC47 /* JoinPrivateChannelViewController.swift in Sources */,
 				D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */,
+				D801E7931E9ED3BD0015FBC2 /* ProgressHUD.swift in Sources */,
 				BCED470F186C4DFDA449734B /* Topic.swift in Sources */,
 				22D53C501E84AB29001E63BE /* Message.swift in Sources */,
 				BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */,

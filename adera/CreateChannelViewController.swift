@@ -15,6 +15,8 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
     @IBOutlet weak var channelNameTextField: UITextField!
     @IBOutlet weak var channelDescriptionTextView: UITextView!
     @IBOutlet weak var publicPrivateSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var channelNameLabel: UILabel!
+    @IBOutlet weak var channelDescriptionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,10 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = false
+        self.view.backgroundColor = UITableView.appearance().backgroundColor
+        self.navigationController?.toolbar.barTintColor = UITableView.appearance().backgroundColor
+        channelNameLabel.textColor = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.blue
+        channelDescriptionLabel.textColor = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.blue
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

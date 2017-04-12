@@ -65,6 +65,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = true
+        self.collectionView.backgroundColor = UITableView.appearance().backgroundColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -155,7 +156,8 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
         let message = messages[indexPath.item]
         // Sets the color of all message bubbles
         if message.senderId == senderId {
-            return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+            let color = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.jsq_messageBubbleBlue()
+            return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: color)
         } else {
             return JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
         }

@@ -30,6 +30,10 @@ class ChannelTopicTableViewController: UITableViewController {
                                                object: nil,
                                                queue: nil,
                                                using: onContentSizeChange)
+        
+        self.view.backgroundColor = UITableView.appearance().backgroundColor
+        self.tableView.backgroundColor = UITableView.appearance().backgroundColor
+        tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -138,7 +142,9 @@ class ChannelTopicTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as! UITableViewHeaderFooterView
         headerView.backgroundView?.backgroundColor = UIColor.white
-        headerView.textLabel?.textColor = self.view.tintColor
+        let color = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.red
+        headerView.textLabel?.textColor = color
+        headerView.backgroundView?.backgroundColor = UITableView.appearance().backgroundColor
         //        headerView.textLabel?.textAlignment = NSTextAlignment.center
         headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: UILabel.appearance().font.pointSize)
     }

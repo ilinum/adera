@@ -22,6 +22,9 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = true
+        self.view.backgroundColor = UITableView.appearance().backgroundColor
+        self.signOutButton.backgroundColor = UITableView.appearance().backgroundColor
+        self.signOutButton.setTitleColor(UIApplication.shared.delegate?.window??.tintColor, for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {

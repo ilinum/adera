@@ -42,6 +42,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = true
+        self.view.backgroundColor = UIColor.clear
     }
 
     override func didReceiveMemoryWarning() {
@@ -168,7 +169,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as! UITableViewHeaderFooterView
-        headerView.backgroundView?.backgroundColor = UIColor.white
+        headerView.backgroundView?.backgroundColor = UIColor.clear
         headerView.textLabel?.textColor = self.view.tintColor
         headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
     }
@@ -187,11 +188,11 @@ class SettingsTableViewController: UITableViewController {
         AppDelegate.usersRef.child(userID!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let displayName = value?["displayName"] as? String
-            let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings().fontSize
+            let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings.fontSize
             
-            let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings().colorScheme
+            let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings.colorScheme
             let colorSchemeIndex = colorScheme == "light" ? 0 : 1
-            let sortingMethod = value?["sortingMethod"] as? String ?? AccountDefaultSettings().sortingMethod
+            let sortingMethod = value?["sortingMethod"] as? String ?? AccountDefaultSettings.sortingMethod
             let sortingMethodIndex = sortingMethod == "date" ? 0 : 1
             
             self.usernameCell.detailTextLabel?.text = displayName
@@ -236,6 +237,33 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func colorSchemeChanged(_ sender: Any) {
         let colorScheme = self.colorSchemeSegmentedControl.selectedSegmentIndex == 0 ? "light" : "dark"
         AppDelegate.usersRef.child(self.userID!).child("settings").child("colorScheme").setValue(colorScheme)
+        
+        var textColor:UIColor?
+        var tintColor:UIColor?
+        var backgroundColor:UIColor?
+        
+        if colorScheme == "light" {
+            textColor = AccountDefaultSettings.lightTextColor
+            tintColor = AccountDefaultSettings.lightTintColor
+            backgroundColor = AccountDefaultSettings.lightBackgroundColor
+        } else if colorScheme == "dark" {
+            textColor = AccountDefaultSettings.darkTextColor
+            tintColor = AccountDefaultSettings.darkTintColor
+            backgroundColor = AccountDefaultSettings.darkBackgroundColor
+        }
+        
+        UILabel.appearance().textColor = textColor!
+        UIApplication.shared.delegate?.window??.tintColor = tintColor!
+        parent?.navigationController?.navigationBar.barTintColor = backgroundColor!
+        UITableView.appearance().backgroundColor = backgroundColor!
+        UITableViewCell.appearance().backgroundColor = backgroundColor!
+        let settingsVC = parent as! SettingsViewController
+        settingsVC.view.backgroundColor = backgroundColor!
+        settingsVC.signOutButton.backgroundColor = backgroundColor!
+        settingsVC.signOutButton.setTitleColor(UIApplication.shared.delegate?.window??.tintColor, for: UIControlState.normal)
+        tableView.tableHeaderView?.backgroundColor = backgroundColor!
+        
+        self.tableView.reloadData()
     }
     
     @IBAction func sortingMethodChanged(_ sender: Any) {
