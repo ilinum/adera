@@ -15,7 +15,7 @@ import JSQMessagesViewController
 
 class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     // Array to hold JSQMessages
-    private var messages = [JSQMessage]();
+    private var messages = [Message]();
     // Set up variables to synchronize with Firebase
     private var messageRef: FIRDatabaseReference?
     private var newMessageRefHandle: FIRDatabaseHandle?
@@ -106,6 +106,23 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
         sheet.addAction(locationAction)
         sheet.addAction(cancelAction)
         self.present(sheet, animated: true, completion: nil)
+    }
+
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+        let message = messages[indexPath.item]
+        if message.location != nil {
+            let regionDistance:CLLocationDistance = 10000
+            let location = message.location!.location.coordinate
+            let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+            let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+            let options = [
+                    MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+                    MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+            ]
+            let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+            mapItem.openInMaps(launchOptions: options)
+        }
     }
 
     func sendCurrentLocation() {
