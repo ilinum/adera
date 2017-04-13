@@ -42,6 +42,11 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
             let scaledIcon = UIImage(cgImage: image!.cgImage!, scale: 6, orientation: image!.imageOrientation)
             self.inputToolbar.contentView.leftBarButtonItem.setImage(scaledIcon, for: .normal)
         }
+        
+        let image = UIImage(named: "Send")
+        let scaledIcon = UIImage(cgImage: image!.cgImage!, scale: 6, orientation: image!.imageOrientation)
+        self.inputToolbar.contentView.rightBarButtonItem.setImage(scaledIcon, for: .normal)
+        self.inputToolbar.contentView.rightBarButtonItemWidth = CGFloat(21)
 
         // Set sender info
         let currentUser = FIRAuth.auth()?.currentUser
