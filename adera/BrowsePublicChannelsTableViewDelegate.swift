@@ -42,13 +42,19 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
     func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
         let channel = channels[index.item]
         if userChannelIds.contains(channel.id()) {
-            cell.accessoryView = UIImageView(image: UIImage(named: "Delete-48.png"))
+            let imageView = UIImageView(image: UIImage(named: "Delete.png"))
+            imageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            imageView.tintImageColor(color: UIColor.red)
+            cell.accessoryView = imageView
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(leaveChannel(tapGestureRecognizer:)))
             cell.accessoryView!.isUserInteractionEnabled = true
             cell.accessoryView!.gestureRecognizers = [tapGestureRecognizer]
         } else {
-            cell.accessoryView = UIImageView(image: UIImage(named: "Plus-50.png"))
-            cell.accessoryView!.tintColor = UIColor.blue
+            let color = UIApplication.shared.delegate?.window??.tintColor ?? AccountDefaultSettings.aqua
+            let imageView = UIImageView(image: UIImage(named: "Add.png"))
+            imageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            imageView.tintImageColor(color: color)
+            cell.accessoryView = imageView
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(joinChannel(tapGestureRecognizer:)))
             cell.accessoryView!.isUserInteractionEnabled = true
             cell.accessoryView!.gestureRecognizers = [tapGestureRecognizer]

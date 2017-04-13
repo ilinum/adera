@@ -137,13 +137,17 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     func getLeftBarButtonItem() -> UIBarButtonItem? {
-        let add = UIBarButtonSystemItem.add
-        return UIBarButtonItem(barButtonSystemItem: add, target: self, action: #selector(createChannelTapped))
+        let image = UIImage(named: "Add.png")
+        let scaledIcon = UIImage(cgImage: image!.cgImage!, scale: 6, orientation: image!.imageOrientation)
+        let button = UIBarButtonItem(image: scaledIcon, style: .plain, target: self, action: #selector(createChannelTapped))
+        return button
     }
 
     func getRightBarButtonItem() -> UIBarButtonItem? {
-        let image = UIImage(named: "Settings-50.png")
-        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingsTapped))
+        let image = UIImage(named: "Settings.png")
+        let scaledIcon = UIImage(cgImage: image!.cgImage!, scale: 5, orientation: image!.imageOrientation)
+        let button = UIBarButtonItem(image: scaledIcon, style: .plain, target: self, action: #selector(settingsTapped))
+        return button
     }
 
     func rowSelected(row: IndexPath) {

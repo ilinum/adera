@@ -16,6 +16,14 @@ extension String {
     }
 }
 
+// From https://bencoding.com/2015/07/30/how-to-tint-an-uiimageview-image/
+extension UIImageView {
+    func tintImageColor(color : UIColor) {
+        self.image = self.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        self.tintColor = color
+    }
+}
+
 extension UIImageView {
     func loadFromCache(imageURL: String) {
         if let cachedImage = AppDelegate.cache.object(forKey: imageURL as AnyObject) as? UIImage {

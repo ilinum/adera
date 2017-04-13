@@ -38,8 +38,9 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
             // allow location sharing in private and proximity channels
             self.inputToolbar.contentView.leftBarButtonItem = nil
         } else {
-            let image = UIImage(named: "share-location-icon.png")
-            self.inputToolbar.contentView.leftBarButtonItem.setImage(image, for: .normal)
+            let image = UIImage(named: "Navigation.png")
+            let scaledIcon = UIImage(cgImage: image!.cgImage!, scale: 6, orientation: image!.imageOrientation)
+            self.inputToolbar.contentView.leftBarButtonItem.setImage(scaledIcon, for: .normal)
         }
 
         // Set sender info

@@ -23,18 +23,18 @@
 		D801E78F1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E78E1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift */; };
 		D801E7911E9DE9910015FBC2 /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E7901E9DE9910015FBC2 /* LoginViewController+handlers.swift */; };
 		D801E7931E9ED3BD0015FBC2 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E7921E9ED3BD0015FBC2 /* ProgressHUD.swift */; };
+		D801E7981E9F15140015FBC2 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = D801E7941E9F15140015FBC2 /* Add.png */; };
+		D801E7991E9F15140015FBC2 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D801E7951E9F15140015FBC2 /* Delete.png */; };
+		D801E79A1E9F15140015FBC2 /* Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = D801E7961E9F15140015FBC2 /* Navigation.png */; };
+		D801E79B1E9F15140015FBC2 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = D801E7971E9F15140015FBC2 /* Settings.png */; };
 		D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85071D71E836121004EF00A /* AccountDefaultSettings.swift */; };
 		D87CAC011E95E28C00A3912A /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CAC001E95E28C00A3912A /* extensions.swift */; };
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
 		D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */; };
 		FA00ECB11E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */; };
-		FA5842D11E89FE84001ADD68 /* Delete-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */; };
 		FA80B6EB1E89D45700529F87 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */; };
-		FA8982F61E9AEF9A00F3A746 /* share-location-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8982F51E9AEF9A00F3A746 /* share-location-icon@2x.png */; };
-		FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */; };
 		FAD46BE61E7DE5040035F403 /* ChannelTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */; };
 		FAD46BE91E7DED3C0035F403 /* ChannelTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */; };
-		FAD46BEE1E7E04600035F403 /* Settings-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD46BED1E7E04600035F403 /* Settings-50@2x.png */; };
 		FAD46BF01E7E06630035F403 /* MyChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BEF1E7E06630035F403 /* MyChannelsTableViewDelegate.swift */; };
 		FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD46BF11E7E10620035F403 /* GoogleService-Info.plist */; };
 		FAD46BF51E7E13F50035F403 /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */; };
@@ -87,6 +87,10 @@
 		D801E78E1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsTableViewController+handlers.swift"; sourceTree = "<group>"; };
 		D801E7901E9DE9910015FBC2 /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
 		D801E7921E9ED3BD0015FBC2 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		D801E7941E9F15140015FBC2 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
+		D801E7951E9F15140015FBC2 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.png; sourceTree = "<group>"; };
+		D801E7961E9F15140015FBC2 /* Navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navigation.png; sourceTree = "<group>"; };
+		D801E7971E9F15140015FBC2 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		D85071D71E836121004EF00A /* AccountDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDefaultSettings.swift; sourceTree = "<group>"; };
 		D87CAC001E95E28C00A3912A /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -94,13 +98,9 @@
 		ED35F477CA5B0DCFC94C9759 /* Pods-aderaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.release.xcconfig"; sourceTree = "<group>"; };
 		EE54A0644E257F1D10C2E132 /* Pods-aderaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aderaTests/Pods-aderaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA00ECB01E8B697400C909AF /* PrivateChannelInfoControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChannelInfoControllerViewController.swift; sourceTree = "<group>"; };
-		FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete-48@2x.png"; sourceTree = "<group>"; };
 		FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAvatar.png; sourceTree = "<group>"; };
-		FA8982F51E9AEF9A00F3A746 /* share-location-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share-location-icon@2x.png"; sourceTree = "<group>"; };
-		FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plus-50@2x.png"; sourceTree = "<group>"; };
 		FAD46BE51E7DE5040035F403 /* ChannelTopicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicTableViewController.swift; sourceTree = "<group>"; };
 		FAD46BE81E7DED3C0035F403 /* ChannelTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTopicCell.swift; sourceTree = "<group>"; };
-		FAD46BED1E7E04600035F403 /* Settings-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-50@2x.png"; sourceTree = "<group>"; };
 		FAD46BEF1E7E06630035F403 /* MyChannelsTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChannelsTableViewDelegate.swift; sourceTree = "<group>"; };
 		FAD46BF11E7E10620035F403 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAD46BF41E7E13F50035F403 /* CreateChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
@@ -216,11 +216,11 @@
 		FAD46BEC1E7E03670035F403 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				FA8982F51E9AEF9A00F3A746 /* share-location-icon@2x.png */,
-				FA5842D01E89FE84001ADD68 /* Delete-48@2x.png */,
+				D801E7941E9F15140015FBC2 /* Add.png */,
+				D801E7951E9F15140015FBC2 /* Delete.png */,
+				D801E7961E9F15140015FBC2 /* Navigation.png */,
+				D801E7971E9F15140015FBC2 /* Settings.png */,
 				FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */,
-				FAB5F6511E7EE33F00B1CB5C /* Plus-50@2x.png */,
-				FAD46BED1E7E04600035F403 /* Settings-50@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -434,15 +434,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAB5F6521E7EE33F00B1CB5C /* Plus-50@2x.png in Resources */,
-				FA5842D11E89FE84001ADD68 /* Delete-48@2x.png in Resources */,
-				FAD46BEE1E7E04600035F403 /* Settings-50@2x.png in Resources */,
-				FA8982F61E9AEF9A00F3A746 /* share-location-icon@2x.png in Resources */,
 				FA80B6EB1E89D45700529F87 /* DefaultAvatar.png in Resources */,
+				D801E79A1E9F15140015FBC2 /* Navigation.png in Resources */,
+				D801E79B1E9F15140015FBC2 /* Settings.png in Resources */,
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
 				FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */,
+				D801E7981E9F15140015FBC2 /* Add.png in Resources */,
 				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
 				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
+				D801E7991E9F15140015FBC2 /* Delete.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
