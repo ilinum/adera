@@ -492,7 +492,7 @@
                                         <rect key="frame" x="0.0" y="408" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EUI-uD-YwI" id="qyi-3Q-sdg">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Oo-kC-MYY">
@@ -745,26 +745,25 @@
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="70R-rJ-FBl">
-                                <rect key="frame" x="16" y="57" width="343" height="45.5"/>
-                                <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="39"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-vh-WE5">
+                                <rect key="frame" x="16" y="76" width="343" height="171"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="passwordButtonTapped:" destination="OsF-IX-mt1" eventType="touchUpInside" id="VgD-wF-YKK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nME-ul-FTv" firstAttribute="trailing" secondItem="2gN-pY-4Gp" secondAttribute="trailingMargin" id="4BB-K9-JEu"/>
                             <constraint firstItem="nME-ul-FTv" firstAttribute="top" secondItem="BIx-Z3-VkV" secondAttribute="bottom" constant="8" id="BCU-PG-fk6"/>
-                            <constraint firstItem="70R-rJ-FBl" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" id="DwG-mF-Ud7"/>
                             <constraint firstItem="nME-ul-FTv" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" id="LJB-Pv-7d0"/>
-                            <constraint firstItem="70R-rJ-FBl" firstAttribute="top" secondItem="nME-ul-FTv" secondAttribute="bottom" constant="8" id="Mtd-86-09t"/>
-                            <constraint firstItem="70R-rJ-FBl" firstAttribute="top" secondItem="nME-ul-FTv" secondAttribute="bottom" constant="8" id="dWn-yB-ae9"/>
-                            <constraint firstItem="70R-rJ-FBl" firstAttribute="trailing" secondItem="2gN-pY-4Gp" secondAttribute="trailingMargin" id="ila-cU-qKD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="passwordLabel" destination="70R-rJ-FBl" id="IND-RW-T6E"/>
+                        <outlet property="passwordButton" destination="lXT-vh-WE5" id="xhl-Oa-yrW"/>
                         <outlet property="privateChannelLabel" destination="nME-ul-FTv" id="yvd-tW-d6O"/>
                     </connections>
                 </viewController>
