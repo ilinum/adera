@@ -15,6 +15,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var passwordCell: UITableViewCell!
     @IBOutlet weak var usernameCell: UITableViewCell!
     @IBOutlet weak var fontSizeSlider: UISlider!
+    @IBOutlet weak var highlightColorSlider: UISlider!
     @IBOutlet weak var colorSchemeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var channelSortingMethodSegmentedControl: UISegmentedControl!
     @IBOutlet weak var topicSortingMethodSegmentedControl: UISegmentedControl!
@@ -190,6 +191,7 @@ class SettingsTableViewController: UITableViewController {
             let value = snapshot.value as? NSDictionary
             let displayName = value?["displayName"] as? String
             let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings.fontSize
+            let highlightColorIndex = value?["highlightColorIndex"] as? Int ?? AccountDefaultSettings.fontSize
             
             let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings.colorScheme
             let colorSchemeIndex = colorScheme == "light" ? 0 : 1
@@ -200,6 +202,7 @@ class SettingsTableViewController: UITableViewController {
             
             self.usernameCell.detailTextLabel?.text = displayName
             self.fontSizeSlider.value = Float(fontSize)
+            self.highlightColorSlider.value = Float(highlightColorIndex)
             self.colorSchemeSegmentedControl.selectedSegmentIndex = colorSchemeIndex
             self.channelSortingMethodSegmentedControl.selectedSegmentIndex = channelSortingMethodIndex
             self.topicSortingMethodSegmentedControl.selectedSegmentIndex = topicSortingMethodIndex
@@ -238,33 +241,45 @@ class SettingsTableViewController: UITableViewController {
                                         object: nil)
     }
     
+    @IBAction func doneChangingFontSize(_ sender: Any) {
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func highlightColorValueChanged(_ sender: Any) {
+        let colorIndex = Int(self.highlightColorSlider.value)
+        let color = AccountDefaultSettings.colors[colorIndex]
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("highlightColorIndex").setValue(colorIndex)
+        UIApplication.shared.delegate?.window??.tintColor = color
+        let settingsVC = parent as! SettingsViewController
+        settingsVC.signOutButton.setTitleColor(UIApplication.shared.delegate?.window??.tintColor, for: UIControlState.normal)
+    }
+    
+    @IBAction func doneChangingHighlightColor(_ sender: Any) {
+        self.tableView.reloadData()
+    }
+    
     @IBAction func colorSchemeChanged(_ sender: Any) {
         let colorScheme = self.colorSchemeSegmentedControl.selectedSegmentIndex == 0 ? "light" : "dark"
         AppDelegate.usersRef.child(self.userID!).child("settings").child("colorScheme").setValue(colorScheme)
         
         var textColor:UIColor?
-        var tintColor:UIColor?
         var backgroundColor:UIColor?
         
         if colorScheme == "light" {
             textColor = AccountDefaultSettings.lightTextColor
-            tintColor = AccountDefaultSettings.lightTintColor
             backgroundColor = AccountDefaultSettings.lightBackgroundColor
         } else if colorScheme == "dark" {
             textColor = AccountDefaultSettings.darkTextColor
-            tintColor = AccountDefaultSettings.darkTintColor
             backgroundColor = AccountDefaultSettings.darkBackgroundColor
         }
         
         UILabel.appearance().textColor = textColor!
-        UIApplication.shared.delegate?.window??.tintColor = tintColor!
         parent?.navigationController?.navigationBar.barTintColor = backgroundColor!
         UITableView.appearance().backgroundColor = backgroundColor!
         UITableViewCell.appearance().backgroundColor = backgroundColor!
         let settingsVC = parent as! SettingsViewController
         settingsVC.view.backgroundColor = backgroundColor!
         settingsVC.signOutButton.backgroundColor = backgroundColor!
-        settingsVC.signOutButton.setTitleColor(UIApplication.shared.delegate?.window??.tintColor, for: UIControlState.normal)
         tableView.tableHeaderView?.backgroundColor = backgroundColor!
         
         self.tableView.reloadData()

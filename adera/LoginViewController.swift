@@ -148,24 +148,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser!.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings.fontSize
+            let highlightColorIndex = value?["highlightColorIndex"] as? Int ?? AccountDefaultSettings.highlightColorIndex
             let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings.colorScheme
             
+            let tintColor = AccountDefaultSettings.colors[highlightColorIndex]
             var textColor:UIColor?
-            var tintColor:UIColor?
             var backgroundColor:UIColor?
             
             if colorScheme == "light" {
                 textColor = AccountDefaultSettings.lightTextColor
-                tintColor = AccountDefaultSettings.lightTintColor
                 backgroundColor = AccountDefaultSettings.lightBackgroundColor
             } else if colorScheme == "dark" {
                 textColor = AccountDefaultSettings.darkTextColor
-                tintColor = AccountDefaultSettings.darkTintColor
                 backgroundColor = AccountDefaultSettings.darkBackgroundColor
             }
             
             UILabel.appearance().textColor = textColor!
-            UIApplication.shared.delegate?.window??.tintColor = tintColor!
+            UIApplication.shared.delegate?.window??.tintColor = tintColor
             self.navigationController?.navigationBar.barTintColor = backgroundColor!
             UITableView.appearance().backgroundColor = backgroundColor!
             UITableViewCell.appearance().backgroundColor = backgroundColor!
