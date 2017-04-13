@@ -43,7 +43,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         let channel = channels[index.item]
         if userChannelIds.contains(channel.id()) {
             let imageView = UIImageView(image: UIImage(named: "Delete.png"))
-            imageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            imageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
             imageView.tintImageColor(color: UIColor.red)
             cell.accessoryView = imageView
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(leaveChannel(tapGestureRecognizer:)))
@@ -52,7 +52,7 @@ class BrowsePublicChannelsTableViewDelegate : ChannelTopicTableViewControllerDel
         } else {
             let color = UIApplication.shared.delegate?.window??.tintColor ?? AccountDefaultSettings.aqua
             let imageView = UIImageView(image: UIImage(named: "Add.png"))
-            imageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            imageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
             imageView.tintImageColor(color: color)
             cell.accessoryView = imageView
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(joinChannel(tapGestureRecognizer:)))

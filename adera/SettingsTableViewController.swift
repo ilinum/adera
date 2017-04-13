@@ -37,6 +37,7 @@ class SettingsTableViewController: UITableViewController {
         self.userPhotoImageView.isUserInteractionEnabled = true
         self.colorSchemeSegmentedControl.apportionsSegmentWidthsByContent = true
         self.channelSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
+        self.topicSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         
         updateDetailsViews()
     }
@@ -171,7 +172,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as! UITableViewHeaderFooterView
-        headerView.backgroundView?.backgroundColor = UIColor.clear
+        headerView.backgroundView?.backgroundColor = UITableView.appearance().backgroundColor
         headerView.textLabel?.textColor = self.view.tintColor
         headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
     }
@@ -210,8 +211,6 @@ class SettingsTableViewController: UITableViewController {
             let email = FIRAuth.auth()?.currentUser?.email
             self.emailCell.detailTextLabel?.text = email
             self.passwordCell.detailTextLabel?.text = "******"
-            self.colorSchemeSegmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 16)], for: .normal)
-            self.channelSortingMethodSegmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 16)], for: .normal)
             
             if let userPhotoURL = value?["userPhotoURL"] as? String {
                 self.userPhotoImageView.loadFromCache(imageURL: userPhotoURL)
