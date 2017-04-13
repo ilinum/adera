@@ -93,7 +93,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     settingsRef.child("displayName").setValue(username)
                     settingsRef.child("fontSize").setValue(AccountDefaultSettings.fontSize)
                     settingsRef.child("colorScheme").setValue(AccountDefaultSettings.colorScheme)
-                    settingsRef.child("sortingMethod").setValue(AccountDefaultSettings.sortingMethod)
+                    settingsRef.child("channelSortingMethod").setValue(AccountDefaultSettings.channelSortingMethod)
+                    settingsRef.child("topicSortingMethod").setValue(AccountDefaultSettings.topicSortingMethod)
                     
                     let storageRef = FIRStorage.storage().reference().child("user_photos").child(user!.uid).child("avatar.png")
                     

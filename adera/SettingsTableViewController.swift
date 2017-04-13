@@ -16,7 +16,8 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var usernameCell: UITableViewCell!
     @IBOutlet weak var fontSizeSlider: UISlider!
     @IBOutlet weak var colorSchemeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var sortingMethodSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var channelSortingMethodSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var topicSortingMethodSegmentedControl: UISegmentedControl!
     @IBOutlet weak var fontSizeLabel: UILabel!
     @IBOutlet weak var userPhotoImageView: UIImageView!
     
@@ -34,7 +35,7 @@ class SettingsTableViewController: UITableViewController {
         self.userPhotoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapUserPhoto)))
         self.userPhotoImageView.isUserInteractionEnabled = true
         self.colorSchemeSegmentedControl.apportionsSegmentWidthsByContent = true
-        self.sortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
+        self.channelSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         
         updateDetailsViews()
     }
@@ -192,19 +193,22 @@ class SettingsTableViewController: UITableViewController {
             
             let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings.colorScheme
             let colorSchemeIndex = colorScheme == "light" ? 0 : 1
-            let sortingMethod = value?["sortingMethod"] as? String ?? AccountDefaultSettings.sortingMethod
-            let sortingMethodIndex = sortingMethod == "date" ? 0 : 1
+            let channelSortingMethod = value?["channelSortingMethod"] as? String ?? AccountDefaultSettings.channelSortingMethod
+            let channelSortingMethodIndex = channelSortingMethod == "date" ? 0 : 1
+            let topicSortingMethod = value?["topicSortingMethod"] as? String ?? AccountDefaultSettings.topicSortingMethod
+            let topicSortingMethodIndex = topicSortingMethod == "date" ? 0 : 1
             
             self.usernameCell.detailTextLabel?.text = displayName
             self.fontSizeSlider.value = Float(fontSize)
             self.colorSchemeSegmentedControl.selectedSegmentIndex = colorSchemeIndex
-            self.sortingMethodSegmentedControl.selectedSegmentIndex = sortingMethodIndex
+            self.channelSortingMethodSegmentedControl.selectedSegmentIndex = channelSortingMethodIndex
+            self.topicSortingMethodSegmentedControl.selectedSegmentIndex = topicSortingMethodIndex
             
             let email = FIRAuth.auth()?.currentUser?.email
             self.emailCell.detailTextLabel?.text = email
             self.passwordCell.detailTextLabel?.text = "******"
             self.colorSchemeSegmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 16)], for: .normal)
-            self.sortingMethodSegmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 16)], for: .normal)
+            self.channelSortingMethodSegmentedControl.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 16)], for: .normal)
             
             if let userPhotoURL = value?["userPhotoURL"] as? String {
                 self.userPhotoImageView.loadFromCache(imageURL: userPhotoURL)
@@ -266,8 +270,13 @@ class SettingsTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    @IBAction func sortingMethodChanged(_ sender: Any) {
-        let sortingMethod = self.sortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
-        AppDelegate.usersRef.child(self.userID!).child("settings").child("sortingMethod").setValue(sortingMethod)
+    @IBAction func channelSortingMethodChanged(_ sender: Any) {
+        let channelSortingMethod = self.channelSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("channelSortingMethod").setValue(channelSortingMethod)
+    }
+    
+    @IBAction func topicSortingMethodChanged(_ sender: Any) {
+        let topicSortingMethod = self.topicSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("topicSortingMethod").setValue(topicSortingMethod)
     }
 }

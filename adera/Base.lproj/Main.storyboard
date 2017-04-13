@@ -196,7 +196,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="3rv-BS-bQl">
-                            <rect key="frame" x="0.0" y="364" width="383" height="44"/>
+                            <rect key="frame" x="0.0" y="408" width="383" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -292,8 +292,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Sorting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leq-jR-XOJ">
-                                                    <rect key="frame" x="16" y="13" width="56" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Channel Sorting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leq-jR-XOJ">
+                                                    <rect key="frame" x="16" y="13" width="123" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -311,7 +311,7 @@
                                                                         <segment title="Popularity"/>
                                                                     </segments>
                                                                     <connections>
-                                                                        <action selector="sortingMethodChanged:" destination="qeK-7R-gSO" eventType="valueChanged" id="6WM-Sz-37h"/>
+                                                                        <action selector="channelSortingMethodChanged:" destination="qeK-7R-gSO" eventType="valueChanged" id="V0q-T7-bvc"/>
                                                                     </connections>
                                                                 </segmentedControl>
                                                             </subviews>
@@ -328,12 +328,55 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Itm-y8-OUN">
+                                        <rect key="frame" x="0.0" y="160" width="383" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Itm-y8-OUN" id="z9f-p0-rGq">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Topic Sorting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6l-g7-wwP">
+                                                    <rect key="frame" x="16" y="13" width="102" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mVY-dK-HSa">
+                                                    <rect key="frame" x="244" y="7" width="121" height="28"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2cJ-Y8-ygL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="121" height="28"/>
+                                                            <subviews>
+                                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zcN-xT-tNH">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="29"/>
+                                                                    <segments>
+                                                                        <segment title="Date"/>
+                                                                        <segment title="Popularity"/>
+                                                                    </segments>
+                                                                    <connections>
+                                                                        <action selector="topicSortingMethodChanged:" destination="qeK-7R-gSO" eventType="valueChanged" id="4LC-uO-kz5"/>
+                                                                    </connections>
+                                                                </segmentedControl>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="R6l-g7-wwP" firstAttribute="leading" secondItem="z9f-p0-rGq" secondAttribute="leadingMargin" constant="8" id="8uE-Uu-9dI"/>
+                                                <constraint firstItem="R6l-g7-wwP" firstAttribute="top" secondItem="z9f-p0-rGq" secondAttribute="topMargin" constant="5" id="D0l-FC-Wf9"/>
+                                                <constraint firstItem="mVY-dK-HSa" firstAttribute="centerY" secondItem="z9f-p0-rGq" secondAttribute="centerY" id="Dat-5e-jgP"/>
+                                                <constraint firstItem="mVY-dK-HSa" firstAttribute="leading" secondItem="z9f-p0-rGq" secondAttribute="leading" constant="244" id="GUb-f7-c9C"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="mVY-dK-HSa" secondAttribute="trailing" constant="10" id="kcb-ad-NIc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Edit Profile" id="o0A-N8-ic1">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="l3y-xb-28J" detailTextLabel="GBH-pK-tUK" style="IBUITableViewCellStyleValue1" id="PY2-Wt-MmR">
-                                        <rect key="frame" x="0.0" y="188" width="383" height="44"/>
+                                        <rect key="frame" x="0.0" y="232" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PY2-Wt-MmR" id="7Xl-uB-r3s">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
@@ -357,7 +400,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Seh-AN-cIP" detailTextLabel="yMH-re-T3c" style="IBUITableViewCellStyleValue1" id="THV-jg-hzj">
-                                        <rect key="frame" x="0.0" y="232" width="383" height="44"/>
+                                        <rect key="frame" x="0.0" y="276" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="THV-jg-hzj" id="gKs-Bl-0hO">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
@@ -381,7 +424,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ewh-zf-eUr" detailTextLabel="oui-4O-Fji" style="IBUITableViewCellStyleValue1" id="fCJ-Qo-dJi">
-                                        <rect key="frame" x="0.0" y="276" width="383" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fCJ-Qo-dJi" id="MK9-rR-Csl">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
@@ -405,7 +448,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="EUI-uD-YwI">
-                                        <rect key="frame" x="0.0" y="320" width="383" height="44"/>
+                                        <rect key="frame" x="0.0" y="364" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EUI-uD-YwI" id="qyi-3Q-sdg">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
@@ -451,12 +494,13 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="channelSortingMethodSegmentedControl" destination="XO4-4K-u2G" id="LaD-W9-27S"/>
                         <outlet property="colorSchemeSegmentedControl" destination="wu4-fM-WsH" id="1dj-if-7EO"/>
                         <outlet property="emailCell" destination="PY2-Wt-MmR" id="Ead-5d-Za2"/>
                         <outlet property="fontSizeLabel" destination="UWf-SW-NJy" id="Hz0-dL-t0x"/>
                         <outlet property="fontSizeSlider" destination="6Ib-XH-h62" id="MI9-RH-DbR"/>
                         <outlet property="passwordCell" destination="THV-jg-hzj" id="0bL-La-sjk"/>
-                        <outlet property="sortingMethodSegmentedControl" destination="XO4-4K-u2G" id="PeQ-22-dCG"/>
+                        <outlet property="topicSortingMethodSegmentedControl" destination="zcN-xT-tNH" id="csC-0z-7Yg"/>
                         <outlet property="userPhotoImageView" destination="hGU-Ht-6ah" id="qbI-Kb-eER"/>
                         <outlet property="usernameCell" destination="fCJ-Qo-dJi" id="uw0-Hi-l8c"/>
                     </connections>
