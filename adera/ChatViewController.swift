@@ -178,7 +178,9 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
                                  messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
         // Sets the color of all message bubbles
-        if message.senderId == senderId {
+        if message.text.containsOnlyEmoji {
+            return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.clear)
+        } else if message.senderId == senderId {
             let color = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.jsq_messageBubbleBlue()
             return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: color)
         } else {
