@@ -58,7 +58,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
         self.inputToolbar.contentView.rightBarButtonItem.setImage(scaledSendImage, for: .normal)
         self.inputToolbar.contentView.rightBarButtonItemWidth = CGFloat(21)
 
-        self.numMessagesToDisplay = 5
+        self.numMessagesToDisplay = 25
         
         // Set sender info
         let currentUser = FIRAuth.auth()?.currentUser
@@ -189,7 +189,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
         messageRef?.observeSingleEvent(of: .value, with: {(snapshot: FIRDataSnapshot) in
             let numMessages = snapshot.childrenCount
             if Int(numMessages) > self.numMessagesToDisplay! {
-                self.numMessagesToDisplay = self.numMessagesToDisplay! + 5
+                self.numMessagesToDisplay = self.numMessagesToDisplay! + 25
                 self.automaticallyScrollsToMostRecentMessage = false
                 self.removeObservers()
                 self.messages.removeAll(keepingCapacity: false)
