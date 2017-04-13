@@ -121,6 +121,11 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
             ]
             let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
             let mapItem = MKMapItem(placemark: placemark)
+            if let username = message.senderName {
+                mapItem.name = "\(username)'s Location"
+            } else {
+                mapItem.name = "User Location"
+            }
             mapItem.openInMaps(launchOptions: options)
         }
     }
