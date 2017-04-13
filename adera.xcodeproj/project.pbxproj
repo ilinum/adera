@@ -20,15 +20,16 @@
 		BCED47FC37B7AA167F7EE886 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED46A62981D27F365CFC3E /* Channel.swift */; };
 		BCED48F9C493BA8DAE79F04E /* TopicTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */; };
 		BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCED45F5BFF4A599C8AC2F87 /* BrowsePublicChannelsTableViewDelegate.swift */; };
+		D80042D51EA022100083B2A2 /* Attach.png in Resources */ = {isa = PBXBuildFile; fileRef = D80042D41EA022100083B2A2 /* Attach.png */; };
 		D801E78F1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E78E1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift */; };
 		D801E7911E9DE9910015FBC2 /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E7901E9DE9910015FBC2 /* LoginViewController+handlers.swift */; };
 		D801E7931E9ED3BD0015FBC2 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E7921E9ED3BD0015FBC2 /* ProgressHUD.swift */; };
 		D801E7981E9F15140015FBC2 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = D801E7941E9F15140015FBC2 /* Add.png */; };
 		D801E7991E9F15140015FBC2 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D801E7951E9F15140015FBC2 /* Delete.png */; };
-		D801E79A1E9F15140015FBC2 /* Navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = D801E7961E9F15140015FBC2 /* Navigation.png */; };
 		D801E79B1E9F15140015FBC2 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = D801E7971E9F15140015FBC2 /* Settings.png */; };
 		D85071D81E836121004EF00A /* AccountDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85071D71E836121004EF00A /* AccountDefaultSettings.swift */; };
 		D86CB4B21E9FE30800370408 /* Send.png in Resources */ = {isa = PBXBuildFile; fileRef = D86CB4B11E9FE30800370408 /* Send.png */; };
+		D86CB4B41EA009A600370408 /* ChatViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86CB4B31EA009A600370408 /* ChatViewController+handlers.swift */; };
 		D87CAC011E95E28C00A3912A /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87CAC001E95E28C00A3912A /* extensions.swift */; };
 		D8AA22011E82F99D00F0D140 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */; };
 		D8E4C7791E8342AB00FDB95C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */; };
@@ -85,15 +86,16 @@
 		BCED4B1ED35744FE66B5B0C5 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		CD7250D8D0ED9C375F479363 /* Pods-aderaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aderaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-aderaUITests/Pods-aderaUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D78F5637A6591278DE1BFE1D /* Pods_aderaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aderaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D80042D41EA022100083B2A2 /* Attach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attach.png; sourceTree = "<group>"; };
 		D801E78E1E9DB0E60015FBC2 /* SettingsTableViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SettingsTableViewController+handlers.swift"; sourceTree = "<group>"; };
 		D801E7901E9DE9910015FBC2 /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
 		D801E7921E9ED3BD0015FBC2 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		D801E7941E9F15140015FBC2 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
 		D801E7951E9F15140015FBC2 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.png; sourceTree = "<group>"; };
-		D801E7961E9F15140015FBC2 /* Navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navigation.png; sourceTree = "<group>"; };
 		D801E7971E9F15140015FBC2 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		D85071D71E836121004EF00A /* AccountDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDefaultSettings.swift; sourceTree = "<group>"; };
 		D86CB4B11E9FE30800370408 /* Send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Send.png; sourceTree = "<group>"; };
+		D86CB4B31EA009A600370408 /* ChatViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatViewController+handlers.swift"; sourceTree = "<group>"; };
 		D87CAC001E95E28C00A3912A /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		D8AA22001E82F99D00F0D140 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D8E4C7781E8342AB00FDB95C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				BCED4B1ED35744FE66B5B0C5 /* Topic.swift */,
 				BCED4772B1F94BF00C1D112E /* TopicTableViewDelegate.swift */,
 				220E46CE1E8383C500BC7A26 /* ChatViewController.swift */,
+				D86CB4B31EA009A600370408 /* ChatViewController+handlers.swift */,
 			);
 			name = Topic;
 			sourceTree = "<group>";
@@ -218,9 +221,9 @@
 		FAD46BEC1E7E03670035F403 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D80042D41EA022100083B2A2 /* Attach.png */,
 				D801E7941E9F15140015FBC2 /* Add.png */,
 				D801E7951E9F15140015FBC2 /* Delete.png */,
-				D801E7961E9F15140015FBC2 /* Navigation.png */,
 				D86CB4B11E9FE30800370408 /* Send.png */,
 				D801E7971E9F15140015FBC2 /* Settings.png */,
 				FA80B6EA1E89D45700529F87 /* DefaultAvatar.png */,
@@ -438,12 +441,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA80B6EB1E89D45700529F87 /* DefaultAvatar.png in Resources */,
-				D801E79A1E9F15140015FBC2 /* Navigation.png in Resources */,
 				D801E79B1E9F15140015FBC2 /* Settings.png in Resources */,
 				FADEE41A1E731A7900189953 /* LaunchScreen.storyboard in Resources */,
 				FAD46BF21E7E10620035F403 /* GoogleService-Info.plist in Resources */,
 				D801E7981E9F15140015FBC2 /* Add.png in Resources */,
 				FADEE4171E731A7900189953 /* Assets.xcassets in Resources */,
+				D80042D51EA022100083B2A2 /* Attach.png in Resources */,
 				D86CB4B21E9FE30800370408 /* Send.png in Resources */,
 				FADEE4121E731A7900189953 /* Main.storyboard in Resources */,
 				D801E7991E9F15140015FBC2 /* Delete.png in Resources */,
@@ -630,6 +633,7 @@
 				22D53C501E84AB29001E63BE /* Message.swift in Sources */,
 				BCED4FF41125F7CDDC5B6CB4 /* BrowsePublicChannelsTableViewDelegate.swift in Sources */,
 				D801E7911E9DE9910015FBC2 /* LoginViewController+handlers.swift in Sources */,
+				D86CB4B41EA009A600370408 /* ChatViewController+handlers.swift in Sources */,
 				BCED48F9C493BA8DAE79F04E /* TopicTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,12 +12,15 @@ class Message : JSQMessage {
     var messageText: String?
     var senderName: String?
     var location: JSQLocationMediaItem?
+    var photoURL: String?
+    var mediaItem: JSQPhotoMediaItem?
 
     init(senderId: String, senderName: String, text: String, date: Date) {
         self.senderName = senderName
         self.senderID = senderId
         self.messageText = text
         self.location = nil
+        self.photoURL = nil
         super.init(senderId: senderID, senderDisplayName: senderName, date: date, text: text)
     }
 
@@ -26,7 +29,27 @@ class Message : JSQMessage {
         self.senderName = senderName
         self.location = location
         self.messageText = nil
+        self.photoURL = nil
         super.init(senderId: senderId, senderDisplayName: senderName, date: date, media: location)
+    }
+    
+    init(senderId: String, senderName: String, photoURL: String, date: Date) {
+        self.senderID = senderId
+        self.senderName = senderName
+        self.location = nil
+        self.messageText = nil
+        self.photoURL = photoURL
+        super.init(senderId: senderId, senderDisplayName: senderName, date: date, text: photoURL)
+    }
+    
+    init(senderId: String, senderName: String, mediaItem: JSQPhotoMediaItem, date: Date) {
+        self.senderID = senderId
+        self.senderName = senderName
+        self.location = nil
+        self.messageText = nil
+        self.photoURL = nil
+        self.mediaItem = mediaItem
+        super.init(senderId: senderId, senderDisplayName: senderName, date: date, media: mediaItem)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,6 +64,9 @@ class Message : JSQMessage {
         if location != nil {
             let coordinate = location!.location.coordinate
             dict["location"] = ["latitude": coordinate.latitude, "longitude": coordinate.longitude]
+        }
+        if photoURL != nil {
+            dict["photoURL"] = photoURL!
         }
         return dict
     }
