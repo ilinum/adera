@@ -38,7 +38,6 @@ class SettingsTableViewController: UITableViewController {
         self.colorSchemeSegmentedControl.apportionsSegmentWidthsByContent = true
         self.channelSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         self.topicSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
-        
         updateDetailsViews()
     }
     
@@ -277,8 +276,9 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func channelSortingMethodChanged(_ sender: Any) {
         let channelSortingMethod = self.channelSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
         AppDelegate.usersRef.child(self.userID!).child("settings").child("channelSortingMethod").setValue(channelSortingMethod)
+        self.tableView.reloadData()
     }
-    
+
     @IBAction func topicSortingMethodChanged(_ sender: Any) {
         let topicSortingMethod = self.topicSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
         AppDelegate.usersRef.child(self.userID!).child("settings").child("topicSortingMethod").setValue(topicSortingMethod)
