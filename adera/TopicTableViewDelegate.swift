@@ -55,7 +55,14 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
             if textField.text?.characters.count ?? 0 > 0 {
                 let channelRef = AppDelegate.channelsRefForType(type: self.channel.channelType).child(self.channel.id())
                 let topicName = AppDelegate.sanitizeStringForFirebase(textField.text)!
-                let topic = Topic(creatorUID: self.user.uid, name: topicName)
+                // Convert date to string
+                let date = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd MMM yyyy hh:mm:ss zzzz"
+                let dateString = dateFormatter.string(from: date)
+                print(dateString)
+                // Create topic
+                let topic = Topic(creatorUID: self.user.uid, name: topicName, creationDate: dateString)
                 // Set TopicRef in Firebase
                 channelRef.child("topics").child(topicName.lowercased()).setValue(topic.toDictionary())
                 self.channel.topics.append(topic)

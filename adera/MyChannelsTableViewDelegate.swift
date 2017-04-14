@@ -14,12 +14,14 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     private let tableViewController: UITableViewController!
     private var publicChannels: [Channel]
     private var privateChannels: [Channel]
+    private var sortedChannels: [Channel]
     let user: FIRUser = FIRAuth.auth()!.currentUser!
 
     init(tableViewController: UITableViewController) {
         self.tableViewController = tableViewController
         publicChannels = []
         privateChannels = []
+        sortedChannels = []
         loadChannels(type: ChannelType.publicType)
         loadChannels(type: ChannelType.privateType)
     }

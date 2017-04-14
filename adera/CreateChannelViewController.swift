@@ -78,7 +78,14 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         if channelType == ChannelType.privateType {
             password = randomAlphaNumericString(length: 6)
         }
-        let channel = Channel(presentableName: channelNameText!, description: description, creatorUID: user.uid, password: password)
+        // Convert date to string
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy hh:mm:ss zzzz"
+        let dateString = dateFormatter.string(from: date)
+        print(dateString)
+        // Create channel
+        let channel = Channel(presentableName: channelNameText!, description: description, creatorUID: user.uid, password: password, creationDate: dateString)
         let channelLocationRef: FIRDatabaseReference
         let channelTypeStr: String = channelTypeToString(type: channelType)
         if channelType == ChannelType.publicType {
