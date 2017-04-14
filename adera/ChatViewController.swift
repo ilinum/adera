@@ -211,7 +211,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
             }
             sheet.addAction(locationAction)
         }
-        let photoAction = UIAlertAction(title: "Send Photos", style: .default) { (action) in
+        let photoAction = UIAlertAction(title: "Send Photo", style: .default) { (action) in
             self.sendPhoto()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -268,7 +268,6 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     func sendMessage(message: Message) {
         let itemRef = messageRef?.childByAutoId()
         itemRef?.setValue(message.toDictionary())
-        // this will remove the text from the text field
         self.automaticallyScrollsToMostRecentMessage = true
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
@@ -277,6 +276,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     func sendPhotoMessage(message: Message) -> String? {
         let itemRef = messageRef?.childByAutoId()
         itemRef?.setValue(message.toDictionary())
+        self.automaticallyScrollsToMostRecentMessage = true
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
         return itemRef?.key
@@ -295,6 +295,15 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     }
     
     private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
+        if let cachedImage = AppDelegate.cache.object(forKey: photoURL as AnyObject) as? UIImage {
+            mediaItem.image = cachedImage
+            self.collectionView.reloadData()
+            guard key != nil else {
+                return
+            }
+            self.photoMessageMap.removeValue(forKey: key!)
+            return
+        }
         let storageRef = FIRStorage.storage().reference(forURL: photoURL)
         storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
             if let error = error {
@@ -307,6 +316,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
                     return
                 }
                 mediaItem.image = UIImage.init(data: data!)
+                AppDelegate.cache.setObject(mediaItem.image, forKey: photoURL as AnyObject)
                 self.collectionView.reloadData()
                 guard key != nil else {
                     return
@@ -377,7 +387,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
                     let photoURL = snapshot.childSnapshot(forPath: "photoURL").value as! String!
                     if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: senderID == self.senderId) {
                         message = Message(senderId: senderID!, senderName: senderName, mediaItem: mediaItem, date: date)
-                        if (photoURL?.hasPrefix("gs://"))! {
+                        if photoURL!.hasPrefix("gs://") {
                             self.fetchImageDataAtURL(photoURL!, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
                         }
                         if (mediaItem.image == nil) {
@@ -395,7 +405,9 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
             if snapshot.hasChild("photoURL") {
                 let photoURL = snapshot.childSnapshot(forPath: "photoURL").value as! String!
                 if let mediaItem = self.photoMessageMap[key] {
-                    self.fetchImageDataAtURL(photoURL!, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
+                    if photoURL!.hasPrefix("gs://") {
+                        self.fetchImageDataAtURL(photoURL!, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key)
+                    }
                 }
             }
         })
