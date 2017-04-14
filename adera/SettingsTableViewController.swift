@@ -53,49 +53,40 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // App Settings
-        if indexPath.section == 0 {
-            // Text Size
-            if  indexPath.row == 0 {
-                // DO NOTHING HERE. This is a slider so selection means nothing.
-            }
-        }
         // Edit Profile
-        else if indexPath.section == 1 {
+        if indexPath.section == 1 {
             // Email
             if  indexPath.row == 0 {
                 let alertController = UIAlertController(title: "Change Email Address", message: nil, preferredStyle: .alert)
-                let updateEmailAction = UIAlertAction(title: "Update Email Address",
-                                                         style: .destructive) { action in
-                                                            let textField = alertController.textFields![0]
-                                                            if textField.text?.characters.count ?? 0 > 0 {
-                                                                FIRAuth.auth()?.currentUser?.updateEmail(textField.text!) { (error) in
-                                                                    // Displays Error or Success Message from FireBase
-                                                                    let title: String? = error != nil ? "Error" : "Success"
-                                                                    let message: String? = error != nil ? error?.localizedDescription : "Successfully Changed Email"
-                                                                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                                                                    if error != nil {
-                                                                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                                                                        alertController.addAction(cancelAction)
-                                                                        
-                                                                        // Handle Specific Error Codes
-                                                                        if let errorCode = FIRAuthErrorCode(rawValue: error!._code) {
-                                                                            if errorCode == FIRAuthErrorCode.errorCodeRequiresRecentLogin {
-                                                                                alertController.title = "Reauthentication Required"
-                                                                                let loginAction = UIAlertAction(title: "Re-Login", style: .destructive, handler: self.signOutAction)
-                                                                                alertController.addAction(loginAction)
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    // Successful Update
-                                                                    else {
-                                                                        self.updateDetailsViews()
-                                                                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                                                                        alertController.addAction(defaultAction)
-                                                                    }
-                                                                    self.present(alertController, animated: true, completion: nil)
-                                                                }
-                                                            }
+                let updateEmailAction = UIAlertAction(title: "Update Email Address", style: .destructive) { action in
+                    let textField = alertController.textFields![0]
+                    if textField.text?.characters.count ?? 0 > 0 {
+                        FIRAuth.auth()?.currentUser?.updateEmail(textField.text!) { (error) in
+                            // Displays Error or Success Message from FireBase
+                            let title: String? = error != nil ? "Error" : "Success"
+                            let message: String? = error != nil ? error?.localizedDescription : "Successfully Changed Email"
+                            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                            if error != nil {
+                                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                                alertController.addAction(cancelAction)
+                                // Handle Specific Error Codes
+                                if let errorCode = FIRAuthErrorCode(rawValue: error!._code) {
+                                    if errorCode == FIRAuthErrorCode.errorCodeRequiresRecentLogin {
+                                        alertController.title = "Reauthentication Required"
+                                        let loginAction = UIAlertAction(title: "Re-Login", style: .destructive, handler: self.signOutAction)
+                                        alertController.addAction(loginAction)
+                                    }
+                                }
+                            }
+                            // Successful Update
+                            else {
+                                self.updateDetailsViews()
+                                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                                alertController.addAction(defaultAction)
+                            }
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    }
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .default)
@@ -107,28 +98,27 @@ class SettingsTableViewController: UITableViewController {
             // Password
             else if  indexPath.row == 1 {
                 let alertController = UIAlertController(title: "Change Password", message: nil, preferredStyle: .alert)
-                let updatePasswordAction = UIAlertAction(title: "Update Password",
-                                               style: .destructive) { action in
-                                                let textField = alertController.textFields![0]
-                                                if textField.text?.characters.count ?? 0 > 0 {
-                                                    FIRAuth.auth()?.currentUser?.updatePassword(textField.text!) { (error) in
-                                                        // Displays Error or Success Message from FireBase
-                                                        let title: String? = error != nil ? "Reauthentication Required" : "Success"
-                                                        let message: String? = error != nil ? error?.localizedDescription : "Successfully Changed Password"
-                                                        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                                                        if error != nil {
-                                                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                                                            alertController.addAction(cancelAction)
-                                                            let loginAction = UIAlertAction(title: "Re-Login", style: .destructive, handler: self.signOutAction)
-                                                            alertController.addAction(loginAction)
-                                                        }
-                                                        else {
-                                                            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                                                            alertController.addAction(defaultAction)
-                                                        }
-                                                        self.present(alertController, animated: true, completion: nil)
-                                                    }
-                                                }
+                let updatePasswordAction = UIAlertAction(title: "Update Password", style: .destructive) { action in
+                    let textField = alertController.textFields![0]
+                    if textField.text?.characters.count ?? 0 > 0 {
+                        FIRAuth.auth()?.currentUser?.updatePassword(textField.text!) { (error) in
+                            // Displays Error or Success Message from FireBase
+                            let title: String? = error != nil ? "Reauthentication Required" : "Success"
+                            let message: String? = error != nil ? error?.localizedDescription : "Successfully Changed Password"
+                            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                            if error != nil {
+                                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                                alertController.addAction(cancelAction)
+                                let loginAction = UIAlertAction(title: "Re-Login", style: .destructive, handler: self.signOutAction)
+                                alertController.addAction(loginAction)
+                            }
+                            else {
+                                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                                alertController.addAction(defaultAction)
+                            }
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    }
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .default)

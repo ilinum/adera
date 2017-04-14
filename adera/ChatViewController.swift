@@ -418,7 +418,6 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
                 return
             }
             self.showTypingIndicator = data.childrenCount > 0
-            self.scrollToBottom(animated: true)
         }
     }
     
