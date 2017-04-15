@@ -27,6 +27,9 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         let sortTypeRef = AppDelegate.usersRef.child(userID!).child("settings").child("channelSortingMethod")
         sortTypeRef.observe(.value, with: { snapshot in
             self.sortingMethod = snapshot.value as? String
+            let sort = self.sortingMethod == "date" ? self.sortChannelsByDate : self.sortChannelsByPopularity
+            self.privateChannels.sort(by: sort)
+            self.publicChannels.sort(by: sort)
         })
         // load channels
         loadChannels(type: ChannelType.publicType)
@@ -52,7 +55,7 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                     }
                 }
                 // sort again when a new channel is created
-                newChannels = newChannels.sorted(by: self.sortingMethod == "date" ? self.sortChannelsByDate : self.sortChannelsByPopularity)
+                newChannels.sort(by: self.sortingMethod == "date" ? self.sortChannelsByDate : self.sortChannelsByPopularity)
                 if type == ChannelType.publicType {
                     self.publicChannels = newChannels
                 } else {
@@ -69,35 +72,7 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
     
     func sortChannelsByDate(c1: Channel, c2: Channel) -> Bool {
-        let date1:String = c1.creationDate! //"dd MMM yyyy hh:mm:ss zzzz"
-        let date2:String = c2.creationDate!
-        let dateArray1 = date1.components(separatedBy: " ")
-        let dateArray2 = date2.components(separatedBy: " ")
-        let timeArray1 = dateArray1[3].components(separatedBy: ":")
-        let timeArray2 = dateArray2[3].components(separatedBy: ":")
-        // check year first
-        if dateArray1[2] != dateArray2[2] {
-            return dateArray1[2] > dateArray2[2]
-        } else {
-            // then month
-            if dateArray1[1] != dateArray2[1] {
-                return dateArray1[1] > dateArray2[1]
-            }
-                // then day
-            else if dateArray1[0] != dateArray2[0] {
-                return dateArray1[0] > dateArray2[0]
-            }
-                // then hour
-            else if timeArray1[0] != timeArray2[0] {
-                return timeArray1[0] > timeArray2[0]
-            }
-                // then minute
-            else if timeArray1[1] != timeArray2[1] {
-                return timeArray1[1] > timeArray2[1]
-            }
-            // then second
-            return timeArray1[2] > timeArray2[2]
-        }
+        return c1.creationDate > c2.creationDate
     }
     
     func numberOfSections() -> Int {
@@ -117,8 +92,6 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
 
     func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
         // sort channels before loading page again
-        self.publicChannels = self.publicChannels.sorted(by: self.sortingMethod == "date" ? self.sortChannelsByDate : self.sortChannelsByPopularity)
-        self.privateChannels = self.privateChannels.sorted(by: self.sortingMethod == "date" ? self.sortChannelsByDate : self.sortChannelsByPopularity)
         let channel = getChannelAt(index: index)
         cell.nameLabel.text = channel.presentableName
         cell.descriptionLabel.text = channel.description
@@ -173,12 +146,12 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     private func getChannelsForSection(section: Int) -> [Channel] {
         if section == 0 {
             if publicChannels.count == 0 {
-                return privateChannels.sorted(by: self.sortingMethod == "popularity" ? self.sortChannelsByPopularity : self.sortChannelsByDate)
+                return privateChannels
             } else {
-                return publicChannels.sorted(by: self.sortingMethod == "popularity" ? self.sortChannelsByPopularity : self.sortChannelsByDate)
+                return publicChannels
             }
         } else {
-            return privateChannels.sorted(by: self.sortingMethod == "popularity" ? self.sortChannelsByPopularity : self.sortChannelsByDate)
+            return privateChannels
         }
     }
 

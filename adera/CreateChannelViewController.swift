@@ -78,13 +78,9 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         if channelType == ChannelType.privateType {
             password = randomAlphaNumericString(length: 6)
         }
-        // Convert date to string
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy hh:mm:ss zzzz"
-        let dateString = dateFormatter.string(from: date)
         // Create channel
-        let channel = Channel(presentableName: channelNameText!, description: description, creatorUID: user.uid, password: password, creationDate: dateString)
+        let channel = Channel(presentableName: channelNameText!, description: description, creatorUID: user.uid,
+                password: password, creationDate: Date())
         let channelLocationRef: FIRDatabaseReference
         let channelTypeStr: String = channelTypeToString(type: channelType)
         if channelType == ChannelType.publicType {
@@ -98,7 +94,7 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         // join a channel just created
         let userChannels = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
         userChannels.childByAutoId().setValue(channel.id())
-        
+
         if channelType == ChannelType.privateType {
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "PrivateChannelInfoViewController")

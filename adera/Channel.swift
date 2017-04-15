@@ -15,9 +15,10 @@ class Channel {
     let password: String?
     let channelType: ChannelType
     var numUsers: Int
-    var creationDate: String?
+    var creationDate: Double
 
-    init(presentableName: String, description: String, creatorUID: String, password: String? = nil, numUsers: Int = 0, creationDate: String) {
+    init(presentableName: String, description: String, creatorUID: String, password: String? = nil, numUsers: Int = 1,
+         creationDate: Date) {
         self.presentableName = presentableName
         self.description = description
         self.creatorUID = creatorUID
@@ -29,7 +30,7 @@ class Channel {
             channelType = ChannelType.privateType
         }
         topics = []
-        self.creationDate = creationDate
+        self.creationDate = creationDate.timeIntervalSince1970
     }
 
     init(snapshot: FIRDataSnapshot, type: ChannelType) {
@@ -37,7 +38,7 @@ class Channel {
         self.description = snapshot.childSnapshot(forPath: "description").value as! String
         self.creatorUID = snapshot.childSnapshot(forPath: "creatorUID").value as! String
         self.numUsers = snapshot.childSnapshot(forPath: "numUsers").value as! Int
-        self.creationDate = snapshot.childSnapshot(forPath: "creationDate").value as? String
+        self.creationDate = snapshot.childSnapshot(forPath: "creationDate").value as! Double
         channelType = type
         if type == ChannelType.privateType {
             password = snapshot.key
@@ -68,7 +69,7 @@ class Channel {
                         topic -> Dictionary<String, Any> in
                         return topic.toDictionary()
                     },
-                    "creationDate": creationDate!]
+                    "creationDate": creationDate]
         return dict
     }
 
