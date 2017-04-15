@@ -15,7 +15,7 @@ import JSQMessagesViewController
 import Photos
 
 class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
-    private var messages = [Message]();
+    var messages = [Message]();
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
     private var messageRef: FIRDatabaseReference?
     private var newMessageRefHandle: FIRDatabaseHandle?

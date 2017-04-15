@@ -83,7 +83,6 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy hh:mm:ss zzzz"
         let dateString = dateFormatter.string(from: date)
-        print(dateString)
         // Create channel
         let channel = Channel(presentableName: channelNameText!, description: description, creatorUID: user.uid, password: password, creationDate: dateString)
         let channelLocationRef: FIRDatabaseReference

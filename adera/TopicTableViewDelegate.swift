@@ -12,11 +12,18 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     private let tableViewController: UITableViewController!
     private var channel: Channel
     let user: FIRUser
+    var sortingMethod:String?
 
     init(tableViewController: UITableViewController, channel: Channel, user: FIRUser) {
         self.tableViewController = tableViewController
         self.channel = channel
         self.user = user
+        // Initialize sorting method and sort topics first before displaying
+        let sortTypeRef = AppDelegate.usersRef.child(user.uid).child("settings").child("topicSortingMethod")
+        sortTypeRef.observe(.value, with: { snapshot in
+            self.sortingMethod = snapshot.value as? String
+            channel.topics.sort(by: self.sortingMethod == "date" ? self.sortTopicsByDate : self.sortTopicsByPopularity)
+        })
     }
 
     func numberOfSections() -> Int {
@@ -60,9 +67,10 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "dd MMM yyyy hh:mm:ss zzzz"
                 let dateString = dateFormatter.string(from: date)
-                print(dateString)
                 // Create topic
                 let topic = Topic(creatorUID: self.user.uid, name: topicName, creationDate: dateString)
+                // Sort topics
+                self.channel.topics.sort(by: self.sortingMethod == "date" ? self.sortTopicsByDate : self.sortTopicsByPopularity)
                 // Set TopicRef in Firebase
                 channelRef.child("topics").child(topicName.lowercased()).setValue(topic.toDictionary())
                 self.channel.topics.append(topic)
@@ -79,7 +87,61 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
 
         tableViewController.present(alertController, animated: true, completion: nil)
     }
-
+    
+    func sortTopicsByDate(t1: Topic, t2: Topic) -> Bool {
+        let date1:String = t1.creationDate! //"dd MMM yyyy hh:mm:ss zzzz"
+        let date2:String = t2.creationDate!
+        let dateArray1 = date1.components(separatedBy: " ")
+        let dateArray2 = date2.components(separatedBy: " ")
+        let timeArray1 = dateArray1[3].components(separatedBy: ":")
+        let timeArray2 = dateArray2[3].components(separatedBy: ":")
+        // check year first
+        if dateArray1[2] != dateArray2[2] {
+            return dateArray1[2] > dateArray2[2]
+        } else {
+            // then month
+            if dateArray1[1] != dateArray2[1] {
+                return dateArray1[1] > dateArray2[1]
+            }
+                // then day
+            else if dateArray1[0] != dateArray2[0] {
+                return dateArray1[0] > dateArray2[0]
+            }
+                // then hour
+            else if timeArray1[0] != timeArray2[0] {
+                return timeArray1[0] > timeArray2[0]
+            }
+                // then minute
+            else if timeArray1[1] != timeArray2[1] {
+                return timeArray1[1] > timeArray2[1]
+            }
+            // then second
+            return timeArray1[2] > timeArray2[2]
+        }
+    }
+    
+    func sortTopicsByPopularity(t1: Topic, t2: Topic) -> Bool {
+//        print("sorting by \(self.sortingMethod!)")
+//        let channelRef = AppDelegate.channelsRefForType(type: self.channel.channelType).child(self.channel.id())
+//        let messageRef1 = channelRef.child("topics").child(t1.name.lowercased()).child("messages")
+//        let messageRef2 = channelRef.child("topics").child(t2.name.lowercased()).child("messages")
+//        var dict1:NSDictionary? = nil
+//        var dict2:NSDictionary? = nil
+//        messageRef1.observe(.value, with: { snapshot in
+//            guard snapshot.exists() else { return }
+//            dict1 = (snapshot.value as? NSDictionary)!
+//            let count1 = dict1?.allKeys.count
+//            messageRef2.observe(.value, with: { snapshot in
+//                guard snapshot.exists() else { return }
+//                dict2 = (snapshot.value as? NSDictionary)!
+//                let count2 = dict2?.allKeys.count
+//                print("\(count1) \(count2)")
+//            })
+//        })
+//        return (dict1?.count)! > (dict2?.count)!
+        return false
+    }
+    
     // Segues from Topic to Chat
     func rowSelected(row: IndexPath) {
         let storyboard = tableViewController.storyboard

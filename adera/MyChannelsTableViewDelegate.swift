@@ -22,12 +22,13 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
         self.tableViewController = tableViewController
         publicChannels = []
         privateChannels = []
-        // get sortingMethod
+        // initialize sortingMethod
         let userID = FIRAuth.auth()?.currentUser?.uid
         let sortTypeRef = AppDelegate.usersRef.child(userID!).child("settings").child("channelSortingMethod")
-        sortTypeRef.observeSingleEvent(of: .value, with: { snapshot in
+        sortTypeRef.observe(.value, with: { snapshot in
             self.sortingMethod = snapshot.value as? String
         })
+        // load channels
         loadChannels(type: ChannelType.publicType)
         loadChannels(type: ChannelType.privateType)
     }
@@ -59,23 +60,19 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                 self.tableViewController.tableView.reloadData()
             })
         })
-
     }
 
     func sortChannelsByPopularity(c1: Channel, c2: Channel) -> Bool {
-//        print("\(c1.presentableName)\t \(c2.presentableName)")
         return c1.numUsers > c2.numUsers
     }
+    
     func sortChannelsByDate(c1: Channel, c2: Channel) -> Bool {
         let date1:String = c1.creationDate! //"dd MMM yyyy hh:mm:ss zzzz"
         let date2:String = c2.creationDate!
-        print("date1: \(date1) and date2: \(date2)")
         let dateArray1 = date1.components(separatedBy: " ")
         let dateArray2 = date2.components(separatedBy: " ")
-        print("date1: \(dateArray1) and date2: \(dateArray2)")
         let timeArray1 = dateArray1[3].components(separatedBy: ":")
         let timeArray2 = dateArray2[3].components(separatedBy: ":")
-        print("date1: \(timeArray1) and date2: \(timeArray2)")
         // check year first
         if dateArray1[2] != dateArray2[2] {
             return dateArray1[2] > dateArray2[2]
@@ -117,6 +114,9 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
+        // sort channels before loading page again
+        self.publicChannels = self.publicChannels.sorted(by: self.sortingMethod == "date" ? self.sortChannelsByDate : self.sortChannelsByPopularity)
+        self.privateChannels = self.privateChannels.sorted(by: self.sortingMethod == "date" ? self.sortChannelsByDate : self.sortChannelsByPopularity)
         let channel = getChannelAt(index: index)
         cell.nameLabel.text = channel.presentableName
         cell.descriptionLabel.text = channel.description

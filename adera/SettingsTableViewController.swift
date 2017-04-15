@@ -23,6 +23,9 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var userPhotoImageView: UIImageView!
     
     var userID: String?
+    let tableViewController: UITableViewController = UITableViewController()
+    var channelTV:MyChannelsTableViewDelegate? = nil
+//    var topicVC:TopicTableViewDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,7 @@ class SettingsTableViewController: UITableViewController {
         self.colorSchemeSegmentedControl.apportionsSegmentWidthsByContent = true
         self.channelSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         self.topicSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
+        self.channelTV = MyChannelsTableViewDelegate(tableViewController:tableViewController)
         updateDetailsViews()
     }
     
@@ -276,7 +280,17 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func channelSortingMethodChanged(_ sender: Any) {
         let channelSortingMethod = self.channelSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
         AppDelegate.usersRef.child(self.userID!).child("settings").child("channelSortingMethod").setValue(channelSortingMethod)
-        self.tableView.reloadData()
+        // sort channels whenever user changes sorting method
+        if channelSortingMethod == "date" {
+            channelTV?.publicChannels.sort(by: (channelTV?.sortChannelsByDate)!)
+            channelTV?.privateChannels.sort(by: (channelTV?.sortChannelsByDate)!)
+        } else {
+            channelTV?.publicChannels.sort(by: (channelTV?.sortChannelsByPopularity)!)
+            channelTV?.privateChannels.sort(by: (channelTV?.sortChannelsByPopularity)!)
+        }
+        // load the channels again
+        channelTV?.loadChannels(type: ChannelType.publicType)
+        channelTV?.loadChannels(type: ChannelType.privateType)
     }
 
     @IBAction func topicSortingMethodChanged(_ sender: Any) {
