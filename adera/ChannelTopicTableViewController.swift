@@ -20,6 +20,7 @@ class ChannelTopicTableViewController: UITableViewController {
             self.navigationItem.leftBarButtonItem = delegate!.getLeftBarButtonItem()
             self.navigationItem.rightBarButtonItem = delegate!.getRightBarButtonItem()
         }
+        self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
