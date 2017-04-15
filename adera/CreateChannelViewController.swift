@@ -1,6 +1,6 @@
 //
 //  CreateChannelViewController.swift
-//  
+//
 //
 //  Created by Svyatoslav Ilinskiy on 3/18/17.
 //
@@ -22,7 +22,7 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         super.viewDidLoad()
         channelNameTextField.delegate = self
         channelDescriptionTextView.delegate = self
-
+        
         self.title = "Create Channel"
         channelDescriptionTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
         channelDescriptionTextView.layer.borderWidth = 1.0
@@ -37,16 +37,16 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         channelNameLabel.textColor = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.blue
         channelDescriptionLabel.textColor = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.blue
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     func getChannelType() -> ChannelType {
         let idx = publicPrivateSegmentedControl.selectedSegmentIndex
         if idx == 0 {
@@ -94,13 +94,13 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
             channelLocationRef = AppDelegate.privateChannelsRef
         }
         channelLocationRef.child((channel.id())).setValue(channel.toDictionary())
-
+        
         // join a channel just created
         let userChannels = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
         userChannels.childByAutoId().setValue(channel.id())
-
+        
         if channelType == ChannelType.privateType {
-
+            
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "PrivateChannelInfoViewController")
             let privateChannelInfoVC = vc! as! PrivateChannelInfoViewController
             privateChannelInfoVC.channel = channel
@@ -111,20 +111,20 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
             _ = navigationController?.popViewController(animated: true)
         }
     }
-
+    
     // straight from Stackoverflow: http://stackoverflow.com/a/33860834/5088644
     func randomAlphaNumericString(length: Int) -> String {
         let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let allowedCharsCount = UInt32(allowedChars.characters.count)
         var randomString = ""
-
+        
         for _ in 0..<length {
             let randomNum = Int(arc4random_uniform(allowedCharsCount))
             let randomIndex = allowedChars.index(allowedChars.startIndex, offsetBy: randomNum)
             let newCharacter = allowedChars[randomIndex]
             randomString += String(newCharacter)
         }
-
+        
         return randomString
     }
 }
@@ -135,9 +135,9 @@ enum ChannelType {
 
 func channelTypeToString(type: ChannelType) -> String {
     switch type {
-        case ChannelType.publicType:
-            return "public"
-        case ChannelType.privateType:
-            return "private"
+    case ChannelType.publicType:
+        return "public"
+    case ChannelType.privateType:
+        return "private"
     }
 }

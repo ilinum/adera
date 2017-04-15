@@ -13,16 +13,30 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     private var channel: Channel
     let user: FIRUser
     var sortingMethod:String?
-
+    var dict = [String:Int]()  // dictionary for topicNames and its number of messages
+    
     init(tableViewController: UITableViewController, channel: Channel, user: FIRUser) {
         self.tableViewController = tableViewController
         self.channel = channel
         self.user = user
+        // Initialize the dictionary containing topicNames:numMessages
+        let channelRef = AppDelegate.channelsRefForType(type: self.channel.channelType).child(self.channel.id())
+        for topic in channel.topics {
+            let messageRef = channelRef.child("topics").child(topic.name).child("messages")
+            messageRef.observe(.value, with: { snapshot in
+                guard snapshot.exists() else {
+                    self.dict[topic.name] = 0
+                    return
+                }
+                let d = (snapshot.value as? NSDictionary)!
+                self.dict[topic.name] = d.count
+            })
+        }
         // Initialize sorting method and sort topics first before displaying
         let sortTypeRef = AppDelegate.usersRef.child(user.uid).child("settings").child("topicSortingMethod")
         sortTypeRef.observe(.value, with: { snapshot in
             self.sortingMethod = snapshot.value as? String
-            channel.topics.sort(by: self.sortingMethod == "date" ? self.sortTopicsByDate : self.sortTopicsByPopularity)
+            self.channel.topics.sort(by: self.sortingMethod == "date" ? self.sortTopicsByDate : self.sortTopicsByPopularity)
         })
     }
 
@@ -35,6 +49,8 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
 
     func getCellAt(cell: ChannelTopicCell, index: IndexPath) -> UITableViewCell {
+//         Sort topics first
+        self.channel.topics.sort(by: self.sortingMethod == "date" ? self.sortTopicsByDate : self.sortTopicsByPopularity)
         let topic = channel.topics[index.item]
         cell.nameLabel.text = topic.name
         return cell
@@ -69,7 +85,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                 let dateString = dateFormatter.string(from: date)
                 // Create topic
                 let topic = Topic(creatorUID: self.user.uid, name: topicName, creationDate: dateString)
-                // Sort topics
+                // sort again whenever a new topic is added
                 self.channel.topics.sort(by: self.sortingMethod == "date" ? self.sortTopicsByDate : self.sortTopicsByPopularity)
                 // Set TopicRef in Firebase
                 channelRef.child("topics").child(topicName.lowercased()).setValue(topic.toDictionary())
@@ -121,25 +137,13 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
     }
     
     func sortTopicsByPopularity(t1: Topic, t2: Topic) -> Bool {
-//        print("sorting by \(self.sortingMethod!)")
-//        let channelRef = AppDelegate.channelsRefForType(type: self.channel.channelType).child(self.channel.id())
-//        let messageRef1 = channelRef.child("topics").child(t1.name.lowercased()).child("messages")
-//        let messageRef2 = channelRef.child("topics").child(t2.name.lowercased()).child("messages")
-//        var dict1:NSDictionary? = nil
-//        var dict2:NSDictionary? = nil
-//        messageRef1.observe(.value, with: { snapshot in
-//            guard snapshot.exists() else { return }
-//            dict1 = (snapshot.value as? NSDictionary)!
-//            let count1 = dict1?.allKeys.count
-//            messageRef2.observe(.value, with: { snapshot in
-//                guard snapshot.exists() else { return }
-//                dict2 = (snapshot.value as? NSDictionary)!
-//                let count2 = dict2?.allKeys.count
-//                print("\(count1) \(count2)")
-//            })
-//        })
-//        return (dict1?.count)! > (dict2?.count)!
-        return false
+        // some topics have no messages. if t1 oe t2 has no messages, skip
+        if dict[t1.name] == nil || dict[t2.name] == nil {
+            return false
+        }
+        else {
+            return dict[t1.name]! > dict[t2.name]!
+        }
     }
     
     // Segues from Topic to Chat

@@ -280,17 +280,6 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func channelSortingMethodChanged(_ sender: Any) {
         let channelSortingMethod = self.channelSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
         AppDelegate.usersRef.child(self.userID!).child("settings").child("channelSortingMethod").setValue(channelSortingMethod)
-        // sort channels whenever user changes sorting method
-        if channelSortingMethod == "date" {
-            channelTV?.publicChannels.sort(by: (channelTV?.sortChannelsByDate)!)
-            channelTV?.privateChannels.sort(by: (channelTV?.sortChannelsByDate)!)
-        } else {
-            channelTV?.publicChannels.sort(by: (channelTV?.sortChannelsByPopularity)!)
-            channelTV?.privateChannels.sort(by: (channelTV?.sortChannelsByPopularity)!)
-        }
-        // load the channels again
-        channelTV?.loadChannels(type: ChannelType.publicType)
-        channelTV?.loadChannels(type: ChannelType.privateType)
     }
 
     @IBAction func topicSortingMethodChanged(_ sender: Any) {
