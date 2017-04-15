@@ -51,6 +51,8 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                         newChannels.append(Channel(snapshot: snap, type: type))
                     }
                 }
+                // sort again when a new channel is created
+                newChannels = newChannels.sorted(by: self.sortingMethod == "date" ? self.sortChannelsByDate : self.sortChannelsByPopularity)
                 if type == ChannelType.publicType {
                     self.publicChannels = newChannels
                 } else {
