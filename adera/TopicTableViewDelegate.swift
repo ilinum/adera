@@ -8,7 +8,6 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
-    var delegate: TopicTableViewDelegate? = nil
     private let tableViewController: UITableViewController!
     private var channel: Channel
     let user: FIRUser
@@ -34,6 +33,15 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
             self.sortingMethod = snapshot.value as? String
             self.channel.topics.sort(by: self.sortingMethod == "date" ? self.sortTopicsByDate : self.sortTopicsByPopularity)
             self.tableViewController.tableView.reloadData()
+        })
+
+        channelRef.child("topics").observe(.childAdded, with: { _ in
+            // this one returns the actual child, need complete topic list, so make another observe request
+            channelRef.child("topics").observeSingleEvent(of: .value, with: { snapshot in
+                channel.reloadTopics(snapshot: snapshot)
+                self.channel.topics.sort(by: self.sortingMethod == "date" ? self.sortTopicsByDate : self.sortTopicsByPopularity)
+                self.tableViewController.tableView.reloadData()
+            })
         })
     }
 

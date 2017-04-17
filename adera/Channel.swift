@@ -46,9 +46,18 @@ class Channel {
             password = nil
         }
         topics = []
-        for topicSnapshot in snapshot.childSnapshot(forPath: "topics").children {
+        reloadTopics(snapshot: snapshot.childSnapshot(forPath: "topics"))
+    }
+
+    func reloadTopics(snapshot: FIRDataSnapshot) {
+        topics = []
+        for topicSnapshot in snapshot.children {
             topics.append(Topic(snapshot: topicSnapshot as! FIRDataSnapshot))
         }
+    }
+    
+    func addTopic(snapshot: FIRDataSnapshot) {
+        topics.append(Topic(snapshot: snapshot))
     }
 
     // return it's id in firebase
