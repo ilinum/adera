@@ -95,6 +95,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     settingsRef.child("colorScheme").setValue(AccountDefaultSettings.colorScheme)
                     settingsRef.child("channelSortingMethod").setValue(AccountDefaultSettings.channelSortingMethod)
                     settingsRef.child("topicSortingMethod").setValue(AccountDefaultSettings.topicSortingMethod)
+                    self.setAppearance(fontSize: nil, highlightColorIndex: nil, colorScheme: nil)
                     
                     let storageRef = FIRStorage.storage().reference().child("user_photos").child(user!.uid).child("avatar.png")
                     
@@ -147,29 +148,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Get Application Settings Values from FireBase to use for UI changes upon login
         AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser!.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            let fontSize = value?["fontSize"] as? Int ?? AccountDefaultSettings.fontSize
-            let highlightColorIndex = value?["highlightColorIndex"] as? Int ?? AccountDefaultSettings.highlightColorIndex
-            let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings.colorScheme
-            
-            let tintColor = AccountDefaultSettings.colors[highlightColorIndex]
-            var textColor:UIColor?
-            var backgroundColor:UIColor?
-            
-            if colorScheme == "light" {
-                textColor = AccountDefaultSettings.lightTextColor
-                backgroundColor = AccountDefaultSettings.lightBackgroundColor
-            } else if colorScheme == "dark" {
-                textColor = AccountDefaultSettings.darkTextColor
-                backgroundColor = AccountDefaultSettings.darkBackgroundColor
-            }
-            
-            UILabel.appearance().textColor = textColor!
-            UIApplication.shared.delegate?.window??.tintColor = tintColor
-            self.navigationController?.navigationBar.barTintColor = backgroundColor!
-            UITableView.appearance().backgroundColor = backgroundColor!
-            UITableViewCell.appearance().backgroundColor = backgroundColor!
-            
-            UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+            let fontSize = value?["fontSize"] as? Int
+            let highlightColorIndex = value?["highlightColorIndex"] as? Int
+            let colorScheme = value?["colorScheme"] as? String
+
+            self.setAppearance(fontSize: fontSize, highlightColorIndex: highlightColorIndex, colorScheme: colorScheme)
             
             print("You have successfully logged in")
             self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
@@ -177,6 +160,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             print(error.localizedDescription)
             self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
         }
+    }
+
+    func setAppearance(fontSize size: Int?, highlightColorIndex colorIndex: Int?, colorScheme scheme: String?) {
+
+        let colorScheme = scheme ?? AccountDefaultSettings.colorScheme
+        let fontSize = size ?? AccountDefaultSettings.fontSize
+        let highlightColorIndex = colorIndex ?? AccountDefaultSettings.highlightColorIndex
+
+        
+        let tintColor = AccountDefaultSettings.colors[highlightColorIndex]
+        var textColor:UIColor?
+        var backgroundColor:UIColor?
+
+        if colorScheme == "light" {
+            textColor = AccountDefaultSettings.lightTextColor
+            backgroundColor = AccountDefaultSettings.lightBackgroundColor
+        } else if colorScheme == "dark" {
+            textColor = AccountDefaultSettings.darkTextColor
+            backgroundColor = AccountDefaultSettings.darkBackgroundColor
+        }
+
+        UILabel.appearance().textColor = textColor!
+        UIApplication.shared.delegate?.window??.tintColor = tintColor
+        self.navigationController?.navigationBar.barTintColor = backgroundColor!
+        UITableView.appearance().backgroundColor = backgroundColor!
+        UITableViewCell.appearance().backgroundColor = backgroundColor!
+
+        UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
     }
 
     override func didReceiveMemoryWarning() {
