@@ -1,32 +1,27 @@
 Implemenation Contributions:
 1. Svyatoslav Ilinskiy (sei228)
-	- All of Login/Register screen
-	- Create Public Channel feature
-	- Join Public Channel feature
-	- Add New Topics feature
-	- Testing
-	- Debugging Login, Channel, Topics
+	- Create a private channel
+	- Join private channel with password
+	- Sharing location in private channels
+	- Testing and debugging
 	33% contribution
 2. Nathan Chapman (nc8787)
-	- Settings feature
-		- Edit Profile (Email, Username, Password)
-		- Text Size
-	- Make sure chat displays usernames
-	- Testing
-	- Debugging Login, Channel, Topics, Chat
+	- Color Schemes (light, dark)
+	- Settings for Sorting of Channels & Topics
+	- Profile photos + sending photos in chats
+	- Testing and debugging
 	33% contribution
-3 .Songting Cindy Wu - scw2243
-	- Commenting on Topics feature
-		- Majority of live chat Messages
-	- Testing
-	- Debugging Channel, Topics, Chat
+3 Songting Cindy Wu - scw2243
+	- Sorting channels by date/popularity
+	- Testing and debugging
 	33% contribution
 
 Grading Level:
 Same grade for all members.
 
 Differences:
-None.
+We added sorting in settings instead of in the channel/topic view. 
+We decided that it was better to keep the UI clean and simple. 
 
 Special Instructions:
 None.
