@@ -55,7 +55,7 @@ class JoinPrivateChannelViewController: UIViewController, QRCodeReaderViewContro
                         if chanSnap.value as! String! == password {
                             let alertController = createErrorAlert(message: "You are already a member of this channel!")
                             self.present(alertController, animated: true, completion: nil)
-                            _ = self.navigationController?.popViewController(animated: true)
+                            self.navigationController?.popViewController(animated: true)
                             return
                         }
                     }
@@ -107,15 +107,16 @@ class JoinPrivateChannelViewController: UIViewController, QRCodeReaderViewContro
     
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
         reader.stopScanning()
-        dismiss(animated: true) { [weak self] in
-            let alert = UIAlertController(
-                title: "QRCodeReader",
-                message: String (format:"%@ (of type %@)", result.value, result.metadataType),
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self?.present(alert, animated: true, completion: nil)
-        }
+        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true) { [weak self] in
+//            let alert = UIAlertController(
+//                title: "QRCodeReader",
+//                message: String (format:"%@ (of type %@)", result.value, result.metadataType),
+//                preferredStyle: .alert
+//            )
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//            self?.present(alert, animated: true, completion: nil)
+//        }
     }
     
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
