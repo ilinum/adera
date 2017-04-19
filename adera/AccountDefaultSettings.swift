@@ -32,6 +32,8 @@ public struct AccountDefaultSettings {
     static var fontSize = 17
     static var highlightColorIndex = 5
     static var colorScheme = "light"
+    static var autoNightThemeEnabled = true
+    
     static var channelSortingMethod = "date"
     static var topicSortingMethod = "date"
 }

@@ -93,6 +93,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     settingsRef.child("displayName").setValue(username)
                     settingsRef.child("fontSize").setValue(AccountDefaultSettings.fontSize)
                     settingsRef.child("colorScheme").setValue(AccountDefaultSettings.colorScheme)
+                    settingsRef.child("autoNightThemeEnabled").setValue(AccountDefaultSettings.autoNightThemeEnabled)
                     settingsRef.child("channelSortingMethod").setValue(AccountDefaultSettings.channelSortingMethod)
                     settingsRef.child("topicSortingMethod").setValue(AccountDefaultSettings.topicSortingMethod)
                     self.setAppearance(fontSize: nil, highlightColorIndex: nil, colorScheme: nil)
@@ -163,11 +164,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     func setAppearance(fontSize size: Int?, highlightColorIndex colorIndex: Int?, colorScheme scheme: String?) {
-
         let colorScheme = scheme ?? AccountDefaultSettings.colorScheme
         let fontSize = size ?? AccountDefaultSettings.fontSize
         let highlightColorIndex = colorIndex ?? AccountDefaultSettings.highlightColorIndex
-
         
         let tintColor = AccountDefaultSettings.colors[highlightColorIndex]
         var textColor:UIColor?

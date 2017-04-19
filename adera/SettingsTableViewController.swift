@@ -17,6 +17,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var fontSizeSlider: UISlider!
     @IBOutlet weak var highlightColorSlider: UISlider!
     @IBOutlet weak var colorSchemeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var autoNightThemeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var channelSortingMethodSegmentedControl: UISegmentedControl!
     @IBOutlet weak var topicSortingMethodSegmentedControl: UISegmentedControl!
     @IBOutlet weak var fontSizeLabel: UILabel!
@@ -25,7 +26,6 @@ class SettingsTableViewController: UITableViewController {
     var userID: String?
     let tableViewController: UITableViewController = UITableViewController()
     var channelTV:MyChannelsTableViewDelegate? = nil
-//    var topicVC:TopicTableViewDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +39,7 @@ class SettingsTableViewController: UITableViewController {
         self.userPhotoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapUserPhoto)))
         self.userPhotoImageView.isUserInteractionEnabled = true
         self.colorSchemeSegmentedControl.apportionsSegmentWidthsByContent = true
+        self.autoNightThemeSegmentedControl.apportionsSegmentWidthsByContent = true
         self.channelSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         self.topicSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         self.channelTV = MyChannelsTableViewDelegate(tableViewController:tableViewController)
@@ -188,6 +189,8 @@ class SettingsTableViewController: UITableViewController {
             let highlightColorIndex = value?["highlightColorIndex"] as? Int ?? AccountDefaultSettings.fontSize
             
             let colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings.colorScheme
+            let autoNightThemeEnabled = value?["autoNightThemeEnabled"] as? Bool ?? AccountDefaultSettings.autoNightThemeEnabled
+            let autoNightThemeIndex = autoNightThemeEnabled ? 0 : 1
             let colorSchemeIndex = colorScheme == "light" ? 0 : 1
             let channelSortingMethod = value?["channelSortingMethod"] as? String ?? AccountDefaultSettings.channelSortingMethod
             let channelSortingMethodIndex = channelSortingMethod == "date" ? 0 : 1
@@ -198,6 +201,7 @@ class SettingsTableViewController: UITableViewController {
             self.fontSizeSlider.value = Float(fontSize)
             self.highlightColorSlider.value = Float(highlightColorIndex)
             self.colorSchemeSegmentedControl.selectedSegmentIndex = colorSchemeIndex
+            self.autoNightThemeSegmentedControl.selectedSegmentIndex = autoNightThemeIndex
             self.channelSortingMethodSegmentedControl.selectedSegmentIndex = channelSortingMethodIndex
             self.topicSortingMethodSegmentedControl.selectedSegmentIndex = topicSortingMethodIndex
             
@@ -275,6 +279,11 @@ class SettingsTableViewController: UITableViewController {
         tableView.tableHeaderView?.backgroundColor = backgroundColor!
         
         self.tableView.reloadData()
+    }
+    
+    @IBAction func autoNightThemeChanged(_ sender: Any) {
+        let autoNightThemeEnabled = self.autoNightThemeSegmentedControl.selectedSegmentIndex == 0 ? true : false
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("autoNightThemeEnabled").setValue(autoNightThemeEnabled)
     }
     
     @IBAction func channelSortingMethodChanged(_ sender: Any) {
