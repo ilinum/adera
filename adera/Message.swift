@@ -21,6 +21,7 @@ class Message : JSQMessage {
         self.messageText = text
         self.location = nil
         self.photoURL = nil
+        self.mediaItem = nil
         super.init(senderId: senderID, senderDisplayName: senderName, date: date, text: text)
     }
 
@@ -30,25 +31,27 @@ class Message : JSQMessage {
         self.location = location
         self.messageText = nil
         self.photoURL = nil
+        self.mediaItem = nil
         super.init(senderId: senderId, senderDisplayName: senderName, date: date, media: location)
     }
     
     init(senderId: String, senderName: String, photoURL: String, date: Date) {
         self.senderID = senderId
         self.senderName = senderName
+        self.photoURL = photoURL
         self.location = nil
         self.messageText = nil
-        self.photoURL = photoURL
+        self.mediaItem = nil
         super.init(senderId: senderId, senderDisplayName: senderName, date: date, text: photoURL)
     }
     
     init(senderId: String, senderName: String, mediaItem: JSQPhotoMediaItem, date: Date) {
         self.senderID = senderId
         self.senderName = senderName
+        self.mediaItem = mediaItem
         self.location = nil
         self.messageText = nil
         self.photoURL = nil
-        self.mediaItem = mediaItem
         super.init(senderId: senderId, senderDisplayName: senderName, date: date, media: mediaItem)
     }
     

@@ -103,6 +103,28 @@ extension String {
     }
 }
 
+// From: http://stackoverflow.com/a/34695037/3931300 with modification
+public extension UIView {
+    func fadeIn(withDuration duration: TimeInterval = 0.3) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 1.0
+        })
+    }
+    
+    func fadeOut(withDuration duration: TimeInterval = 0.3) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        })
+    }
+    
+    func fadeOutRemove(withDuration duration: TimeInterval = 0.3) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        }, completion: {(value: Bool) in
+            self.removeFromSuperview()
+        })
+    }
+}
 
 extension UIImageView {
     func loadFromCache(imageURL: String) {

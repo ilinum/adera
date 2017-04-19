@@ -144,6 +144,20 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
                 mapItem.name = "User Location"
             }
             mapItem.openInMaps(launchOptions: options)
+        } else if message.mediaItem?.image != nil {
+            let newImageView = UIImageView(image: message.mediaItem?.image)
+            newImageView.frame = self.view.frame
+            newImageView.backgroundColor = self.navigationController?.navigationBar.barTintColor ?? AccountDefaultSettings.lightBackgroundColor
+            newImageView.contentMode = .scaleAspectFit
+            newImageView.isUserInteractionEnabled = true
+            newImageView.alpha = 0
+            let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+            newImageView.addGestureRecognizer(tap)
+            newImageView.addGestureRecognizer(swipe)
+            self.view.addSubview(newImageView)
+            newImageView.fadeIn()
+            self.navigationController?.navigationBar.fadeOut()
         }
     }
     
@@ -436,6 +450,11 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
     override func textViewDidChange(_ textView: UITextView) {
         super.textViewDidChange(textView)
         isTyping = textView.text != ""
+    }
+    
+    func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        sender.view?.fadeOutRemove()
+        self.navigationController?.navigationBar.fadeIn()
     }
     
     deinit {
