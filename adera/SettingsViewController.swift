@@ -35,6 +35,20 @@ class SettingsViewController: UIViewController {
         print("sign out")
         try! FIRAuth.auth()!.signOut()
         if let storyboard = self.storyboard {
+            
+            let tintColor = AccountDefaultSettings.aqua
+            let textColor = AccountDefaultSettings.lightTextColor
+            let backgroundColor = AccountDefaultSettings.lightBackgroundColor
+            let fontSize = AccountDefaultSettings.fontSize
+            
+            UILabel.appearance().textColor = textColor
+            UIApplication.shared.delegate?.window??.tintColor = tintColor
+            self.navigationController?.navigationBar.barTintColor = backgroundColor
+            UITableView.appearance().backgroundColor = backgroundColor
+            UITableViewCell.appearance().backgroundColor = backgroundColor
+            
+            UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+            
             let vc = storyboard.instantiateViewController(withIdentifier: "MainNavigationController") as! UINavigationController
             self.present(vc, animated: true, completion: nil)
         }
