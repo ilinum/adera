@@ -108,7 +108,7 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
 
                 let channel = getChannelAt(index: indexPath)
                 if channel.channelType == ChannelType.privateType {
-                    alertController.addAction(UIAlertAction(title: "View Channel Password", style: .default, handler: { _ in
+                    alertController.addAction(UIAlertAction(title: "View Channel Password/QR Code", style: .default, handler: { _ in
                         self.viewChannelPassword(channel: channel)
                     }))
                 }

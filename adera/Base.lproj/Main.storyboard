@@ -787,33 +787,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-vh-WE5">
-                                <rect key="frame" x="16" y="76" width="343" height="88"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="passwordButtonTapped:" destination="OsF-IX-mt1" eventType="touchUpInside" id="VgD-wF-YKK"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Channel Password:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nME-ul-FTv">
                                 <rect key="frame" x="16" y="39" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Channel QR Code:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iN6-8S-FtL">
+                                <rect key="frame" x="16" y="193" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R9R-Z9-pYJ">
+                                <rect key="frame" x="67" y="265" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="OnZ-Jn-Knk"/>
+                                    <constraint firstAttribute="height" constant="240" id="ZH8-6r-h9E"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-vh-WE5">
+                                <rect key="frame" x="16" y="68" width="343" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="pAr-L8-Ynf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="passwordButtonTapped:" destination="OsF-IX-mt1" eventType="touchUpInside" id="VgD-wF-YKK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nME-ul-FTv" firstAttribute="trailing" secondItem="2gN-pY-4Gp" secondAttribute="trailingMargin" id="4BB-K9-JEu"/>
-                            <constraint firstItem="lXT-vh-WE5" firstAttribute="leading" secondItem="nME-ul-FTv" secondAttribute="leading" id="5Uw-As-zMe"/>
-                            <constraint firstItem="nME-ul-FTv" firstAttribute="top" secondItem="BIx-Z3-VkV" secondAttribute="bottom" constant="19" id="BCU-PG-fk6"/>
-                            <constraint firstItem="nME-ul-FTv" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" id="LJB-Pv-7d0"/>
-                            <constraint firstItem="lXT-vh-WE5" firstAttribute="trailing" secondItem="nME-ul-FTv" secondAttribute="trailing" id="jiU-bS-rNl"/>
-                            <constraint firstItem="ipG-Im-QEJ" firstAttribute="top" secondItem="lXT-vh-WE5" secondAttribute="bottom" constant="503" id="mCG-rJ-li0"/>
-                            <constraint firstItem="lXT-vh-WE5" firstAttribute="top" secondItem="nME-ul-FTv" secondAttribute="bottom" constant="16" id="wvd-f3-7yI"/>
+                            <constraint firstItem="lXT-vh-WE5" firstAttribute="leading" secondItem="iN6-8S-FtL" secondAttribute="leading" id="9y4-WD-KDT"/>
+                            <constraint firstItem="lXT-vh-WE5" firstAttribute="trailing" secondItem="iN6-8S-FtL" secondAttribute="trailing" id="NJl-JO-Eye"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="leading" secondItem="lXT-vh-WE5" secondAttribute="leading" id="PEN-lr-Lk8"/>
+                            <constraint firstItem="lXT-vh-WE5" firstAttribute="top" secondItem="nME-ul-FTv" secondAttribute="bottom" constant="8" id="TC4-eP-Zjz"/>
+                            <constraint firstItem="R9R-Z9-pYJ" firstAttribute="top" secondItem="iN6-8S-FtL" secondAttribute="bottom" constant="51" id="Thq-43-cWY"/>
+                            <constraint firstItem="iN6-8S-FtL" firstAttribute="centerX" secondItem="R9R-Z9-pYJ" secondAttribute="centerX" id="W5H-91-6lm"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" id="XnE-ID-U5T"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="trailing" secondItem="2gN-pY-4Gp" secondAttribute="trailingMargin" id="Xwx-1s-jUy"/>
+                            <constraint firstItem="ipG-Im-QEJ" firstAttribute="top" secondItem="R9R-Z9-pYJ" secondAttribute="bottom" constant="162" id="mnc-uq-JIh"/>
+                            <constraint firstItem="R9R-Z9-pYJ" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" constant="51" id="p5b-Bg-dUo"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="top" secondItem="BIx-Z3-VkV" secondAttribute="bottom" constant="19" id="seY-Jf-YPz"/>
+                            <constraint firstItem="iN6-8S-FtL" firstAttribute="top" secondItem="lXT-vh-WE5" secondAttribute="bottom" constant="37" id="tZC-E8-mbF"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="trailing" secondItem="lXT-vh-WE5" secondAttribute="trailing" id="vnh-Ac-8XS"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="QRCodeImage" destination="R9R-Z9-pYJ" id="vMw-Ax-FSP"/>
+                        <outlet property="channelQRCodeLabel" destination="iN6-8S-FtL" id="swG-Fm-knX"/>
                         <outlet property="passwordButton" destination="lXT-vh-WE5" id="xhl-Oa-yrW"/>
                         <outlet property="privateChannelLabel" destination="nME-ul-FTv" id="yvd-tW-d6O"/>
                     </connections>

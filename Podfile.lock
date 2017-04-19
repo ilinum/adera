@@ -42,6 +42,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - QRCode (2.0)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - JSQMessagesViewController
+  - QRCode
 
 SPEC CHECKSUMS:
   Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
@@ -62,7 +64,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
 
-PODFILE CHECKSUM: 6d02ed98b2ec76fcd236c67a49d3ba40ba8ea44a
+PODFILE CHECKSUM: 660858a9e401ffe43d099e82ff5e72658cf10c1a
 
 COCOAPODS: 1.2.0
