@@ -801,15 +801,11 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R9R-Z9-pYJ">
                                 <rect key="frame" x="67" y="265" width="240" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="OnZ-Jn-Knk"/>
-                                    <constraint firstAttribute="height" constant="240" id="ZH8-6r-h9E"/>
-                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXT-vh-WE5">
                                 <rect key="frame" x="16" y="68" width="343" height="88"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="pAr-L8-Ynf"/>
+                                    <constraint firstAttribute="height" constant="88" id="igH-62-bfn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Button"/>
@@ -820,19 +816,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lXT-vh-WE5" firstAttribute="leading" secondItem="iN6-8S-FtL" secondAttribute="leading" id="9y4-WD-KDT"/>
-                            <constraint firstItem="lXT-vh-WE5" firstAttribute="trailing" secondItem="iN6-8S-FtL" secondAttribute="trailing" id="NJl-JO-Eye"/>
-                            <constraint firstItem="nME-ul-FTv" firstAttribute="leading" secondItem="lXT-vh-WE5" secondAttribute="leading" id="PEN-lr-Lk8"/>
-                            <constraint firstItem="lXT-vh-WE5" firstAttribute="top" secondItem="nME-ul-FTv" secondAttribute="bottom" constant="8" id="TC4-eP-Zjz"/>
-                            <constraint firstItem="R9R-Z9-pYJ" firstAttribute="top" secondItem="iN6-8S-FtL" secondAttribute="bottom" constant="51" id="Thq-43-cWY"/>
-                            <constraint firstItem="iN6-8S-FtL" firstAttribute="centerX" secondItem="R9R-Z9-pYJ" secondAttribute="centerX" id="W5H-91-6lm"/>
-                            <constraint firstItem="nME-ul-FTv" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" id="XnE-ID-U5T"/>
-                            <constraint firstItem="nME-ul-FTv" firstAttribute="trailing" secondItem="2gN-pY-4Gp" secondAttribute="trailingMargin" id="Xwx-1s-jUy"/>
-                            <constraint firstItem="ipG-Im-QEJ" firstAttribute="top" secondItem="R9R-Z9-pYJ" secondAttribute="bottom" constant="162" id="mnc-uq-JIh"/>
-                            <constraint firstItem="R9R-Z9-pYJ" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" constant="51" id="p5b-Bg-dUo"/>
-                            <constraint firstItem="nME-ul-FTv" firstAttribute="top" secondItem="BIx-Z3-VkV" secondAttribute="bottom" constant="19" id="seY-Jf-YPz"/>
-                            <constraint firstItem="iN6-8S-FtL" firstAttribute="top" secondItem="lXT-vh-WE5" secondAttribute="bottom" constant="37" id="tZC-E8-mbF"/>
-                            <constraint firstItem="nME-ul-FTv" firstAttribute="trailing" secondItem="lXT-vh-WE5" secondAttribute="trailing" id="vnh-Ac-8XS"/>
+                            <constraint firstItem="lXT-vh-WE5" firstAttribute="trailing" secondItem="iN6-8S-FtL" secondAttribute="trailing" id="1Fr-yE-5Fn"/>
+                            <constraint firstItem="iN6-8S-FtL" firstAttribute="centerX" secondItem="R9R-Z9-pYJ" secondAttribute="centerX" id="5AT-ZQ-nC2"/>
+                            <constraint firstItem="R9R-Z9-pYJ" firstAttribute="top" secondItem="iN6-8S-FtL" secondAttribute="bottom" constant="51" id="ETD-cR-UBD"/>
+                            <constraint firstItem="ipG-Im-QEJ" firstAttribute="top" secondItem="R9R-Z9-pYJ" secondAttribute="bottom" constant="162" id="Hg7-cV-n53"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="trailing" secondItem="lXT-vh-WE5" secondAttribute="trailing" id="LJk-Z3-RhI"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="trailing" secondItem="2gN-pY-4Gp" secondAttribute="trailingMargin" id="Mmi-mO-dBp"/>
+                            <constraint firstItem="iN6-8S-FtL" firstAttribute="top" secondItem="lXT-vh-WE5" secondAttribute="bottom" constant="37" id="NF6-JY-XsR"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" id="RO2-TP-qzV"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="top" secondItem="BIx-Z3-VkV" secondAttribute="bottom" constant="19" id="Tf3-Pt-pHT"/>
+                            <constraint firstItem="nME-ul-FTv" firstAttribute="leading" secondItem="lXT-vh-WE5" secondAttribute="leading" id="b6O-FT-g17"/>
+                            <constraint firstItem="R9R-Z9-pYJ" firstAttribute="leading" secondItem="2gN-pY-4Gp" secondAttribute="leadingMargin" constant="51" id="cOe-9a-4Aw"/>
+                            <constraint firstItem="lXT-vh-WE5" firstAttribute="top" secondItem="nME-ul-FTv" secondAttribute="bottom" constant="8" symbolic="YES" id="emk-RM-YHm"/>
+                            <constraint firstItem="lXT-vh-WE5" firstAttribute="leading" secondItem="iN6-8S-FtL" secondAttribute="leading" id="ves-2I-ULE"/>
                         </constraints>
                     </view>
                     <connections>
@@ -871,27 +867,39 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmq-yA-pKD">
-                                <rect key="frame" x="16" y="111" width="343" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <rect key="frame" x="16" y="111" width="343" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Join Channel"/>
                                 <connections>
                                     <action selector="joinChannelButtonTapped:" destination="HM9-5W-boy" eventType="touchUpInside" id="keK-Ep-R7s"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2j-to-19Y">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="68D-b5-PUk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Scan QR Code"/>
+                                <connections>
+                                    <action selector="scanQRCode:" destination="HM9-5W-boy" eventType="touchUpInside" id="e1m-OR-4vH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="EFe-Sf-Ncb" firstAttribute="leading" secondItem="DZy-RH-ue8" secondAttribute="leadingMargin" id="1Dc-2X-BLl"/>
-                            <constraint firstItem="YP0-P0-t4r" firstAttribute="top" secondItem="QkC-bi-udP" secondAttribute="bottom" constant="24" id="2hn-zk-n8Z"/>
-                            <constraint firstItem="EFe-Sf-Ncb" firstAttribute="trailing" secondItem="DZy-RH-ue8" secondAttribute="trailingMargin" id="4Ae-rl-Wf1"/>
-                            <constraint firstItem="YP0-P0-t4r" firstAttribute="trailing" secondItem="DZy-RH-ue8" secondAttribute="trailingMargin" id="DuH-Lc-DzB"/>
-                            <constraint firstItem="EFe-Sf-Ncb" firstAttribute="top" secondItem="YP0-P0-t4r" secondAttribute="bottom" constant="8" id="L5h-Ct-UQT"/>
-                            <constraint firstItem="Lmq-yA-pKD" firstAttribute="top" secondItem="EFe-Sf-Ncb" secondAttribute="bottom" constant="8" id="NG6-FZ-qYK"/>
-                            <constraint firstItem="Lmq-yA-pKD" firstAttribute="top" secondItem="EFe-Sf-Ncb" secondAttribute="bottom" constant="8" id="b8J-Fc-CcX"/>
-                            <constraint firstItem="Lmq-yA-pKD" firstAttribute="trailing" secondItem="DZy-RH-ue8" secondAttribute="trailingMargin" id="bcv-zX-S95"/>
-                            <constraint firstItem="Lmq-yA-pKD" firstAttribute="leading" secondItem="DZy-RH-ue8" secondAttribute="leadingMargin" id="duR-s5-hXy"/>
-                            <constraint firstItem="EFe-Sf-Ncb" firstAttribute="top" secondItem="YP0-P0-t4r" secondAttribute="bottom" constant="8" id="sBX-tC-c7u"/>
-                            <constraint firstItem="YP0-P0-t4r" firstAttribute="leading" secondItem="DZy-RH-ue8" secondAttribute="leadingMargin" id="vZw-G2-Tv6"/>
+                            <constraint firstItem="YP0-P0-t4r" firstAttribute="trailing" secondItem="EFe-Sf-Ncb" secondAttribute="trailing" id="Ard-xs-O8j"/>
+                            <constraint firstItem="EFe-Sf-Ncb" firstAttribute="top" secondItem="YP0-P0-t4r" secondAttribute="bottom" constant="8" symbolic="YES" id="BIh-4l-eOA"/>
+                            <constraint firstItem="F2j-to-19Y" firstAttribute="leading" secondItem="DZy-RH-ue8" secondAttribute="leading" id="G2G-Wj-gFc"/>
+                            <constraint firstAttribute="trailing" secondItem="F2j-to-19Y" secondAttribute="trailing" id="PQ4-Q5-4hw"/>
+                            <constraint firstItem="YP0-P0-t4r" firstAttribute="leading" secondItem="EFe-Sf-Ncb" secondAttribute="leading" id="Pau-MX-5EK"/>
+                            <constraint firstItem="YP0-P0-t4r" firstAttribute="top" secondItem="QkC-bi-udP" secondAttribute="bottom" constant="24" id="SH7-fb-hiM"/>
+                            <constraint firstItem="F2j-to-19Y" firstAttribute="bottom" secondItem="OxF-0f-qdi" secondAttribute="top" id="XBS-FR-Sky"/>
+                            <constraint firstItem="EFe-Sf-Ncb" firstAttribute="trailing" secondItem="Lmq-yA-pKD" secondAttribute="trailing" id="emw-dw-v2K"/>
+                            <constraint firstItem="EFe-Sf-Ncb" firstAttribute="leading" secondItem="Lmq-yA-pKD" secondAttribute="leading" id="gwk-Oj-N9H"/>
+                            <constraint firstItem="Lmq-yA-pKD" firstAttribute="top" secondItem="EFe-Sf-Ncb" secondAttribute="bottom" constant="8" symbolic="YES" id="nGs-TQ-JBB"/>
+                            <constraint firstItem="YP0-P0-t4r" firstAttribute="leading" secondItem="DZy-RH-ue8" secondAttribute="leadingMargin" id="oDC-gT-dUp"/>
+                            <constraint firstItem="Lmq-yA-pKD" firstAttribute="centerX" secondItem="F2j-to-19Y" secondAttribute="centerX" id="qtj-l1-WKT"/>
                         </constraints>
                     </view>
                     <connections>

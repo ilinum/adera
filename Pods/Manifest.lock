@@ -43,6 +43,7 @@ PODS:
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - QRCode (2.0)
+  - QRCodeReader.swift (7.4.1)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - JSQMessagesViewController
   - QRCode
+  - QRCodeReader.swift
 
 SPEC CHECKSUMS:
   Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
@@ -65,7 +67,8 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
+  QRCodeReader.swift: 39b149584852b7b721012126d38a14024b851366
 
-PODFILE CHECKSUM: 660858a9e401ffe43d099e82ff5e72658cf10c1a
+PODFILE CHECKSUM: b5cf81a474248ae51caa7a4a822faebbc9c43ed5
 
 COCOAPODS: 1.2.0

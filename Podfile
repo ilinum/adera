@@ -10,6 +10,7 @@ target 'adera' do
   pod 'Firebase/Database'
   pod 'JSQMessagesViewController'
   pod 'QRCode'
+  pod 'QRCodeReader.swift'
 
   # Pods for adera
 

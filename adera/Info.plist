@@ -32,6 +32,8 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allows you to set a profile photo.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allows you to scan QR codes.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
