@@ -63,9 +63,10 @@ class ChannelTopicTableViewController: UITableViewController {
             let fontSize = CGFloat(17)
             let characterToHighlight: Character = "+"
             let position = emptyTable.indexDistance(of: characterToHighlight)
+            let color = UIApplication.shared.delegate?.window??.tintColor ?? AccountDefaultSettings.aqua
             
             let mutableString = NSMutableAttributedString(string: emptyTable, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: fontSize), NSForegroundColorAttributeName: UIColor.gray])
-            mutableString.addAttribute(NSForegroundColorAttributeName, value: self.view.tintColor, range: NSRange(location: position!, length: 1))
+            mutableString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: position!, length: 1))
             mutableString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: fontSize + 10), range: NSRange(location: position!, length: 1))
             
             emptyLabel.attributedText = mutableString
