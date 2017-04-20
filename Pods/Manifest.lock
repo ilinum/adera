@@ -54,6 +54,7 @@ PODS:
   - JSQSystemSoundPlayer (2.0.1)
   - QRCode (2.0)
   - QRCodeReader.swift (7.4.1)
+  - Solar (2.0.0)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - QRCode
   - QRCodeReader.swift
+  - Solar
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -83,7 +85,8 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   QRCodeReader.swift: 39b149584852b7b721012126d38a14024b851366
+  Solar: ea092f7660c1b58d2b754227decb61a1c6710826
 
-PODFILE CHECKSUM: bdd41d78c326be0170b1de5edd51b01471cc938b
+PODFILE CHECKSUM: 3d1d179e6b8638d0754d98b82916c8895753bc94
 
 COCOAPODS: 1.2.0

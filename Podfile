@@ -13,6 +13,7 @@ target 'adera' do
   pod 'QRCodeReader.swift'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
+  pod 'Solar'
 
   # Pods for adera
 

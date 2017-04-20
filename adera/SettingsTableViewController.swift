@@ -10,8 +10,10 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
+import CoreLocation
+import Solar
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, CLLocationManagerDelegate {
     @IBOutlet weak var emailCell: UITableViewCell!
     @IBOutlet weak var passwordCell: UITableViewCell!
     @IBOutlet weak var usernameCell: UITableViewCell!
@@ -26,6 +28,8 @@ class SettingsTableViewController: UITableViewController {
     
     var userID: String?
     var isFacebookUser = false
+    let locationManager = CLLocationManager()
+    var colorScheme: String?
     let tableViewController: UITableViewController = UITableViewController()
     var channelTV:MyChannelsTableViewDelegate? = nil
     
@@ -281,16 +285,45 @@ class SettingsTableViewController: UITableViewController {
     }
     
     @IBAction func colorSchemeChanged(_ sender: Any) {
-        let colorScheme = self.colorSchemeSegmentedControl.selectedSegmentIndex == 0 ? "light" : "dark"
-        AppDelegate.usersRef.child(self.userID!).child("settings").child("colorScheme").setValue(colorScheme)
-        
+        self.colorScheme = self.colorSchemeSegmentedControl.selectedSegmentIndex == 0 ? "light" : "dark"
+        let autoNightThemeEnabled = self.autoNightThemeSegmentedControl.selectedSegmentIndex == 0 ? true : false
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("colorScheme").setValue(self.colorScheme)
+        if autoNightThemeEnabled && self.colorScheme == "light" {
+            self.setAppearanceWithSolar()
+        } else {
+            self.setAppearance()
+        }
+    }
+    
+    @IBAction func autoNightThemeChanged(_ sender: Any) {
+        self.colorScheme = self.colorSchemeSegmentedControl.selectedSegmentIndex == 0 ? "light" : "dark"
+        let autoNightThemeEnabled = self.autoNightThemeSegmentedControl.selectedSegmentIndex == 0 ? true : false
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("autoNightThemeEnabled").setValue(autoNightThemeEnabled)
+        if autoNightThemeEnabled && self.colorScheme == "light" {
+            self.setAppearanceWithSolar()
+        } else {
+            self.setAppearance()
+        }
+    }
+    
+    @IBAction func channelSortingMethodChanged(_ sender: Any) {
+        let channelSortingMethod = self.channelSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("channelSortingMethod").setValue(channelSortingMethod)
+    }
+
+    @IBAction func topicSortingMethodChanged(_ sender: Any) {
+        let topicSortingMethod = self.topicSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("topicSortingMethod").setValue(topicSortingMethod)
+    }
+    
+    func setAppearance() {
         var textColor:UIColor?
         var backgroundColor:UIColor?
         
-        if colorScheme == "light" {
+        if self.colorScheme == "light" {
             textColor = AccountDefaultSettings.lightTextColor
             backgroundColor = AccountDefaultSettings.lightBackgroundColor
-        } else if colorScheme == "dark" {
+        } else if self.colorScheme == "dark" {
             textColor = AccountDefaultSettings.darkTextColor
             backgroundColor = AccountDefaultSettings.darkBackgroundColor
         }
@@ -307,18 +340,35 @@ class SettingsTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    @IBAction func autoNightThemeChanged(_ sender: Any) {
-        let autoNightThemeEnabled = self.autoNightThemeSegmentedControl.selectedSegmentIndex == 0 ? true : false
-        AppDelegate.usersRef.child(self.userID!).child("settings").child("autoNightThemeEnabled").setValue(autoNightThemeEnabled)
+    func setAppearanceWithSolar() {
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.requestLocation()
+        } else {
+            let alert = createErrorAlert(message: "Please enable location services for auto night theme.")
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
-    @IBAction func channelSortingMethodChanged(_ sender: Any) {
-        let channelSortingMethod = self.channelSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
-        AppDelegate.usersRef.child(self.userID!).child("settings").child("channelSortingMethod").setValue(channelSortingMethod)
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let coordinate = locations.first!.coordinate
+        let solar = Solar(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let sunrise = solar!.sunrise!.timeIntervalSince1970
+        let sunset = solar!.sunset!.timeIntervalSince1970
+        
+        let now = Date().timeIntervalSince1970
+        if now > sunrise && now < sunset {
+            self.colorScheme = "light"
+        }
+        else {
+            self.colorScheme = "dark"
+        }
+        self.setAppearance()
     }
-
-    @IBAction func topicSortingMethodChanged(_ sender: Any) {
-        let topicSortingMethod = self.topicSortingMethodSegmentedControl.selectedSegmentIndex == 0 ? "date" : "popularity"
-        AppDelegate.usersRef.child(self.userID!).child("settings").child("topicSortingMethod").setValue(topicSortingMethod)
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        let alert = createErrorAlert(message: error.localizedDescription)
+        self.present(alert, animated: true, completion: nil)
     }
 }

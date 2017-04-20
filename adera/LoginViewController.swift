@@ -10,8 +10,10 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
+import CoreLocation
+import Solar
 
-class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var facebookLoginView: UIView!
     @IBOutlet weak var loginRegisterSegmentedControl: UISegmentedControl!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -20,6 +22,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var userPhotoImageView: UIImageView!
+    let locationManager = CLLocationManager()
+    var fontSize: Int?
+    var highlightColorIndex: Int?
+    var colorScheme: String?
     private var isLogin: Bool = true
 
     override func viewDidLoad() {
@@ -143,11 +149,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             self.view.addSubview(progressHUD)
             
             let value = snapshot.value as? NSDictionary
-            let fontSize = value?["fontSize"] as? Int
-            let highlightColorIndex = value?["highlightColorIndex"] as? Int
-            let colorScheme = value?["colorScheme"] as? String
-
-            self.setAppearance(fontSize: fontSize, highlightColorIndex: highlightColorIndex, colorScheme: colorScheme)
+            self.fontSize = value?["fontSize"] as? Int
+            self.highlightColorIndex = value?["highlightColorIndex"] as? Int
+            self.colorScheme = value?["colorScheme"] as? String
+            let autoNightThemeEnabled = value?["autoNightThemeEnabled"] as? Bool ?? AccountDefaultSettings.autoNightThemeEnabled
+            
+            self.setAppearance()
+            if autoNightThemeEnabled {
+                self.setAppearanceWithSolar()
+            }
             
             print("You have successfully logged in")
             self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
@@ -155,32 +165,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             print(error.localizedDescription)
             self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
         }
-    }
-
-    func setAppearance(fontSize size: Int?, highlightColorIndex colorIndex: Int?, colorScheme scheme: String?) {
-        let colorScheme = scheme ?? AccountDefaultSettings.colorScheme
-        let fontSize = size ?? AccountDefaultSettings.fontSize
-        let highlightColorIndex = colorIndex ?? AccountDefaultSettings.highlightColorIndex
-        
-        let tintColor = AccountDefaultSettings.colors[highlightColorIndex]
-        var textColor:UIColor?
-        var backgroundColor:UIColor?
-
-        if colorScheme == "light" {
-            textColor = AccountDefaultSettings.lightTextColor
-            backgroundColor = AccountDefaultSettings.lightBackgroundColor
-        } else if colorScheme == "dark" {
-            textColor = AccountDefaultSettings.darkTextColor
-            backgroundColor = AccountDefaultSettings.darkBackgroundColor
-        }
-
-        UILabel.appearance().textColor = textColor!
-        UIApplication.shared.delegate?.window??.tintColor = tintColor
-        self.navigationController?.navigationBar.barTintColor = backgroundColor!
-        UITableView.appearance().backgroundColor = backgroundColor!
-        UITableViewCell.appearance().backgroundColor = backgroundColor!
-
-        UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
     }
 
     override func didReceiveMemoryWarning() {
@@ -266,6 +250,64 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         let settingsRef = AppDelegate.usersRef.child(userID).child("settings")
         settingsRef.child("displayName").setValue(username)
         settingsRef.child("userPhotoURL").setValue(userPhotoURL)
+    }
+    
+    func setAppearance() {
+        let colorScheme = self.colorScheme ?? AccountDefaultSettings.colorScheme
+        let fontSize = self.fontSize ?? AccountDefaultSettings.fontSize
+        let highlightColorIndex = self.highlightColorIndex ?? AccountDefaultSettings.highlightColorIndex
+        
+        let tintColor = AccountDefaultSettings.colors[highlightColorIndex]
+        var textColor:UIColor?
+        var backgroundColor:UIColor?
+        
+        if colorScheme == "light" {
+            textColor = AccountDefaultSettings.lightTextColor
+            backgroundColor = AccountDefaultSettings.lightBackgroundColor
+        } else if colorScheme == "dark" {
+            textColor = AccountDefaultSettings.darkTextColor
+            backgroundColor = AccountDefaultSettings.darkBackgroundColor
+        }
+        
+        UILabel.appearance().textColor = textColor!
+        UIApplication.shared.delegate?.window??.tintColor = tintColor
+        self.navigationController?.navigationBar.barTintColor = backgroundColor!
+        UITableView.appearance().backgroundColor = backgroundColor!
+        UITableViewCell.appearance().backgroundColor = backgroundColor!
+        
+        UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+    }
+    
+    func setAppearanceWithSolar() {
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.requestLocation()
+        } else {
+            let alert = createErrorAlert(message: "Please enable location services for auto night theme.")
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let coordinate = locations.first!.coordinate
+        let solar = Solar(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let sunrise = solar!.sunrise!.timeIntervalSince1970
+        let sunset = solar!.sunset!.timeIntervalSince1970
+        
+        let now = Date().timeIntervalSince1970
+        if now > sunrise && now < sunset {
+            self.colorScheme = "light"
+        }
+        else {
+            self.colorScheme = "dark"
+        }
+        self.setAppearance()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        let alert = createErrorAlert(message: error.localizedDescription)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import FirebaseAuth
+import CoreLocation
+import Solar
 
 // this is a generalized view controller for list of topics and list of channels.
 // whenever it is created, you should assign it a delegate that should have most of the logic in it.
-class ChannelTopicTableViewController: UITableViewController {
+class ChannelTopicTableViewController: UITableViewController, CLLocationManagerDelegate {
     var delegate: ChannelTopicTableViewControllerDelegate? = nil
+    let locationManager = CLLocationManager()
+    var colorScheme: String?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +26,18 @@ class ChannelTopicTableViewController: UITableViewController {
             self.navigationItem.leftBarButtonItem = delegate!.getLeftBarButtonItem()
             self.navigationItem.rightBarButtonItem = delegate!.getRightBarButtonItem()
         }
-        self.tableView.reloadData()
+        
+        AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let autoNightThemeEnabled = value?["autoNightThemeEnabled"] as? Bool ?? AccountDefaultSettings.autoNightThemeEnabled
+            self.colorScheme = value?["colorScheme"] as? String ?? AccountDefaultSettings.colorScheme
+            
+            if autoNightThemeEnabled && self.colorScheme == "light" {
+                self.setAppearanceWithSolar()
+            } else {
+                self.setAppearance()
+            }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +152,7 @@ class ChannelTopicTableViewController: UITableViewController {
     // Header Section Height
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if delegate?.nameForSection(section: section) != nil {
-            return UILabel.appearance().font.pointSize + 10
+            return UILabel.appearance().font.pointSize + 10 
         }
         return 0
     }
@@ -164,6 +181,58 @@ class ChannelTopicTableViewController: UITableViewController {
     // When the UI Font changes, reload the table views
     func onContentSizeChange(notification: Notification) {
         tableView.reloadData()
+    }
+    
+    func setAppearance() {
+        var textColor:UIColor?
+        var backgroundColor:UIColor?
+        
+        if self.colorScheme == "light" {
+            textColor = AccountDefaultSettings.lightTextColor
+            backgroundColor = AccountDefaultSettings.lightBackgroundColor
+        } else if self.colorScheme == "dark" {
+            textColor = AccountDefaultSettings.darkTextColor
+            backgroundColor = AccountDefaultSettings.darkBackgroundColor
+        }
+        
+        UILabel.appearance().textColor = textColor!
+        self.navigationController?.navigationBar.barTintColor = backgroundColor!
+        UITableView.appearance().backgroundColor = backgroundColor!
+        UITableViewCell.appearance().backgroundColor = backgroundColor!
+        
+        self.tableView.reloadData()
+    }
+    
+    func setAppearanceWithSolar() {
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.requestLocation()
+        } else {
+            let alert = createErrorAlert(message: "Please enable location services for auto night theme.")
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let coordinate = locations.first!.coordinate
+        let solar = Solar(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let sunrise = solar!.sunrise!.timeIntervalSince1970
+        let sunset = solar!.sunset!.timeIntervalSince1970
+        
+        let now = Date().timeIntervalSince1970
+        if now > sunrise && now < sunset {
+            self.colorScheme = "light"
+        }
+        else {
+            self.colorScheme = "dark"
+        }
+        self.setAppearance()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        let alert = createErrorAlert(message: error.localizedDescription)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
