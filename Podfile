@@ -11,6 +11,8 @@ target 'adera' do
   pod 'JSQMessagesViewController'
   pod 'QRCode'
   pod 'QRCodeReader.swift'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
 
   # Pods for adera
 

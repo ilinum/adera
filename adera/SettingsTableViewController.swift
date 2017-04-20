@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import FBSDKLoginKit
 
 class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var emailCell: UITableViewCell!
@@ -24,6 +25,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var userPhotoImageView: UIImageView!
     
     var userID: String?
+    var isFacebookUser = false
     let tableViewController: UITableViewController = UITableViewController()
     var channelTV:MyChannelsTableViewDelegate? = nil
     
@@ -43,6 +45,17 @@ class SettingsTableViewController: UITableViewController {
         self.channelSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         self.topicSortingMethodSegmentedControl.apportionsSegmentWidthsByContent = true
         self.channelTV = MyChannelsTableViewDelegate(tableViewController:tableViewController)
+        
+        if let providerData = FIRAuth.auth()?.currentUser?.providerData {
+            for userInfo in providerData {
+                switch userInfo.providerID {
+                    case "facebook.com":
+                        self.isFacebookUser = true
+                    default: break
+                }
+            }
+        }
+        
         updateDetailsViews()
     }
     
@@ -58,7 +71,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Edit Profile
-        if indexPath.section == 1 {
+        if indexPath.section == 2 {
             // Email
             if  indexPath.row == 0 {
                 let alertController = UIAlertController(title: "Change Email Address", message: nil, preferredStyle: .alert)
@@ -71,7 +84,7 @@ class SettingsTableViewController: UITableViewController {
                             let message: String? = error != nil ? error?.localizedDescription : "Successfully Changed Email"
                             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
                             if error != nil {
-                                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                                 alertController.addAction(cancelAction)
                                 // Handle Specific Error Codes
                                 if let errorCode = FIRAuthErrorCode(rawValue: error!._code) {
@@ -107,16 +120,24 @@ class SettingsTableViewController: UITableViewController {
                     if textField.text?.characters.count ?? 0 > 0 {
                         FIRAuth.auth()?.currentUser?.updatePassword(textField.text!) { (error) in
                             // Displays Error or Success Message from FireBase
-                            let title: String? = error != nil ? "Reauthentication Required" : "Success"
+                            let title: String? = error != nil ? "Error" : "Success"
                             let message: String? = error != nil ? error?.localizedDescription : "Successfully Changed Password"
                             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
                             if error != nil {
-                                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                                 alertController.addAction(cancelAction)
-                                let loginAction = UIAlertAction(title: "Re-Login", style: .destructive, handler: self.signOutAction)
-                                alertController.addAction(loginAction)
+                                // Handle Specific Error Codes
+                                if let errorCode = FIRAuthErrorCode(rawValue: error!._code) {
+                                    if errorCode == FIRAuthErrorCode.errorCodeRequiresRecentLogin {
+                                        alertController.title = "Reauthentication Required"
+                                        let loginAction = UIAlertAction(title: "Re-Login", style: .destructive, handler: self.signOutAction)
+                                        alertController.addAction(loginAction)
+                                    }
+                                }
                             }
+                            // Successful Update
                             else {
+                                self.updateDetailsViews()
                                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                                 alertController.addAction(defaultAction)
                             }
@@ -172,12 +193,8 @@ class SettingsTableViewController: UITableViewController {
     }
 
     func signOutAction(_ sender: Any) {
-        print("sign out")
-        try! FIRAuth.auth()!.signOut()
-        if let storyboard = self.storyboard {
-            let vc = storyboard.instantiateViewController(withIdentifier: "MainNavigationController") as! UINavigationController
-            self.present(vc, animated: true, completion: nil)
-        }
+        let settingsVC = parent as! SettingsViewController
+        settingsVC.signOutAction(self)
     }
     
     func updateDetailsViews() {
@@ -214,6 +231,15 @@ class SettingsTableViewController: UITableViewController {
             }
         }) { (error) in
             print(error.localizedDescription)
+        }
+        if isFacebookUser {
+            self.emailCell.isUserInteractionEnabled = false
+            self.emailCell.textLabel!.isEnabled = false
+            self.emailCell.detailTextLabel!.isEnabled = false
+            
+            self.passwordCell.isUserInteractionEnabled = false
+            self.passwordCell.textLabel!.isEnabled = false
+            self.passwordCell.detailTextLabel!.isEnabled = false
         }
     }
     

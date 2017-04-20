@@ -34,8 +34,10 @@ extension SettingsTableViewController: UIImagePickerControllerDelegate, UINaviga
             userPhotoImageView.image = selectedImage
         }
         
-        let storageRef = FIRStorage.storage().reference().child("user_photos").child(self.userID!).child("avatar.png")
+        self.userPhotoImageView.storeInCache(imageURL: "USER_PHOTO_CHANGE", image: self.userPhotoImageView.image!)
+        AppDelegate.usersRef.child(self.userID!).child("settings").child("userPhotoURL").setValue("USER_PHOTO_CHANGE")
         
+        let storageRef = FIRStorage.storage().reference().child("user_photos").child(self.userID!).child("avatar.png")
         if let uploadData = UIImagePNGRepresentation(self.userPhotoImageView.image!) {
             storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil { return }

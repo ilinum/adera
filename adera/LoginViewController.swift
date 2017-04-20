@@ -9,8 +9,10 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
+    @IBOutlet weak var facebookLoginView: UIView!
     @IBOutlet weak var loginRegisterSegmentedControl: UISegmentedControl!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIBarButtonItem!
@@ -31,6 +33,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             passwordTextField.delegate = self
             emailTextField.delegate = self
         }
+        
+        let facebookLoginBtn =  FBSDKLoginButton()
+        facebookLoginView.addSubview(facebookLoginBtn)
+        facebookLoginBtn.bindFrameToSuperviewBounds()
+        
+        facebookLoginBtn.delegate = self
+        facebookLoginBtn.readPermissions = ["email", "public_profile"]
         
         userPhotoImageView.layer.cornerRadius = 50
         userPhotoImageView.layer.masksToBounds = true
@@ -87,19 +96,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         } else if (!isLogin) {
             FIRAuth.auth()?.createUser(withEmail: email!, password: password!) { (user, error) in
                 if error == nil {
-                    print("Sign up successful")
-
-                    let settingsRef = AppDelegate.usersRef.child(user!.uid).child("settings")
-                    settingsRef.child("displayName").setValue(username)
-                    settingsRef.child("fontSize").setValue(AccountDefaultSettings.fontSize)
-                    settingsRef.child("colorScheme").setValue(AccountDefaultSettings.colorScheme)
-                    settingsRef.child("autoNightThemeEnabled").setValue(AccountDefaultSettings.autoNightThemeEnabled)
-                    settingsRef.child("channelSortingMethod").setValue(AccountDefaultSettings.channelSortingMethod)
-                    settingsRef.child("topicSortingMethod").setValue(AccountDefaultSettings.topicSortingMethod)
-                    self.setAppearance(fontSize: nil, highlightColorIndex: nil, colorScheme: nil)
-                    
                     let storageRef = FIRStorage.storage().reference().child("user_photos").child(user!.uid).child("avatar.png")
-                    
                     if let uploadData = UIImagePNGRepresentation(self.userPhotoImageView.image!) {
                         storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                             if error != nil {
@@ -107,7 +104,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 return
                             }
                             if let userPhotoURL = metadata?.downloadURL()?.absoluteString {
-                                settingsRef.child("userPhotoURL").setValue(userPhotoURL)
+                                self.setUpNewAccount(userID: user!.uid, username: username!, userPhotoURL: userPhotoURL)
                                 self.userPhotoImageView.storeInCache(imageURL: userPhotoURL, image: self.userPhotoImageView.image!)
                             }
                         })
@@ -126,17 +123,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         } else {
             FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
-                
                 if error == nil {
                     self.performLogin()
                 } else {
-                    
                     // Tells the user that there is an error and then gets firebase to tell them the error
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)
-                    
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
@@ -144,10 +137,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func performLogin() {
-        let progressHUD = ProgressHUD(text: "Logging In")
-        self.view.addSubview(progressHUD)
         // Get Application Settings Values from FireBase to use for UI changes upon login
         AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser!.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
+            let progressHUD = ProgressHUD(text: "Logging In")
+            self.view.addSubview(progressHUD)
+            
             let value = snapshot.value as? NSDictionary
             let fontSize = value?["fontSize"] as? Int
             let highlightColorIndex = value?["highlightColorIndex"] as? Int
@@ -201,6 +195,77 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 tableViewController.delegate = channelDelegate
             }
         }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("log out")
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print(error)
+            return
+        }
+        
+        let accessToken = FBSDKAccessToken.current()
+        guard let accessTokenString = accessToken?.tokenString else {
+            return
+        }
+        
+        let progressHUD = ProgressHUD(text: "Logging In")
+        self.view.addSubview(progressHUD)
+        
+        let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if error == nil {
+                AppDelegate.usersRef.child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if !snapshot.hasChild("settings") {
+                        self.setUpNewAccount(userID: user!.uid, username: "usernameNotSet", userPhotoURL: "")
+                        var username: String?
+                        var photoURL: String?
+                        
+                        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
+                            (connection, result, error) in
+                            if error != nil {
+                                print("Failed to start graph request:", error ?? "error")
+                                return
+                            }
+                            let result = result as! NSDictionary
+                            username = result.object(forKey: "name") as? String
+                            let userID = result.object(forKey: "id") as! String
+                            photoURL = "https://graph.facebook.com/\(userID)/picture?type=large"
+                            self.setUpCallbackAccountInfo(userID: user!.uid, username: username!, userPhotoURL: photoURL!)
+                        }
+                    }
+                    self.performLogin()
+                })
+            } else {
+                // Tells the user that there is an error and then gets firebase to tell them the error
+                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        })
+    }
+    
+    func setUpNewAccount(userID: String, username: String, userPhotoURL: String) {
+        print("Sign up successful, configuring user settings")
+        let settingsRef = AppDelegate.usersRef.child(userID).child("settings")
+        settingsRef.child("displayName").setValue(username)
+        settingsRef.child("fontSize").setValue(AccountDefaultSettings.fontSize)
+        settingsRef.child("colorScheme").setValue(AccountDefaultSettings.colorScheme)
+        settingsRef.child("autoNightThemeEnabled").setValue(AccountDefaultSettings.autoNightThemeEnabled)
+        settingsRef.child("channelSortingMethod").setValue(AccountDefaultSettings.channelSortingMethod)
+        settingsRef.child("topicSortingMethod").setValue(AccountDefaultSettings.topicSortingMethod)
+        settingsRef.child("userPhotoURL").setValue(userPhotoURL)
+    }
+    
+    func setUpCallbackAccountInfo(userID: String, username: String, userPhotoURL: String) {
+        print("Setting up callback info for username and photoURL")
+        let settingsRef = AppDelegate.usersRef.child(userID).child("settings")
+        settingsRef.child("displayName").setValue(username)
+        settingsRef.child("userPhotoURL").setValue(userPhotoURL)
     }
 }
 

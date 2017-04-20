@@ -85,8 +85,8 @@ class JoinPrivateChannelViewController: UIViewController, QRCodeReaderViewContro
         } catch let error as NSError {
             switch error.code {
             case -11852:
-                let alert = UIAlertController(title: "Error", message: "This app is not authorized to use Back Camera.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Setting", style: .default, handler: { (_) in
+                let alert = UIAlertController(title: "Error", message: "This app is not yet authorized to use the camera", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Go To Settings", style: .default, handler: { (_) in
                     DispatchQueue.main.async {
                         if let settingsURL = URL(string: UIApplicationOpenSettingsURLString) {
                             UIApplication.shared.open(settingsURL)
@@ -96,7 +96,7 @@ class JoinPrivateChannelViewController: UIViewController, QRCodeReaderViewContro
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 present(alert, animated: true, completion: nil)
             case -11814:
-                let alert = UIAlertController(title: "Error", message: "Reader not supported by the current device", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error", message: "Camera not supported on the current device", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 present(alert, animated: true, completion: nil)
             default:()

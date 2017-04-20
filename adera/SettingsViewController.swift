@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FBSDKLoginKit
 
 class SettingsViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
@@ -32,8 +33,8 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func signOutAction(_ sender: Any) {
-        print("sign out")
         try! FIRAuth.auth()!.signOut()
+        FBSDKLoginManager().logOut()
         if let storyboard = self.storyboard {
             
             let tintColor = AccountDefaultSettings.aqua
