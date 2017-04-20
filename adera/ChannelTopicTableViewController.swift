@@ -26,6 +26,16 @@ class ChannelTopicTableViewController: UITableViewController, CLLocationManagerD
             self.navigationItem.leftBarButtonItem = delegate!.getLeftBarButtonItem()
             self.navigationItem.rightBarButtonItem = delegate!.getRightBarButtonItem()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isToolbarHidden = true
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue:"FontSizeChange"),
+                                               object: nil,
+                                               queue: nil,
+                                               using: onContentSizeChange)
         
         AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser?.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -39,27 +49,15 @@ class ChannelTopicTableViewController: UITableViewController, CLLocationManagerD
             }
         })
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.isToolbarHidden = true
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue:"FontSizeChange"),
-                                               object: nil,
-                                               queue: nil,
-                                               using: onContentSizeChange)
-        
-        self.view.backgroundColor = UITableView.appearance().backgroundColor
-        self.tableView.backgroundColor = UITableView.appearance().backgroundColor
-        tableView.reloadData()
-    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicOrTableCell", for: indexPath) as! ChannelTopicCell
         
         // Table view cell label appearances
         cell.nameLabel?.font = UIFont.boldSystemFont(ofSize: UILabel.appearance().font?.pointSize ?? 17)
+        cell.nameLabel?.textColor = UILabel.appearance().textColor
         cell.descriptionLabel?.textColor = UIColor.gray
+        cell.backgroundColor = UITableViewCell.appearance().backgroundColor
         
         if delegate != nil {
             cell.gestureRecognizers?.forEach(cell.removeGestureRecognizer)
@@ -161,7 +159,7 @@ class ChannelTopicTableViewController: UITableViewController, CLLocationManagerD
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerView = view as! UITableViewHeaderFooterView
         headerView.backgroundView?.backgroundColor = UIColor.white
-        let color = UIApplication.shared.delegate?.window??.tintColor ?? UIColor.red
+        let color = UIApplication.shared.delegate?.window??.tintColor ?? AccountDefaultSettings.aqua
         headerView.textLabel?.textColor = color
         headerView.backgroundView?.backgroundColor = UITableView.appearance().backgroundColor
         //        headerView.textLabel?.textAlignment = NSTextAlignment.center
@@ -199,6 +197,9 @@ class ChannelTopicTableViewController: UITableViewController, CLLocationManagerD
         self.navigationController?.navigationBar.barTintColor = backgroundColor!
         UITableView.appearance().backgroundColor = backgroundColor!
         UITableViewCell.appearance().backgroundColor = backgroundColor!
+        
+        self.view.backgroundColor = UITableView.appearance().backgroundColor
+        self.tableView.backgroundColor = UITableView.appearance().backgroundColor
         
         self.tableView.reloadData()
     }
