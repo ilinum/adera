@@ -398,6 +398,7 @@
 				TargetAttributes = {
 					FADEE4081E731A7800189953 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9XCQYPN8Y2;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -785,6 +786,7 @@
 			baseConfigurationReference = 054EDB403B01D87FD4F1EE19 /* Pods-adera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9XCQYPN8Y2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -811,6 +813,7 @@
 			baseConfigurationReference = 371D6EA2B76EA6B4C93122D5 /* Pods-adera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9XCQYPN8Y2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

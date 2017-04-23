@@ -390,7 +390,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
             let displayNameSetting = AppDelegate.usersRef.child(senderID!).child("settings").child("displayName")
             self.checkForUserPhoto(id: senderID!)
             displayNameSetting.observeSingleEvent(of: .value, with: { (displayNameSnapshot) in
-                let senderName = displayNameSnapshot.value as! String
+                let senderName = displayNameSnapshot.value as? String ?? "userNameNotSet"
                 var message: Message?
                 if snapshot.hasChild("text") {
                     let text = snapshot.childSnapshot(forPath: "text").value as! String!
@@ -449,6 +449,7 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
                 return
             }
             self.showTypingIndicator = data.childrenCount > 0
+            self.scrollToBottom(animated: true)
         }
     }
     
