@@ -14,8 +14,7 @@ target 'adera' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'Solar'
-
-  # Pods for adera
+  pod 'CRToast', '~> 0.0.7'
 
   target 'aderaTests' do
     inherit! :search_paths

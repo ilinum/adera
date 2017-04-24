@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - CRToast (0.0.9)
   - FBSDKCoreKit (4.22.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.22.0):
@@ -57,6 +58,7 @@ PODS:
   - Solar (2.0.0)
 
 DEPENDENCIES:
+  - CRToast (~> 0.0.7)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Auth
@@ -70,6 +72,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   FBSDKCoreKit: c693bad19feb225469eeff14452ba364522ee48b
   FBSDKLoginKit: 1fa529fc622d7b32ebeaffbecd377180833c6d30
   Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
@@ -87,6 +90,6 @@ SPEC CHECKSUMS:
   QRCodeReader.swift: 39b149584852b7b721012126d38a14024b851366
   Solar: ea092f7660c1b58d2b754227decb61a1c6710826
 
-PODFILE CHECKSUM: 3d1d179e6b8638d0754d98b82916c8895753bc94
+PODFILE CHECKSUM: 2a8e384c4cb69c9493a8bbc5a19be142a1b519ac
 
 COCOAPODS: 1.2.0
