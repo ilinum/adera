@@ -329,6 +329,7 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
         }
         
         UILabel.appearance().textColor = textColor!
+        parent?.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: textColor!]
         parent?.navigationController?.navigationBar.barTintColor = backgroundColor!
         UITableView.appearance().backgroundColor = backgroundColor!
         UITableViewCell.appearance().backgroundColor = backgroundColor!
@@ -354,14 +355,9 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let coordinate = locations.first!.coordinate
         let solar = Solar(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let sunrise = solar!.sunrise!.timeIntervalSince1970
-        let sunset = solar!.sunset!.timeIntervalSince1970
-        
-        let now = Date().timeIntervalSince1970
-        if now > sunrise && now < sunset {
+        if (solar!.isDaytime) {
             self.colorScheme = "light"
-        }
-        else {
+        } else {
             self.colorScheme = "dark"
         }
         self.setAppearance()

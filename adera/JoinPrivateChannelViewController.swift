@@ -108,15 +108,6 @@ class JoinPrivateChannelViewController: UIViewController, QRCodeReaderViewContro
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
         reader.stopScanning()
         dismiss(animated: true, completion: nil)
-//        dismiss(animated: true) { [weak self] in
-//            let alert = UIAlertController(
-//                title: "QRCodeReader",
-//                message: String (format:"%@ (of type %@)", result.value, result.metadataType),
-//                preferredStyle: .alert
-//            )
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//            self?.present(alert, animated: true, completion: nil)
-//        }
     }
     
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
