@@ -271,6 +271,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         UILabel.appearance().textColor = textColor!
         UIApplication.shared.delegate?.window??.tintColor = tintColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: textColor!]
         self.navigationController?.navigationBar.barTintColor = backgroundColor!
         UITableView.appearance().backgroundColor = backgroundColor!
         UITableViewCell.appearance().backgroundColor = backgroundColor!
@@ -292,14 +293,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let coordinate = locations.first!.coordinate
         let solar = Solar(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        let sunrise = solar!.sunrise!.timeIntervalSince1970
-        let sunset = solar!.sunset!.timeIntervalSince1970
-        
-        let now = Date().timeIntervalSince1970
-        if now > sunrise && now < sunset {
+        if (solar!.isDaytime) {
             self.colorScheme = "light"
-        }
-        else {
+        } else {
             self.colorScheme = "dark"
         }
         self.setAppearance()
