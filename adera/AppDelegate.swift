@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
+import CRToast
 import FBSDKCoreKit
 
 @UIApplicationMain
@@ -22,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let privateChannelsRef = firebaseRef.child("channels").child("private")
     static let usersRef = firebaseRef.child("users")
     static let cache = NSCache<AnyObject, AnyObject>()
+    fileprivate static var notificationHandles: [(UInt, FIRDatabaseReference)] = []
 
     static func channelsRefForType(type: ChannelType) -> FIRDatabaseReference {
         switch (type) {
@@ -39,6 +42,128 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             res = res?.replacingOccurrences(of: c, with: " ")
         }
         return res
+    }
+    
+    static func subscribeToNotifications(user: FIRUser) {
+        for (handle, ref) in notificationHandles {
+            ref.removeObserver(withHandle: handle)
+        }
+        notificationHandles = []
+        let topicNotifications = usersRef.child("\(user.uid)/notifications/channels/")
+        topicNotifications.observeSingleEvent(of: .value, with: { snapshot in
+            let privateSnap = snapshot.childSnapshot(forPath: "private")
+            let publicSnap = snapshot.childSnapshot(forPath: "public")
+            subscribeToNotificationsForChannel(user: user, snapshot: privateSnap, type: ChannelType.privateType)
+            subscribeToNotificationsForChannel(user: user, snapshot: publicSnap, type: ChannelType.publicType)
+        })
+    }
+    
+    private static func subscribeToNotificationsForChannel(user: FIRUser, snapshot: FIRDataSnapshot, type: ChannelType) {
+        let channelEnumerator = snapshot.children
+        while let channel = channelEnumerator.nextObject() as? FIRDataSnapshot {
+            let subscribed = channel.childSnapshot(forPath: "subscribed")
+            if subscribed.exists() && subscribed.value as! Bool {
+                let topicsRef = channelsRefForType(type: type).child("\(channel.key)/topics")
+                var sendNotifications = false // hack to avoid bombarding user notifications from .childAdded
+                let handle = topicsRef.observe(.childAdded, with: { snapshot in
+                    if (sendNotifications) {
+                        sendNotification(topicSnap: snapshot, user: user)
+                    }
+                })
+                topicsRef.observeSingleEvent(of: .value, with: { _ in
+                    sendNotifications = true
+                })
+                notificationHandles.append((handle, topicsRef))
+            }
+            let topicEnumerator = channel.childSnapshot(forPath: "topics").children
+            while let topic = topicEnumerator.nextObject() as? FIRDataSnapshot {
+                if let _ = topic.value as? Bool {
+                    let messageRef = channelsRefForType(type: type).child("\(channel.key)/topics/\(topic.key)/messages")
+                    var sendNotifications = false // hack to avoid bombarding user notifications from .childAdded
+                    let handle = messageRef.observe(.childAdded, with: { snapshot in
+                        if (sendNotifications) {
+                            sendNotification(messageSnap: snapshot, user: user)
+                        }
+                    })
+                    messageRef.observeSingleEvent(of: .value, with: { _ in
+                        sendNotifications = true
+                    })
+                    notificationHandles.append((handle, messageRef))
+                }
+            }
+        }
+    }
+    
+    private static func sendNotification(messageSnap: FIRDataSnapshot, user: FIRUser) {
+        // todo: send notifications for channels
+        let senderID = messageSnap.childSnapshot(forPath: "senderId").value as! String
+        if senderID == user.uid {
+            // do not show notification for my own messages
+            return
+        }
+        let displayNameSetting = AppDelegate.usersRef.child(senderID).child("settings").child("displayName")
+        displayNameSetting.observeSingleEvent(of: .value, with: { displayNameSnapshot in
+            let senderName = displayNameSnapshot.value as? String ?? "unknown"
+            messageSnap.ref.parent?.parent?.observeSingleEvent(of: .value, with: { topicSnap in
+                let topicName = topicSnap.childSnapshot(forPath: "name").value as! String
+                topicSnap.ref.parent?.parent?.observeSingleEvent(of: .value, with: { channelSnap in
+                    let channelName = channelSnap.childSnapshot(forPath: "name").value as! String
+
+                    let notificationText: String
+                    if messageSnap.hasChild("text") {
+                        let text = messageSnap.childSnapshot(forPath: "text").value as! String
+                        notificationText = "\(senderName) to \(topicName) of \(channelName):\n\(text)"
+                    } else if messageSnap.hasChild("location") {
+                        notificationText = "\(senderName) shared their location with \(topicName) of \(channelName)"
+                    } else {
+                        notificationText = "\(senderName) shared a media item with \(topicName) of \(channelName)"
+                    }
+                    sendNotification(notificationText: notificationText)
+                })
+            })
+
+
+        })
+    }
+
+    private static func sendNotification(topicSnap: FIRDataSnapshot, user: FIRUser) {
+        let senderID = topicSnap.childSnapshot(forPath: "creatorUID").value as! String
+        if senderID == user.uid {
+            // do not show notification for my own messages
+            return
+        }
+        let displayNameSetting = AppDelegate.usersRef.child(senderID).child("settings").child("displayName")
+        displayNameSetting.observeSingleEvent(of: .value, with: { displayNameSnapshot in
+            let senderName = displayNameSnapshot.value as? String ?? "unknown"
+            let topicName = topicSnap.childSnapshot(forPath: "name").value as! String
+            topicSnap.ref.parent?.parent?.observeSingleEvent(of: .value, with: { channelSnap in
+                let channelName = channelSnap.childSnapshot(forPath: "name").value as! String
+                let notificationText = "\(senderName) created topic \(topicName) in \(channelName)"
+                sendNotification(notificationText: notificationText)
+            })
+        })
+    }
+
+    private static func sendNotification(notificationText: String) {
+        let backgroundColor = UITableView.appearance().backgroundColor ?? AccountDefaultSettings.lightBackgroundColor
+        let textColor = UILabel.appearance().textColor ?? AccountDefaultSettings.lightTextColor
+        let font = UILabel.appearance().font ?? UIFont.systemFont(ofSize: 17)
+        let options: [AnyHashable: Any] = [
+                kCRToastTextKey: notificationText,
+                kCRToastTextMaxNumberOfLinesKey: 2,
+                kCRToastFontKey: font,
+                kCRToastNotificationTypeKey: NSNumber(value: CRToastType.navigationBar.rawValue),
+                kCRToastBackgroundColorKey: backgroundColor,
+                kCRToastTextColorKey: textColor,
+                kCRToastAnimationInTypeKey: (CRToastAnimationType.gravity.rawValue),
+                kCRToastAnimationOutTypeKey: (CRToastAnimationType.gravity.rawValue),
+                kCRToastAnimationInDirectionKey: (CRToastAnimationDirection.top.rawValue),
+                kCRToastAnimationOutDirectionKey: (CRToastAnimationDirection.top.rawValue)
+        ]
+
+        CRToastManager.showNotification(options: options, completionBlock: { () -> Void in
+            print("toast done!")
+        })
     }
 
 

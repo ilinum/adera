@@ -31,8 +31,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if FIRAuth.auth()?.currentUser != nil {
-            self.performLogin()
+        let currentUser = FIRAuth.auth()?.currentUser
+        if currentUser != nil {
+            self.performLogin(user: currentUser!)
         } else {
             // hide keyboard on return and out touches
             usernameTextField.delegate = self
@@ -116,6 +117,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                         })
                     }
 
+                    AppDelegate.subscribeToNotifications(user: user!)
+
                     self.performSegue(withIdentifier: "afterLoginSegue", sender: self)
                 } else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription,
@@ -130,7 +133,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         } else {
             FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
                 if error == nil {
-                    self.performLogin()
+                    self.performLogin(user: user!)
                 } else {
                     // Tells the user that there is an error and then gets firebase to tell them the error
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -142,7 +145,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         }
     }
     
-    func performLogin() {
+    func performLogin(user: FIRUser) {
+        AppDelegate.subscribeToNotifications(user: user)
         // Get Application Settings Values from FireBase to use for UI changes upon login
         AppDelegate.usersRef.child((FIRAuth.auth()?.currentUser!.uid)!).child("settings").observeSingleEvent(of: .value, with: { (snapshot) in
             let progressHUD = ProgressHUD(text: "Logging In")
@@ -221,7 +225,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                             self.setUpCallbackAccountInfo(userID: user!.uid, username: username!, userPhotoURL: photoURL!)
                         }
                     }
-                    self.performLogin()
+                    self.performLogin(user: user!)
                 })
             } else {
                 // Tells the user that there is an error and then gets firebase to tell them the error

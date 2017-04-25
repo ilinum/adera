@@ -112,12 +112,28 @@ class MyChannelsTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                         self.viewChannelPassword(channel: channel)
                     }))
                 }
-                alertController.addAction(UIAlertAction(title: "Leave Channel", style: .destructive, handler: { _ in
-                    self.leaveChannel(channel: channel)
-                }))
-                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-                tableViewController.present(alertController, animated: true, completion: nil)
+                let channelNotifications = AppDelegate.usersRef.child("\(user.uid)/notifications/channels/" +
+                        "/\(channelTypeToString(type: channel.channelType))/\(channel.id())/subscribed")
+                channelNotifications.observeSingleEvent(of: .value, with: { snap in
+                    if snap.exists() && snap.value as! Bool {
+                        alertController.addAction(UIAlertAction(title: "Unsubscribe from notifications", style: .default, handler: { _ in
+                            snap.ref.setValue(false)
+                            AppDelegate.subscribeToNotifications(user: self.user)
+                        }))
+                    } else {
+                        alertController.addAction(UIAlertAction(title: "Subscribe to notifications", style: .default, handler: { _ in
+                            snap.ref.setValue(true)
+                            AppDelegate.subscribeToNotifications(user: self.user)
+                        }))
+                    }
+                    
+                    alertController.addAction(UIAlertAction(title: "Leave Channel", style: .destructive, handler: { _ in
+                        self.leaveChannel(channel: channel)
+                    }))
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    
+                    self.tableViewController.present(alertController, animated: true, completion: nil)
+                })
             }
         }
     }

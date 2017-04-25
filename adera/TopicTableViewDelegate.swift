@@ -57,7 +57,40 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
 //         Sort topics first
         let topic = channel.topics[index.item]
         cell.nameLabel.text = topic.name
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(topicLongPressed))
+        cell.addGestureRecognizer(longPressRecognizer)
         return cell
+    }
+    
+    @objc func topicLongPressed(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        if longPressGestureRecognizer.state == UIGestureRecognizerState.began {
+            let touchPoint = longPressGestureRecognizer.location(in: self.tableViewController.view)
+            if let indexPath = tableViewController.tableView.indexPathForRow(at: touchPoint) {
+                let topic = channel.topics[indexPath.item]
+                let topicNotifications = AppDelegate.usersRef.child("\(user.uid)/notifications/channels/" +
+                    "/\(channelTypeToString(type: channel.channelType))/\(channel.id())/topics")
+                topicNotifications.observeSingleEvent(of: .value, with: { snapshot in
+                    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    let notification = snapshot.childSnapshot(forPath: topic.name.lowercased())
+                    if notification.exists() && notification.value as! Bool {
+                        // subscribed to notifications
+                        alertController.addAction(UIAlertAction(title: "Unsubscribe from notifications", style: .default, handler: { _ in
+                            topicNotifications.child(topic.name.lowercased()).removeValue()
+                            AppDelegate.subscribeToNotifications(user: self.user)
+                        }))
+                    } else {
+                        alertController.addAction(UIAlertAction(title: "Subscribe to notifications", style: .default, handler: { _ in
+                            topicNotifications.child(topic.name.lowercased()).setValue(true)
+                            AppDelegate.subscribeToNotifications(user: self.user)
+                        }))
+                    }
+                    
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    self.tableViewController.present(alertController, animated: true, completion: nil)
+                })
+                
+            }
+        }
     }
 
     func getTitle() -> String {
