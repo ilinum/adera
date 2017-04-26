@@ -91,7 +91,8 @@ class Channel {
         channel.setNumUsers(numUsers: channel.numUsers - 1)
         let id = channel.id()
         let channelTypeStr = channelTypeToString(type: channel.channelType)
-        let myChannels = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
+        let userRef = AppDelegate.usersRef.child(user.uid)
+        let myChannels = userRef.child("channels").child(channelTypeStr)
         myChannels.observeSingleEvent(of: .value, with: { snapshot in
             var newUserChannels: [String] = []
             for child in snapshot.children {
@@ -104,5 +105,7 @@ class Channel {
                 }
             }
         })
+        userRef.child("notifications/channels/\(channelTypeStr)/\(channel.id())").removeValue()
+        AppDelegate.subscribeToNotifications(user: user)
     }
 }
