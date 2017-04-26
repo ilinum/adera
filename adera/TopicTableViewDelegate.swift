@@ -75,7 +75,7 @@ class TopicTableViewDelegate: ChannelTopicTableViewControllerDelegate {
                     if notification.exists() && notification.value as! Bool {
                         // subscribed to notifications
                         alertController.addAction(UIAlertAction(title: "Unsubscribe from notifications", style: .default, handler: { _ in
-                            topicNotifications.child(topic.name.lowercased()).removeValue()
+                            topicNotifications.child(topic.name.lowercased()).setValue(false)
                             AppDelegate.subscribeToNotifications(user: self.user)
                         }))
                     } else {

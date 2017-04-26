@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             let topicEnumerator = channel.childSnapshot(forPath: "topics").children
             while let topic = topicEnumerator.nextObject() as? FIRDataSnapshot {
-                if let _ = topic.value as? Bool {
+                if topic.exists() && topic.value as! Bool {
                     let messageRef = channelsRefForType(type: type).child("\(channel.key)/topics/\(topic.key)/messages")
                     var sendNotifications = false // hack to avoid bombarding user notifications from .childAdded
                     let handle = messageRef.observe(.childAdded, with: { snapshot in

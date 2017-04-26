@@ -284,7 +284,22 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
         itemRef?.setValue(message.toDictionary())
         self.automaticallyScrollsToMostRecentMessage = true
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        subscribeToNotifications()
         finishSendingMessage()
+    }
+
+    func subscribeToNotifications() {
+        let channelType = channelTypeToString(type: channel!.channelType)
+        let topicId = topicName!.lowercased()
+        let ref = AppDelegate.usersRef.child("\(self.senderId!)/notifications/channels/" +
+            "\(channelType)/\(channel!.id())/topics/\(topicId)/")
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            if !snapshot.exists() {
+                // they have never unsubscribed or subscribed
+                ref.setValue(true)
+                AppDelegate.subscribeToNotifications(user: FIRAuth.auth()!.currentUser!)
+            }
+        })
     }
     
     func sendPhotoMessage(message: Message) -> String? {
