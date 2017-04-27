@@ -198,6 +198,8 @@ class ChannelTopicTableViewController: UITableViewController, CLLocationManagerD
         self.navigationController?.navigationBar.barTintColor = backgroundColor!
         UITableView.appearance().backgroundColor = backgroundColor!
         UITableViewCell.appearance().backgroundColor = backgroundColor!
+        UITextField.appearance().backgroundColor = backgroundColor!
+        UITextView.appearance().backgroundColor = backgroundColor!
         
         self.view.backgroundColor = UITableView.appearance().backgroundColor
         self.tableView.backgroundColor = UITableView.appearance().backgroundColor

@@ -47,6 +47,8 @@ class SettingsViewController: UIViewController {
             self.navigationController?.navigationBar.barTintColor = backgroundColor
             UITableView.appearance().backgroundColor = backgroundColor
             UITableViewCell.appearance().backgroundColor = backgroundColor
+            UITextField.appearance().backgroundColor = backgroundColor
+            UITextView.appearance().backgroundColor = backgroundColor
             
             UILabel.appearance().font = UIFont.systemFont(ofSize: CGFloat(fontSize))
             

@@ -333,6 +333,8 @@ class SettingsTableViewController: UITableViewController, CLLocationManagerDeleg
         parent?.navigationController?.navigationBar.barTintColor = backgroundColor!
         UITableView.appearance().backgroundColor = backgroundColor!
         UITableViewCell.appearance().backgroundColor = backgroundColor!
+        UITextField.appearance().backgroundColor = backgroundColor!
+        UITextView.appearance().backgroundColor = backgroundColor!
         let settingsVC = parent as! SettingsViewController
         settingsVC.view.backgroundColor = backgroundColor!
         settingsVC.signOutButton.backgroundColor = backgroundColor!

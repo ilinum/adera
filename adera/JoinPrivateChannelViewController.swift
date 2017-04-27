@@ -28,6 +28,7 @@ class JoinPrivateChannelViewController: UIViewController, QRCodeReaderViewContro
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        passwordTextField.textColor = UILabel.appearance().textColor
     }
     
     override func viewWillAppear(_ animated: Bool) {

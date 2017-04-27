@@ -24,9 +24,14 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
         channelDescriptionTextView.delegate = self
         
         self.title = "Create Channel"
-        channelDescriptionTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
+        let borderColor = UITableView.appearance().backgroundColor?.darken()
+        let borderColorCG = borderColor?.cgColor ?? UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
+        channelDescriptionTextView.layer.borderColor = borderColorCG
         channelDescriptionTextView.layer.borderWidth = 1.0
         channelDescriptionTextView.layer.cornerRadius = 5
+        
+        channelNameTextField.textColor = UILabel.appearance().textColor
+        channelDescriptionTextView.textColor = UILabel.appearance().textColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
