@@ -74,7 +74,7 @@ class ChannelTopicTableViewController: UITableViewController, CLLocationManagerD
         if count == 0 {
             let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
             
-            let emptyTable:String = "Tap the + icon to join or create a Channel!"
+            let emptyTable:String = "Tap the + icon to join\nor create a Channel!"
             let fontSize = CGFloat(17)
             let characterToHighlight: Character = "+"
             let position = emptyTable.indexDistance(of: characterToHighlight)
@@ -86,6 +86,7 @@ class ChannelTopicTableViewController: UITableViewController, CLLocationManagerD
             
             emptyLabel.attributedText = mutableString
             emptyLabel.textAlignment = NSTextAlignment.center
+            emptyLabel.numberOfLines = 2
             self.tableView.backgroundView = emptyLabel
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         }
@@ -103,13 +104,12 @@ class ChannelTopicTableViewController: UITableViewController, CLLocationManagerD
         if count == 0 {
             let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
             
-            let emptyTable:String = "No Topics yet.. 😔\nTap the ✍ icon to create a Topic!"
+            let emptyTable:String = "No Public Channels yet..."
             let fontSize = CGFloat(17)
             
             let mutableString = NSMutableAttributedString(string: emptyTable, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: fontSize), NSForegroundColorAttributeName: UIColor.gray])
             
             emptyLabel.attributedText = mutableString
-            emptyLabel.numberOfLines = 2
             emptyLabel.textAlignment = NSTextAlignment.center
             self.tableView.backgroundView = emptyLabel
             self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none

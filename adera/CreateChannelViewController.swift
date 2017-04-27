@@ -89,7 +89,11 @@ class CreateChannelViewController: UIViewController, UITextFieldDelegate, UIText
             assert(channelType == ChannelType.privateType);
             channelLocationRef = AppDelegate.privateChannelsRef
         }
-        channelLocationRef.child((channel.id())).setValue(channel.toDictionary())
+        channelLocationRef.child(channel.id()).setValue(channel.toDictionary())
+        let channelRef = AppDelegate.channelsRefForType(type: channelType).child(channel.id())
+        let topicName = AppDelegate.sanitizeStringForFirebase("General")!
+        let topic = Topic(creatorUID: user.uid, name: topicName, creationDate: Date())
+        channelRef.child("topics").child(topicName.lowercased()).setValue(topic.toDictionary())
         
         // join a channel just created
         let userChannels = AppDelegate.usersRef.child(user.uid).child("channels").child(channelTypeStr)
