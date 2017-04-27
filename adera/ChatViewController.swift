@@ -98,6 +98,12 @@ class ChatViewController: JSQMessagesViewController, CLLocationManagerDelegate {
         super.viewDidAppear(animated)
         observeTyping()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        typingRef?.removeAllObservers()
+        typingRef?.removeValue()
+        self.showTypingIndicator = false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
